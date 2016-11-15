@@ -30,20 +30,21 @@ class GameScene: SKScene {
         trees.append(SKSpriteNode(imageNamed: "Tree2"))
 
         player.position = CGPoint(x: size.width/2, y: size.height/2)
-        player.zPosition = 10
+        player.zPosition = 1
         player.setScale(1.0)
         
         trees[0].position = CGPoint(x: 1500, y: 500)
         trees[1].position = CGPoint(x: 1650, y: 300)
-        trees[0].zPosition = 14
-        trees[1].zPosition = 15
+        trees[0].zPosition = 2
+        trees[1].zPosition = 2
         
         //Add item to screen
         box = TestAxe()
+        box.name = "item"
         box.texture = SKTexture(imageNamed: "Spaceship")
         box.size = CGSizeMake(100, 100)
         box.position = CGPointMake(CGRectGetMidX(frame) + 300, CGRectGetMidY(frame) - 300)
-        box.zPosition = 100
+        box.zPosition = 1
         
         setupDpad()
         self.addChild(invent)
@@ -67,11 +68,14 @@ class GameScene: SKScene {
             player.move(touch!.locationInNode(self), dpad: dpad, scene: frame)
         }
         
-        if CGRectIntersectsRect(box.frame, player.frame) && CGRectIntersectsRect(box.frame, frame) {
-            box.removeFromParent()
-            player.pickUp(box)
-            print(player.inventory.items)
-            invent.text = String(player.inventory.items.count)
+        
+        enumerateChildNodesWithName("item"){ node, _ in
+            let item = node as! Item
+            if CGRectIntersectsRect(node.frame, self.player.frame) && CGRectIntersectsRect(node.frame, self.frame) {
+                node.removeFromParent()
+                self.player.pickUp(item)
+                self.invent.text = String(self.player.inventory.items.count)
+            }
         }
     }
     
