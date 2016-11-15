@@ -7,25 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2210E401DDA53A00059D561 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E3F1DDA53A00059D561 /* Item.swift */; };
+		E2210E481DDA54250059D561 /* TestChest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E411DDA54250059D561 /* TestChest.swift */; };
+		E2210E491DDA54250059D561 /* TestHelmet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E421DDA54250059D561 /* TestHelmet.swift */; };
+		E2210E4A1DDA54250059D561 /* TestArms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E431DDA54250059D561 /* TestArms.swift */; };
+		E2210E4B1DDA54250059D561 /* TestLegs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E441DDA54250059D561 /* TestLegs.swift */; };
+		E2210E4C1DDA54250059D561 /* TestBow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E451DDA54250059D561 /* TestBow.swift */; };
+		E2210E4D1DDA54250059D561 /* TestSword.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E461DDA54250059D561 /* TestSword.swift */; };
+		E2210E4E1DDA54250059D561 /* TestAxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E471DDA54250059D561 /* TestAxe.swift */; };
+		E2210E531DDA544A0059D561 /* Armour.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E4F1DDA544A0059D561 /* Armour.swift */; };
+		E2210E541DDA544A0059D561 /* ArmourOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E501DDA544A0059D561 /* ArmourOptions.swift */; };
+		E2210E551DDA544A0059D561 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E511DDA544A0059D561 /* Weapon.swift */; };
+		E2210E561DDA544A0059D561 /* WeaponType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E521DDA544A0059D561 /* WeaponType.swift */; };
 		E2730E071DD4AAA6001C9B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */; };
-		E2730E091DD4AAA6001C9B65 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E2730E081DD4AAA6001C9B65 /* GameScene.sks */; };
 		E2730E0B1DD4AAA6001C9B65 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */; };
 		E2730E0D1DD4AAA6001C9B65 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E0C1DD4AAA6001C9B65 /* GameViewController.swift */; };
 		E2730E101DD4AAA6001C9B65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2730E0E1DD4AAA6001C9B65 /* Main.storyboard */; };
 		E2730E121DD4AAA6001C9B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2730E111DD4AAA6001C9B65 /* Assets.xcassets */; };
 		E2730E151DD4AAA6001C9B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2730E131DD4AAA6001C9B65 /* LaunchScreen.storyboard */; };
+		E273CA101DDB1A3400768D41 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA0F1DDB1A3400768D41 /* Player.swift */; };
+		E273CA121DDB1A7F00768D41 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA111DDB1A7F00768D41 /* Inventory.swift */; };
+		E2CA171B1DD4AB0D00B4F9A5 /* PlayerSprite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */; };
+		E2CA171C1DD4AB0D00B4F9A5 /* PlayerSprite1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */; };
+		E2CA171D1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E2210E3F1DDA53A00059D561 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		E2210E411DDA54250059D561 /* TestChest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestChest.swift; sourceTree = "<group>"; };
+		E2210E421DDA54250059D561 /* TestHelmet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelmet.swift; sourceTree = "<group>"; };
+		E2210E431DDA54250059D561 /* TestArms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestArms.swift; sourceTree = "<group>"; };
+		E2210E441DDA54250059D561 /* TestLegs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLegs.swift; sourceTree = "<group>"; };
+		E2210E451DDA54250059D561 /* TestBow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBow.swift; sourceTree = "<group>"; };
+		E2210E461DDA54250059D561 /* TestSword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSword.swift; sourceTree = "<group>"; };
+		E2210E471DDA54250059D561 /* TestAxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAxe.swift; sourceTree = "<group>"; };
+		E2210E4F1DDA544A0059D561 /* Armour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Armour.swift; sourceTree = "<group>"; };
+		E2210E501DDA544A0059D561 /* ArmourOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArmourOptions.swift; sourceTree = "<group>"; };
+		E2210E511DDA544A0059D561 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		E2210E521DDA544A0059D561 /* WeaponType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponType.swift; sourceTree = "<group>"; };
 		E2730E031DD4AAA6001C9B65 /* testAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E2730E081DD4AAA6001C9B65 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		E2730E0C1DD4AAA6001C9B65 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E2730E0F1DD4AAA6001C9B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2730E111DD4AAA6001C9B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2730E141DD4AAA6001C9B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2730E161DD4AAA6001C9B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E273CA0F1DDB1A3400768D41 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		E273CA111DDB1A7F00768D41 /* Inventory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite.jpg; sourceTree = "<group>"; };
+		E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite1.jpg; sourceTree = "<group>"; };
+		E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite2.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,15 +91,39 @@
 			isa = PBXGroup;
 			children = (
 				E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */,
-				E2730E081DD4AAA6001C9B65 /* GameScene.sks */,
 				E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */,
 				E2730E0C1DD4AAA6001C9B65 /* GameViewController.swift */,
 				E2730E0E1DD4AAA6001C9B65 /* Main.storyboard */,
 				E2730E111DD4AAA6001C9B65 /* Assets.xcassets */,
 				E2730E131DD4AAA6001C9B65 /* LaunchScreen.storyboard */,
 				E2730E161DD4AAA6001C9B65 /* Info.plist */,
+				E2210E411DDA54250059D561 /* TestChest.swift */,
+				E2210E421DDA54250059D561 /* TestHelmet.swift */,
+				E2210E431DDA54250059D561 /* TestArms.swift */,
+				E2210E441DDA54250059D561 /* TestLegs.swift */,
+				E2210E451DDA54250059D561 /* TestBow.swift */,
+				E2210E461DDA54250059D561 /* TestSword.swift */,
+				E2210E471DDA54250059D561 /* TestAxe.swift */,
+				E2210E4F1DDA544A0059D561 /* Armour.swift */,
+				E2210E501DDA544A0059D561 /* ArmourOptions.swift */,
+				E2210E511DDA544A0059D561 /* Weapon.swift */,
+				E2210E521DDA544A0059D561 /* WeaponType.swift */,
+				E273CA111DDB1A7F00768D41 /* Inventory.swift */,
+				E273CA0F1DDB1A3400768D41 /* Player.swift */,
+				E2CA17171DD4AB0C00B4F9A5 /* Sprites */,
+				E2210E3F1DDA53A00059D561 /* Item.swift */,
 			);
 			path = testAnimation;
+			sourceTree = "<group>";
+		};
+		E2CA17171DD4AB0C00B4F9A5 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */,
+				E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */,
+				E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */,
+			);
+			path = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +158,7 @@
 				TargetAttributes = {
 					E2730E021DD4AAA6001C9B65 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = J26AU2T6ZN;
 					};
 				};
 			};
@@ -128,10 +185,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2730E091DD4AAA6001C9B65 /* GameScene.sks in Resources */,
 				E2730E151DD4AAA6001C9B65 /* LaunchScreen.storyboard in Resources */,
 				E2730E121DD4AAA6001C9B65 /* Assets.xcassets in Resources */,
 				E2730E101DD4AAA6001C9B65 /* Main.storyboard in Resources */,
+				E2CA171B1DD4AB0D00B4F9A5 /* PlayerSprite.jpg in Resources */,
+				E2CA171D1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg in Resources */,
+				E2CA171C1DD4AB0D00B4F9A5 /* PlayerSprite1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +201,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2210E4A1DDA54250059D561 /* TestArms.swift in Sources */,
+				E2210E491DDA54250059D561 /* TestHelmet.swift in Sources */,
+				E2210E401DDA53A00059D561 /* Item.swift in Sources */,
+				E2210E561DDA544A0059D561 /* WeaponType.swift in Sources */,
+				E273CA121DDB1A7F00768D41 /* Inventory.swift in Sources */,
+				E273CA101DDB1A3400768D41 /* Player.swift in Sources */,
+				E2210E551DDA544A0059D561 /* Weapon.swift in Sources */,
+				E2210E4E1DDA54250059D561 /* TestAxe.swift in Sources */,
 				E2730E0B1DD4AAA6001C9B65 /* GameScene.swift in Sources */,
+				E2210E531DDA544A0059D561 /* Armour.swift in Sources */,
+				E2210E4B1DDA54250059D561 /* TestLegs.swift in Sources */,
+				E2210E4D1DDA54250059D561 /* TestSword.swift in Sources */,
+				E2210E481DDA54250059D561 /* TestChest.swift in Sources */,
+				E2210E541DDA544A0059D561 /* ArmourOptions.swift in Sources */,
 				E2730E0D1DD4AAA6001C9B65 /* GameViewController.swift in Sources */,
+				E2210E4C1DDA54250059D561 /* TestBow.swift in Sources */,
 				E2730E071DD4AAA6001C9B65 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,10 +330,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testAnimation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Tom.testAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -268,10 +345,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = testAnimation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Tom.testAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -294,6 +375,7 @@
 				E2730E1B1DD4AAA6001C9B65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

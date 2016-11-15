@@ -1,0 +1,17 @@
+import Foundation
+import SpriteKit
+class TestHelmet: Armour {
+    
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+        itemName = "Helmet"
+        weight = 10
+        defense = 30
+        armourType = ArmourType.Heavy
+        armourSlot = ArmourSlot.Head
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
