@@ -97,23 +97,47 @@
 				E2730E111DD4AAA6001C9B65 /* Assets.xcassets */,
 				E2730E131DD4AAA6001C9B65 /* LaunchScreen.storyboard */,
 				E2730E161DD4AAA6001C9B65 /* Info.plist */,
+				E273CA141DDB9BAB00768D41 /* Items */,
+				E273CA111DDB1A7F00768D41 /* Inventory.swift */,
+				E273CA0F1DDB1A3400768D41 /* Player.swift */,
+				E2CA17171DD4AB0C00B4F9A5 /* Sprites */,
+			);
+			path = testAnimation;
+			sourceTree = "<group>";
+		};
+		E273CA141DDB9BAB00768D41 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				E2210E3F1DDA53A00059D561 /* Item.swift */,
+				E273CA151DDB9BBB00768D41 /* Weapons */,
+				E273CA161DDB9BC400768D41 /* Armour */,
+				E2210E4F1DDA544A0059D561 /* Armour.swift */,
+				E2210E511DDA544A0059D561 /* Weapon.swift */,
+				E2210E521DDA544A0059D561 /* WeaponType.swift */,
+				E2210E501DDA544A0059D561 /* ArmourOptions.swift */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		E273CA151DDB9BBB00768D41 /* Weapons */ = {
+			isa = PBXGroup;
+			children = (
+				E2210E451DDA54250059D561 /* TestBow.swift */,
+				E2210E461DDA54250059D561 /* TestSword.swift */,
+				E2210E471DDA54250059D561 /* TestAxe.swift */,
+			);
+			name = Weapons;
+			sourceTree = "<group>";
+		};
+		E273CA161DDB9BC400768D41 /* Armour */ = {
+			isa = PBXGroup;
+			children = (
 				E2210E411DDA54250059D561 /* TestChest.swift */,
 				E2210E421DDA54250059D561 /* TestHelmet.swift */,
 				E2210E431DDA54250059D561 /* TestArms.swift */,
 				E2210E441DDA54250059D561 /* TestLegs.swift */,
-				E2210E451DDA54250059D561 /* TestBow.swift */,
-				E2210E461DDA54250059D561 /* TestSword.swift */,
-				E2210E471DDA54250059D561 /* TestAxe.swift */,
-				E2210E4F1DDA544A0059D561 /* Armour.swift */,
-				E2210E501DDA544A0059D561 /* ArmourOptions.swift */,
-				E2210E511DDA544A0059D561 /* Weapon.swift */,
-				E2210E521DDA544A0059D561 /* WeaponType.swift */,
-				E273CA111DDB1A7F00768D41 /* Inventory.swift */,
-				E273CA0F1DDB1A3400768D41 /* Player.swift */,
-				E2CA17171DD4AB0C00B4F9A5 /* Sprites */,
-				E2210E3F1DDA53A00059D561 /* Item.swift */,
 			);
-			path = testAnimation;
+			name = Armour;
 			sourceTree = "<group>";
 		};
 		E2CA17171DD4AB0C00B4F9A5 /* Sprites */ = {

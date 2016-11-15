@@ -1,98 +1,30 @@
 import SpriteKit
+import Foundation
 class Player: SKSpriteNode {
-    private struct playerProperties{
-        static var health: Int = 100
-        static var defense: Int = 0
-        static var attack: Int = 0
-        static var inventory = Inventory(capacity: 100, amountFilled:0)
-        
-        //Armour/Weapon slots
-        static var head: Armour?
-        static var chest: Armour?
-        static var arms: Armour?
-        static var legs: Armour?
-        static var weapon: Weapon?
+    
+    var health: Int = 100
+    var defense: Int = 0
+    var attack: Int = 0
+    var inventory = Inventory(capacity: 100, amountFilled:0)
+    
+    //Armour/Weapon slots
+    var head: Armour?
+    var chest: Armour?
+    var arms: Armour?
+    var legs: Armour?
+    var weapon: Weapon?
+    var playerAnimationUp:SKAction!
+    var playerAnimationDown:SKAction!
+    var playerAnimationLeft:SKAction!
+    var playerAnimationRight:SKAction!
+    
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+        buildAnimations()
     }
     
-    var health: Int{
-        get{
-            return playerProperties.health
-        }
-        set{
-            playerProperties.health = newValue
-        }
-    }
-    
-    var defense: Int{
-        get{
-            return playerProperties.defense
-        }
-        set{
-            playerProperties.defense = newValue
-        }
-    }
-    
-    var attack: Int{
-        get{
-            return playerProperties.attack
-        }
-        set{
-            playerProperties.attack = newValue
-        }
-    }
-    
-    var inventory: Inventory{
-        get{
-            return playerProperties.inventory
-        }
-        set{
-            playerProperties.inventory = newValue
-        }
-    }
-    
-    var head: Armour?{
-        get{
-            return playerProperties.head
-        }
-        set{
-            playerProperties.head = newValue!
-        }
-    }
-    
-    var chest: Armour?{
-        get{
-            return playerProperties.chest
-        }
-        set{
-            playerProperties.chest = newValue!
-        }
-    }
-    
-    var arms: Armour?{
-        get{
-            return playerProperties.arms
-        }
-        set{
-            playerProperties.arms = newValue!
-        }
-    }
-    
-    var legs: Armour?{
-        get{
-            return playerProperties.legs
-        }
-        set{
-            playerProperties.legs = newValue!
-        }
-    }
-    
-    var weapon: Weapon?{
-        get{
-            return playerProperties.weapon
-        }
-        set{
-            playerProperties.weapon = newValue!
-        }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func unequip(item: Item) {
@@ -195,5 +127,85 @@ class Player: SKSpriteNode {
     
     func pickUp(item:Item){
         self.inventory.addItem(item)
+    }
+    
+    func startAnimation(direction: String) {
+        switch(direction){
+        case "down":
+            if self.actionForKey("animation") == nil {
+                self.runAction(
+                    SKAction.repeatActionForever(playerAnimationDown),
+                    withKey: "animation")
+            }
+            break
+        case "up":
+            if self.actionForKey("animation") == nil {
+                self.runAction(
+                    SKAction.repeatActionForever(playerAnimationUp),
+                    withKey: "animation")
+            }
+            break
+        case "left":
+            if self.actionForKey("animation") == nil {
+                self.runAction(
+                    SKAction.repeatActionForever(playerAnimationDown),
+                    withKey: "animation")
+            }
+            break
+        case "right":
+            if self.actionForKey("animation") == nil {
+                self.runAction(
+                    SKAction.repeatActionForever(playerAnimationDown),
+                    withKey: "animation")
+            }
+            break
+        default:
+            break
+        }
+    }
+    
+    func buildAnimations(){
+        var texturesDown:[SKTexture] = []
+        texturesDown.append(SKTexture(imageNamed: "PlayerSprite1"))
+        texturesDown.append(SKTexture(imageNamed: "PlayerSprite2"))
+        var texturesUp:[SKTexture] = []
+        texturesUp.append(SKTexture(imageNamed: "PlayerSprite1Back"))
+        texturesUp.append(SKTexture(imageNamed: "PlayerSprite2Back"))
+        var texturesLeft:[SKTexture] = []
+        texturesLeft.append(SKTexture(imageNamed: "PlayerSprite1"))
+        texturesLeft.append(SKTexture(imageNamed: "PlayerSprite2"))
+        var texturesRight:[SKTexture] = []
+        texturesRight.append(SKTexture(imageNamed: "PlayerSprite1"))
+        texturesRight.append(SKTexture(imageNamed: "PlayerSprite2"))
+        playerAnimationDown = SKAction.animateWithTextures(texturesDown, timePerFrame: 0.2)
+        playerAnimationUp = SKAction.animateWithTextures(texturesUp, timePerFrame: 0.2)
+        playerAnimationLeft = SKAction.animateWithTextures(texturesLeft, timePerFrame: 0.2)
+        playerAnimationRight = SKAction.animateWithTextures(texturesRight, timePerFrame: 0.2)
+    }
+
+    func move(touch: CGPoint, dpad: [SKSpriteNode], scene: CGRect){
+        if actionForKey("move") == nil{
+            let moveWait = SKAction.runBlock(){
+                self.removeActionForKey("move")
+            }
+            if CGRectContainsPoint(dpad[0].frame, touch) && (position.y + 325 < scene.height)  {
+                texture = SKTexture(imageNamed: "PlayerSpriteBack")
+                runAction(SKAction.sequence([SKAction.moveByX(0, y: 50, duration: 0.1), moveWait]), withKey: "move")
+                startAnimation("up")
+            }
+            if CGRectContainsPoint(dpad[1].frame, touch) && (position.y - 50 > 100) {
+                texture = SKTexture(imageNamed: "PlayerSprite")
+                runAction(SKAction.sequence([SKAction.moveByX(0, y: -50, duration: 0.1), moveWait]), withKey: "move")
+                startAnimation("down")
+            }
+            if CGRectContainsPoint(dpad[2].frame, touch) && (position.x - 50 > 50) {
+                runAction(SKAction.sequence([SKAction.moveByX(-50, y: 0, duration: 0.1), moveWait]), withKey: "move")
+                startAnimation("left")
+            }
+            if CGRectContainsPoint(dpad[3].frame, touch) && (position.x + 100 < scene.width) {
+                runAction(SKAction.sequence([SKAction.moveByX(50, y: 0, duration: 0.1), moveWait]), withKey: "move")
+                startAnimation("right")
+            }
+        }
     }
 }
