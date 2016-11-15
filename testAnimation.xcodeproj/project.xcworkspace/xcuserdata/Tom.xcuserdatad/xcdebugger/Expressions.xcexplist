@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "inventory.hidden">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
