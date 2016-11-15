@@ -21,6 +21,7 @@ class Player: SKSpriteNode {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         buildAnimations()
+        zPosition = 2
     }
     
     required init?(coder aDecoder: NSCoder) {

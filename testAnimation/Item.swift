@@ -27,6 +27,7 @@ class Item: SKSpriteNode {
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
+        name = "item"
     }
     
     required init?(coder aDecoder: NSCoder) {

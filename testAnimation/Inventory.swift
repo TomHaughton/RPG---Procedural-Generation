@@ -16,4 +16,8 @@ class Inventory {
         }
         return false
     }
+    
+    public func getItem(index: Int) -> Item?{
+        return items[index]
+    }
 }

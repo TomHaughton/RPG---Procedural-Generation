@@ -1,14 +1,14 @@
 import Foundation
 import SpriteKit
-class TestAxe:Weapon {
+
+class Enemy: Npc{
+    var health: Int!
+    var attack: Int!
+    var defense: Int!
+    var item: Item?
     
-    let tex = SKTexture(imageNamed: "Spaceship")
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: tex, color: color, size: size)
-        itemName = "Axe"
-        weight = 15
-        attack = 43
-        weaponType = WeaponType.Axe
+        super.init(texture: texture, color: color, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
