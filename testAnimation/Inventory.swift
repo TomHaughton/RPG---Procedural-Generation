@@ -169,7 +169,6 @@ class Inventory {
         if nodes.count != 0 {
         for i in 0...nodes.count - 1{
             if nodes[i].frame.contains(touch.locationInNode(self.inventory)){
-//                player.inventory.items.removeAtIndex(self.items.indexOf(item)!)   
                 for j in items{
                     if j === nodes[i]{
                         player.equip(nodes[i], index: i)
@@ -177,16 +176,6 @@ class Inventory {
                 }
             }
         }
-        }
-    }
-}
-
-extension RangeReplaceableCollectionType where Generator.Element : Equatable {
-    
-    // Remove first collection element that is equal to the given `object`:
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
         }
     }
 }
