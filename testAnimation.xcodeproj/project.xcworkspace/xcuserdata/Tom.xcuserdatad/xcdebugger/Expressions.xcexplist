@@ -3,21 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "position.y">
-            </PersistentString>
-            <PersistentString
-               value = "player.position.y">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
       </ContextState>
       <ContextState
-         contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
+         contextName = "Player.moveFromInvToPlayer(Item, index : Int) -&gt; ():Player.swift">
          <PersistentStrings>
             <PersistentString
-               value = "scene.childNodeWithName(&quot;inventory&quot;)">
+               value = "self.items.indexOf(item)!">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -33,6 +25,28 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Inventory.(checkEquip(UITouch, player : Player) -&gt; ()).(closure #1):Inventory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.items.indexOf(item)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Inventory.setupInventoryUI(GameScene, player : Player) -&gt; ():Inventory.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.childNodeWithName(&quot;inventory&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
+      </ContextState>
+      <ContextState
          contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
@@ -41,7 +55,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
+         contextName = "Player.equip(Item) -&gt; ():Player.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "position.y">
+            </PersistentString>
+            <PersistentString
+               value = "player.position.y">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

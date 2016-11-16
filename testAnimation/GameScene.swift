@@ -119,10 +119,11 @@ class GameScene: SKScene {
         right.color = UIColor.yellowColor()
         dpad.append(right)
         
-        open.position = CGPointMake(0, 1125)
+        open.position = CGPointMake(0, 1150)
         open.anchorPoint = CGPointMake(0, 0)
         open.size = CGSizeMake(200, 200)
         open.color = UIColor.redColor()
+        open.texture = SKTexture(imageNamed: "inventoryButton")
         open.zPosition = 120
         self.addChild(open)
         

@@ -33,6 +33,7 @@ class Inventory {
     }
     
     func setupInventoryUI(scene: GameScene, player: Player){
+        inventory.removeAllChildren()
         inventory.size = CGSizeMake(scene.frame.width, scene.frame.height)
         inventory.zPosition = 100
         inventory.name = "inventory"
@@ -42,10 +43,11 @@ class Inventory {
         invBack.position = CGPointMake(0,0)
         invBack.anchorPoint = CGPointMake(0, 0)
         
-        close.position = CGPointMake(0, 1125)
+        close.position = CGPointMake(0, 1150)
         close.anchorPoint = CGPointMake(0, 0)
         close.size = CGSizeMake(200, 200)
         close.color = UIColor.redColor()
+        close.texture = SKTexture(imageNamed: "closeButton")
         
         head.size = CGSizeMake(200, 200)
         head.position = CGPointMake(400, scene.frame.height - 500)
@@ -113,8 +115,8 @@ class Inventory {
     
     func toggleInventory(scene: GameScene, touch: UITouch, player: Player){
         if scene.childNodeWithName("inventory") != nil && CGRectContainsPoint(close.frame, touch.locationInNode(inventory)){
-            inventory.removeFromParent()
             inventory.removeAllChildren()
+            inventory.removeFromParent()
             scene.addChild(scene.open)
         } else if CGRectContainsPoint(scene.open.frame, touch.locationInNode(scene)){
             if scene.childNodeWithName("inventory") == nil{
@@ -158,11 +160,33 @@ class Inventory {
     }
     
     func checkEquip(touch: UITouch, player: Player){
+        var nodes:[Item] = []
         inventory.enumerateChildNodesWithName("slot"){ node, _ in
             let item = node as! Item
-            if item.frame.contains(touch.locationInNode(self.inventory)){
-                player.equip(item)
+            nodes.append(item)
+            
+        }
+        if nodes.count != 0 {
+        for i in 0...nodes.count - 1{
+            if nodes[i].frame.contains(touch.locationInNode(self.inventory)){
+//                player.inventory.items.removeAtIndex(self.items.indexOf(item)!)   
+                for j in items{
+                    if j === nodes[i]{
+                        player.equip(nodes[i], index: i)
+                    }
+                }
             }
+        }
+        }
+    }
+}
+
+extension RangeReplaceableCollectionType where Generator.Element : Equatable {
+    
+    // Remove first collection element that is equal to the given `object`:
+    mutating func removeObject(object : Generator.Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
         }
     }
 }

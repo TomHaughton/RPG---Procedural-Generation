@@ -65,7 +65,7 @@ class Player: SKSpriteNode {
         inventory.updateInventory(self)
     }
     
-    func equip(item: Item) {
+    func equip(item: Item, index: Int) {
         if let toEquip = item as? Armour{
             switch toEquip.armourSlot! {
             case ArmourSlot.Head:
@@ -75,7 +75,7 @@ class Player: SKSpriteNode {
                 }
                 self.head = toEquip
                 defense += toEquip.defense
-                moveFromInvToPlayer(item)
+                moveFromInvToPlayer(item, index: index)
                 break
             case ArmourSlot.Chest:
                 if self.chest != nil {
@@ -84,7 +84,7 @@ class Player: SKSpriteNode {
                 }
                 self.chest = toEquip
                 defense += toEquip.defense
-                moveFromInvToPlayer(item)
+                moveFromInvToPlayer(item, index: index)
                 break
             case ArmourSlot.Arms:
                 if self.arms != nil {
@@ -93,7 +93,7 @@ class Player: SKSpriteNode {
                 }
                 self.arms = toEquip
                 defense += toEquip.defense
-                moveFromInvToPlayer(item)
+                moveFromInvToPlayer(item, index: index)
                 break
             case ArmourSlot.Legs:
                 if self.legs != nil {
@@ -102,7 +102,7 @@ class Player: SKSpriteNode {
                 }
                 self.legs = toEquip
                 defense += toEquip.defense
-                moveFromInvToPlayer(item)
+                moveFromInvToPlayer(item, index: index)
                 break
             }
         } else if let toEquip = item as? Weapon{
@@ -112,16 +112,14 @@ class Player: SKSpriteNode {
             }
             self.weapon = toEquip
             attack += toEquip.attack
-            moveFromInvToPlayer(item)
+            moveFromInvToPlayer(item, index: index)
         }
         inventory.updateInventory(self)
     }
     
-    func moveFromInvToPlayer(item: Item) {
-        if let index = inventory.items.indexOf(item){
+    func moveFromInvToPlayer(item: Item, index: Int) {
             inventory.amountFilled -= inventory.items[index].weight
             inventory.items.removeAtIndex(index)
-        }
     }
     
     func moveFromPlayerToInv(item: Item) -> Bool{
