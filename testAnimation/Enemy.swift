@@ -5,6 +5,8 @@ class Enemy: Npc{
     var health: Int!
     var attack: Int!
     var defense: Int!
+    var attackSpeed:Int!
+    var movementSpeed: Int!
     var item: Item?
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {

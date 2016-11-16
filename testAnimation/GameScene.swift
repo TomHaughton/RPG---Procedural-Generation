@@ -19,10 +19,16 @@ class GameScene: SKScene {
     let weapon = SKSpriteNode()
     var slots:[SKSpriteNode] = []
     var bkg: [SKSpriteNode] = []
+    var enemy = RangedEnemy()
     
     override func didMoveToView(view: SKView) {
         background.position = CGPoint(x: size.width/2, y: size.height/2)
         player = Player(imageNamed: "PlayerSprite")
+        
+        enemy = RangedEnemy()
+        enemy.size = CGSizeMake(100, 100)
+        enemy.color = UIColor.whiteColor()
+        enemy.position = CGPoint(x: (size.width/2) + 300, y: (size.height/2) + 300)
         
         trees.append(SKSpriteNode(imageNamed: "Tree1"))
         trees.append(SKSpriteNode(imageNamed: "Tree2"))
@@ -49,6 +55,7 @@ class GameScene: SKScene {
         self.addChild(trees[0])
         self.addChild(trees[1])
         self.addChild(box)
+        self.addChild(enemy)
         
     }
     
@@ -58,6 +65,7 @@ class GameScene: SKScene {
     }
    
     override func update(currentTime: CFTimeInterval) {
+        enemy.moveToAttack(player)
         if let _ = touch{
             player.move(touch!.locationInNode(self), dpad: dpad, scene: frame)
         }

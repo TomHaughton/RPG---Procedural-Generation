@@ -29,6 +29,7 @@
 		E273CA121DDB1A7F00768D41 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA111DDB1A7F00768D41 /* Inventory.swift */; };
 		E273CA191DDBD64300768D41 /* Npc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA181DDBD64300768D41 /* Npc.swift */; };
 		E273CA1C1DDBD69B00768D41 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA1B1DDBD69B00768D41 /* Enemy.swift */; };
+		E273CA1E1DDBD74800768D41 /* RangedEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA1D1DDBD74800768D41 /* RangedEnemy.swift */; };
 		E2CA171B1DD4AB0D00B4F9A5 /* PlayerSprite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */; };
 		E2CA171C1DD4AB0D00B4F9A5 /* PlayerSprite1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */; };
 		E2CA171D1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */; };
@@ -59,6 +60,7 @@
 		E273CA111DDB1A7F00768D41 /* Inventory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		E273CA181DDBD64300768D41 /* Npc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Npc.swift; sourceTree = "<group>"; };
 		E273CA1B1DDBD69B00768D41 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		E273CA1D1DDBD74800768D41 /* RangedEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangedEnemy.swift; sourceTree = "<group>"; };
 		E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite.jpg; sourceTree = "<group>"; };
 		E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite1.jpg; sourceTree = "<group>"; };
 		E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite2.jpg; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				E273CA1B1DDBD69B00768D41 /* Enemy.swift */,
+				E273CA1D1DDBD74800768D41 /* RangedEnemy.swift */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				E273CA121DDB1A7F00768D41 /* Inventory.swift in Sources */,
 				E273CA101DDB1A3400768D41 /* Player.swift in Sources */,
 				E2210E551DDA544A0059D561 /* Weapon.swift in Sources */,
+				E273CA1E1DDBD74800768D41 /* RangedEnemy.swift in Sources */,
 				E273CA191DDBD64300768D41 /* Npc.swift in Sources */,
 				E2210E4E1DDA54250059D561 /* TestAxe.swift in Sources */,
 				E273CA1C1DDBD69B00768D41 /* Enemy.swift in Sources */,

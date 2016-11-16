@@ -6,6 +6,23 @@
          contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
       </ContextState>
       <ContextState
+         contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "!CGRectContainsPoint(player.frame, CGPointMake(position.x, position.y - 50))">
+            </PersistentString>
+            <PersistentString
+               value = "CGPointMake(position.x, position.y - 50)">
+            </PersistentString>
+            <PersistentString
+               value = "position">
+            </PersistentString>
+            <PersistentString
+               value = "player.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
