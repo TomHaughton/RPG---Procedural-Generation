@@ -17,7 +17,10 @@ class RangedEnemy:Enemy{
             }
             
             if position.x == player.position.x || position.y == player.position.y{
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
+                runAction(SKAction.sequence([SKAction.rotateByAngle(1, duration: attackSpeed),attackWait]), withKey: "attack")
+            }
+            else{
+                removeActionForKey("attack")
             }
 //            else if CGRectContainsPoint(CGRectOffset(player.frame, -100, 0), position){
 //                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))

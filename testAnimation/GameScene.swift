@@ -47,7 +47,7 @@ class GameScene: SKScene {
         box.position = CGPointMake(CGRectGetMidX(frame) + 300, CGRectGetMidY(frame) - 300)
         box.zPosition = 1
 
-        player.pickUp(TestAxe())
+        player.pickUp(TestSword())
         player.pickUp(TestHelmet())
         
         setupUI()
@@ -67,7 +67,18 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         if let _ = touch{
             player.move(touch!.locationInNode(self), dpad: dpad, scene: frame)
-            player.inventory.toggleInventory(self, touch: self.touch, player: self.player)
+            if open.containsPoint(touch.locationInNode(self)) || player.inventory.close.containsPoint(touch.locationInNode(player.inventory.inventory)){
+                let toggle = SKAction.runBlock(){
+                    self.player.inventory.toggleInventory(self, touch: self.touch, player: self.player)
+                    SKAction.waitForDuration(5)
+                }
+                let wait = SKAction.runBlock(){
+                    self.removeActionForKey("toggle")
+                }
+                if actionForKey("toggle") == nil{
+                    runAction(SKAction.sequence([toggle,SKAction.rotateByAngle(0, duration: 0.3),wait]), withKey: "toggle")
+                }
+            }
             player.inventory.checkEquip(touch, player: player)
         }
         

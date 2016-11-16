@@ -18,16 +18,19 @@ class MeleeEnemy:Enemy{
             }
             
             if CGRectContainsPoint(CGRectOffset(player.frame, 100, 0), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
+                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
             }
             else if CGRectContainsPoint(CGRectOffset(player.frame, -100, 0), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
+                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
             }
             else if CGRectContainsPoint(CGRectOffset(player.frame, 0, 100), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
+                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
             }
             else if CGRectContainsPoint(CGRectOffset(player.frame, 0, -100), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
+                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
+            }
+            else {
+                removeActionForKey("attack")
             }
         }
         
