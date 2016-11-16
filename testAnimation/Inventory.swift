@@ -13,6 +13,9 @@ class Inventory {
     var slots:[SKSpriteNode] = []
     var invBack = SKSpriteNode()
     var bkg: [SKSpriteNode] = []
+    var health = SKLabelNode()
+    var attack = SKLabelNode()
+    var defense = SKLabelNode()
     
     init(capacity:Int, amountFilled: Int){
         self.capacity = capacity
@@ -50,24 +53,42 @@ class Inventory {
         close.texture = SKTexture(imageNamed: "closeButton")
         
         head.size = CGSizeMake(200, 200)
-        head.position = CGPointMake(400, scene.frame.height - 500)
+        head.position = CGPointMake(400, scene.frame.height - 350)
         head.color = UIColor.brownColor()
         
         chest.size = CGSizeMake(200, 200)
-        chest.position = CGPointMake(400 ,scene.frame.height - 750)
+        chest.position = CGPointMake(400 ,scene.frame.height - 600)
         chest.color = UIColor.brownColor()
         
         arms.size = CGSizeMake(200, 200)
-        arms.position = CGPointMake(150, scene.frame.height - 750)
+        arms.position = CGPointMake(150, scene.frame.height - 600)
         arms.color = UIColor.brownColor()
         
         legs.size = CGSizeMake(200, 200)
-        legs.position = CGPointMake(400, scene.frame.height - 1000)
+        legs.position = CGPointMake(400, scene.frame.height - 850)
         legs.color = UIColor.brownColor()
         
         weapon.size = CGSizeMake(200, 200)
-        weapon.position = CGPointMake(650,scene.frame.height - 750)
+        weapon.position = CGPointMake(650,scene.frame.height - 600)
         weapon.color = UIColor.brownColor()
+        
+        health.fontSize = 80
+        health.fontName = "Arial"
+        health.fontColor = UIColor.blueColor()
+        health.text = "Health: \(player.health)"
+        health.position = CGPointMake(250, scene.frame.height - 1050)
+        
+        attack.fontSize = 80
+        attack.fontName = "Arial"
+        attack.fontColor = UIColor.blueColor()
+        attack.text = "Attack: \(player.attack)"
+        attack.position = CGPointMake(250, scene.frame.height - 1150)
+        
+        defense.fontSize = 80
+        defense.fontName = "Arial"
+        defense.fontColor = UIColor.blueColor()
+        defense.text = "Defense: \(player.defense)"
+        defense.position = CGPointMake(250, scene.frame.height - 1250)
         
         var x = CGFloat(scene.frame.width - 1000)
         var y = CGFloat(scene.frame.height - 400)
@@ -109,6 +130,9 @@ class Inventory {
         inventory.addChild(arms)
         inventory.addChild(legs)
         inventory.addChild(weapon)
+        inventory.addChild(health)
+        inventory.addChild(attack)
+        inventory.addChild(defense)
         scene.ui.open.removeFromParent()
         scene.addChild(inventory)
     }

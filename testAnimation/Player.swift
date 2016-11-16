@@ -107,11 +107,10 @@ class Player: SKSpriteNode {
             }
         } else if let toEquip = item as? Weapon{
             if self.weapon != nil {
-                attack -= self.weapon!.attack
                 unequip(self.weapon!)
             }
             self.weapon = toEquip
-            attack += toEquip.attack
+            attack = toEquip.attack
             moveFromInvToPlayer(item, index: index)
         }
         inventory.updateInventory(self)
