@@ -109,7 +109,7 @@ class Inventory {
         inventory.addChild(arms)
         inventory.addChild(legs)
         inventory.addChild(weapon)
-        scene.open.removeFromParent()
+        scene.ui.open.removeFromParent()
         scene.addChild(inventory)
     }
     
@@ -117,8 +117,8 @@ class Inventory {
         if scene.childNodeWithName("inventory") != nil && CGRectContainsPoint(close.frame, touch.locationInNode(inventory)){
             inventory.removeAllChildren()
             inventory.removeFromParent()
-            scene.addChild(scene.open)
-        } else if CGRectContainsPoint(scene.open.frame, touch.locationInNode(scene)){
+            scene.addChild(scene.ui.open)
+        } else if CGRectContainsPoint(scene.ui.open.frame, touch.locationInNode(scene)){
             if scene.childNodeWithName("inventory") == nil{
                 setupInventoryUI(scene, player: player)
             }

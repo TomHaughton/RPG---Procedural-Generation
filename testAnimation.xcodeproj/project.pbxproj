@@ -33,6 +33,8 @@
 		E273CA201DDC702F00768D41 /* TestEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA1F1DDC702F00768D41 /* TestEnemy.swift */; };
 		E273CA221DDC715D00768D41 /* MeleeEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA211DDC715D00768D41 /* MeleeEnemy.swift */; };
 		E273CA241DDC7BF000768D41 /* TestMelee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA231DDC7BF000768D41 /* TestMelee.swift */; };
+		E273CA281DDCF9AD00768D41 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA271DDCF9AD00768D41 /* UI.swift */; };
+		E273CA2A1DDCFBB600768D41 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA291DDCFBB600768D41 /* Update.swift */; };
 		E2CA171B1DD4AB0D00B4F9A5 /* PlayerSprite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */; };
 		E2CA171C1DD4AB0D00B4F9A5 /* PlayerSprite1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */; };
 		E2CA171D1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */; };
@@ -67,6 +69,8 @@
 		E273CA1F1DDC702F00768D41 /* TestEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnemy.swift; sourceTree = "<group>"; };
 		E273CA211DDC715D00768D41 /* MeleeEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeleeEnemy.swift; sourceTree = "<group>"; };
 		E273CA231DDC7BF000768D41 /* TestMelee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMelee.swift; sourceTree = "<group>"; };
+		E273CA271DDCF9AD00768D41 /* UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		E273CA291DDCFBB600768D41 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite.jpg; sourceTree = "<group>"; };
 		E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite1.jpg; sourceTree = "<group>"; };
 		E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite2.jpg; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				E273CA111DDB1A7F00768D41 /* Inventory.swift */,
 				E273CA0F1DDB1A3400768D41 /* Player.swift */,
 				E2CA17171DD4AB0C00B4F9A5 /* Sprites */,
+				E273CA271DDCF9AD00768D41 /* UI.swift */,
+				E273CA291DDCFBB600768D41 /* Update.swift */,
 			);
 			path = testAnimation;
 			sourceTree = "<group>";
@@ -276,6 +282,8 @@
 				E273CA221DDC715D00768D41 /* MeleeEnemy.swift in Sources */,
 				E273CA201DDC702F00768D41 /* TestEnemy.swift in Sources */,
 				E2210E4B1DDA54250059D561 /* TestLegs.swift in Sources */,
+				E273CA2A1DDCFBB600768D41 /* Update.swift in Sources */,
+				E273CA281DDCF9AD00768D41 /* UI.swift in Sources */,
 				E2210E4D1DDA54250059D561 /* TestSword.swift in Sources */,
 				E2210E481DDA54250059D561 /* TestChest.swift in Sources */,
 				E2210E541DDA544A0059D561 /* ArmourOptions.swift in Sources */,
