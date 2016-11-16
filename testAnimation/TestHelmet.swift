@@ -2,8 +2,10 @@ import Foundation
 import SpriteKit
 class TestHelmet: Armour {
     
+    var tex = SKTexture(imageNamed: "PlayerSprite")
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+        super.init(texture: tex, color: color, size: size)
         itemName = "Helmet"
         weight = 10
         defense = 30

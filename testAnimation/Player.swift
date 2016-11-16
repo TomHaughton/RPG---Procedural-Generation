@@ -62,6 +62,7 @@ class Player: SKSpriteNode {
                 attack -= toUnequip.attack
             }
         }
+        inventory.updateInventory(self)
     }
     
     func equip(item: Item) {
@@ -70,7 +71,7 @@ class Player: SKSpriteNode {
             case ArmourSlot.Head:
                 if self.head != nil {
                     defense -= self.head!.defense
-                    moveFromPlayerToInv(self.head!)
+                    unequip(self.head!)
                 }
                 self.head = toEquip
                 defense += toEquip.defense
@@ -79,7 +80,7 @@ class Player: SKSpriteNode {
             case ArmourSlot.Chest:
                 if self.chest != nil {
                     defense -= self.chest!.defense
-                    moveFromPlayerToInv(self.chest!)
+                    unequip(self.chest!)
                 }
                 self.chest = toEquip
                 defense += toEquip.defense
@@ -88,7 +89,7 @@ class Player: SKSpriteNode {
             case ArmourSlot.Arms:
                 if self.arms != nil {
                     defense -= self.arms!.defense
-                    moveFromPlayerToInv(self.arms!)
+                    unequip(self.arms!)
                 }
                 self.arms = toEquip
                 defense += toEquip.defense
@@ -97,7 +98,7 @@ class Player: SKSpriteNode {
             case ArmourSlot.Legs:
                 if self.legs != nil {
                     defense -= self.legs!.defense
-                    moveFromPlayerToInv(self.legs!)
+                    unequip(self.legs!)
                 }
                 self.legs = toEquip
                 defense += toEquip.defense
@@ -107,12 +108,13 @@ class Player: SKSpriteNode {
         } else if let toEquip = item as? Weapon{
             if self.weapon != nil {
                 attack -= self.weapon!.attack
-                moveFromPlayerToInv(self.weapon!)
+                unequip(self.weapon!)
             }
             self.weapon = toEquip
             attack += toEquip.attack
             moveFromInvToPlayer(item)
         }
+        inventory.updateInventory(self)
     }
     
     func moveFromInvToPlayer(item: Item) {
@@ -191,20 +193,20 @@ class Player: SKSpriteNode {
             }
             if CGRectContainsPoint(dpad[0].frame, touch) && (position.y + 325 < scene.height)  {
                 texture = SKTexture(imageNamed: "PlayerSpriteBack")
-                runAction(SKAction.sequence([SKAction.moveByX(0, y: 50, duration: 0.1), moveWait]), withKey: "move")
+                runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.25), moveWait]), withKey: "move")
                 startAnimation("up")
             }
             if CGRectContainsPoint(dpad[1].frame, touch) && (position.y - 50 > 100) {
                 texture = SKTexture(imageNamed: "PlayerSprite")
-                runAction(SKAction.sequence([SKAction.moveByX(0, y: -50, duration: 0.1), moveWait]), withKey: "move")
+                runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.25), moveWait]), withKey: "move")
                 startAnimation("down")
             }
             if CGRectContainsPoint(dpad[2].frame, touch) && (position.x - 50 > 50) {
-                runAction(SKAction.sequence([SKAction.moveByX(-50, y: 0, duration: 0.1), moveWait]), withKey: "move")
+                runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.25), moveWait]), withKey: "move")
                 startAnimation("left")
             }
             if CGRectContainsPoint(dpad[3].frame, touch) && (position.x + 100 < scene.width) {
-                runAction(SKAction.sequence([SKAction.moveByX(50, y: 0, duration: 0.1), moveWait]), withKey: "move")
+                runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.25), moveWait]), withKey: "move")
                 startAnimation("right")
             }
         }

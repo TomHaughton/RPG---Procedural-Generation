@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 class TestAxe:Weapon {
     
-    let tex = SKTexture(imageNamed: "Spaceship")
+    let tex = SKTexture(imageNamed: "Axe")
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: tex, color: color, size: size)
         itemName = "Axe"

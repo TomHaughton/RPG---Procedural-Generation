@@ -3,22 +3,32 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
-      </ContextState>
-      <ContextState
          contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString
-               value = "!CGRectContainsPoint(player.frame, CGPointMake(position.x, position.y - 50))">
+               value = "position.y">
             </PersistentString>
             <PersistentString
-               value = "CGPointMake(position.x, position.y - 50)">
+               value = "player.position.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.childNodeWithName(&quot;inventory&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.shortestToPlayer(CGPoint) -&gt; String:RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "position.x - playerPos.x == 0">
             </PersistentString>
             <PersistentString
                value = "position">
-            </PersistentString>
-            <PersistentString
-               value = "player.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -29,6 +39,9 @@
                value = "inventory.hidden">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

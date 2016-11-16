@@ -1,8 +1,10 @@
 import Foundation
 import SpriteKit
 class TestSword:Weapon {
+    
+    var tex = SKTexture(imageNamed: "Spaceship")
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+        super.init(texture: tex, color: color, size: size)
         itemName = "Sword"
         weight = 15
         attack = 43
