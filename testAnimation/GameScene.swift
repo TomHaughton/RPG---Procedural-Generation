@@ -14,9 +14,9 @@ class GameScene: SKScene {
     var enemyM = MeleeEnemy()
     
     override func didMoveToView(view: SKView) {
+        player = Player(imageNamed: "PlayerSprite")
         ui = UI(scene: self)
         background.position = CGPoint(x: size.width/2, y: size.height/2)
-        player = Player(imageNamed: "PlayerSprite")
         
         enemy = TestEnemy()
         enemy.size = CGSizeMake(100, 100)
@@ -56,7 +56,7 @@ class GameScene: SKScene {
         self.addChild(trees[0])
         self.addChild(trees[1])
         self.addChild(box)
-//        self.addChild(enemy)
+        self.addChild(enemy)
         self.addChild(enemyM)
     }
     
@@ -71,6 +71,5 @@ class GameScene: SKScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         touch = nil
         player.removeActionForKey("animation")
-    }
-    
-    }
+    }    
+}

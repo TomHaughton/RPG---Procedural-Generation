@@ -5,6 +5,8 @@ class UI{
     
     var dpad: [SKSpriteNode] = []
     let open = SKSpriteNode()
+    let healthBkg = SKSpriteNode()
+    let healthBar = SKSpriteNode()
     
     init(){
     }
@@ -53,6 +55,18 @@ class UI{
         centre.color = UIColor.yellowColor()
         centre.texture = SKTexture(imageNamed: "dpadCentre")
         dpad.append(centre)
+        
+        healthBkg.name = "healthBkg"
+        healthBkg.size = CGSizeMake(1600, 150)
+        healthBkg.position = CGPointMake(scene.frame.width/2, 1300)
+        healthBkg.texture = SKTexture(imageNamed: "healthBar")
+        healthBkg.zPosition = 99
+        scene.addChild(healthBkg)
+        
+        healthBar.name = "healthBar"
+        healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
+        healthBar.color = UIColor.redColor()
+        healthBkg.addChild(healthBar)
         
         open.position = CGPointMake(0, 1150)
         open.anchorPoint = CGPointMake(0, 0)

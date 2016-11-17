@@ -150,6 +150,7 @@ class Inventory {
     }
 
     func updateInventory(player: Player){
+        
         if let _ = player.head{
             player.head?.removeFromParent()
             head = player.head!

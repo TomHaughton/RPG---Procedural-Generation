@@ -8,7 +8,6 @@ class Update{
             if scene.ui.open.containsPoint(scene.touch.locationInNode(scene)) || scene.player.inventory.close.containsPoint(scene.touch.locationInNode(scene.player.inventory.inventory)){
                 let toggle = SKAction.runBlock(){
                     scene.player.inventory.toggleInventory(scene, touch: scene.touch, player: scene.player)
-//                    SKAction.waitForDuration(5)
                 }
                 let wait = SKAction.runBlock(){
                     scene.removeActionForKey("toggle")
@@ -33,11 +32,16 @@ class Update{
             }
         }
         
+        
+        //ABSTRACT THIS INTO RANGED ENEMY CLASS
         scene.enumerateChildNodesWithName("projectile"){ node, _ in
             let projectile = node as! Projectile
             if CGRectIntersectsRect(projectile.frame, scene.player.frame) {
                 projectile.removeFromParent()
                 scene.player.health -= projectile.attack
+                if scene.player.health >= 0{
+                    scene.ui.healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
+                }
             }
             else if !CGRectIntersectsRect(projectile.frame, scene.frame){
                 projectile.removeFromParent()

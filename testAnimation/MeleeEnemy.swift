@@ -109,6 +109,9 @@ class MeleeEnemy:Enemy{
     func slash(x: CGFloat, y: CGFloat, scene: GameScene){
         if CGRectContainsPoint(CGRectOffset(scene.player.frame, x, y), position){
             scene.player.health -= self.attack
+            if scene.player.health >= 0{
+                scene.ui.healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
+            }
         }
     }
 }
