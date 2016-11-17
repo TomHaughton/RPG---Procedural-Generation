@@ -6,10 +6,24 @@
          contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
       </ContextState>
       <ContextState
-         contextName = "Player.moveFromInvToPlayer(Item, index : Int) -&gt; ():Player.swift">
+         contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.items.indexOf(item)!">
+               value = "position.y">
+            </PersistentString>
+            <PersistentString
+               value = "player.position.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.(update(GameScene) -&gt; ()).(closure #5):Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.player.frame">
+            </PersistentString>
+            <PersistentString
+               value = "item.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,6 +61,14 @@
          contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
       </ContextState>
       <ContextState
+         contextName = "Player.moveFromInvToPlayer(Item, index : Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.items.indexOf(item)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
@@ -56,17 +78,6 @@
       </ContextState>
       <ContextState
          contextName = "Player.equip(Item) -&gt; ():Player.swift">
-      </ContextState>
-      <ContextState
-         contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "position.y">
-            </PersistentString>
-            <PersistentString
-               value = "player.position.y">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

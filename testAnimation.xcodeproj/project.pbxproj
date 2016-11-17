@@ -19,6 +19,7 @@
 		E2210E541DDA544A0059D561 /* ArmourOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E501DDA544A0059D561 /* ArmourOptions.swift */; };
 		E2210E551DDA544A0059D561 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E511DDA544A0059D561 /* Weapon.swift */; };
 		E2210E561DDA544A0059D561 /* WeaponType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E521DDA544A0059D561 /* WeaponType.swift */; };
+		E25727B61DDDCF0C00C1369C /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25727B51DDDCF0C00C1369C /* Projectile.swift */; };
 		E2730E071DD4AAA6001C9B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */; };
 		E2730E0B1DD4AAA6001C9B65 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */; };
 		E2730E0D1DD4AAA6001C9B65 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E0C1DD4AAA6001C9B65 /* GameViewController.swift */; };
@@ -53,6 +54,7 @@
 		E2210E501DDA544A0059D561 /* ArmourOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArmourOptions.swift; sourceTree = "<group>"; };
 		E2210E511DDA544A0059D561 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		E2210E521DDA544A0059D561 /* WeaponType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponType.swift; sourceTree = "<group>"; };
+		E25727B51DDDCF0C00C1369C /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		E2730E031DD4AAA6001C9B65 /* testAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				E273CA1F1DDC702F00768D41 /* TestEnemy.swift */,
 				E273CA211DDC715D00768D41 /* MeleeEnemy.swift */,
 				E273CA231DDC7BF000768D41 /* TestMelee.swift */,
+				E25727B51DDDCF0C00C1369C /* Projectile.swift */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				E2210E531DDA544A0059D561 /* Armour.swift in Sources */,
 				E273CA221DDC715D00768D41 /* MeleeEnemy.swift in Sources */,
 				E273CA201DDC702F00768D41 /* TestEnemy.swift in Sources */,
+				E25727B61DDDCF0C00C1369C /* Projectile.swift in Sources */,
 				E2210E4B1DDA54250059D561 /* TestLegs.swift in Sources */,
 				E273CA2A1DDCFBB600768D41 /* Update.swift in Sources */,
 				E273CA281DDCF9AD00768D41 /* UI.swift in Sources */,

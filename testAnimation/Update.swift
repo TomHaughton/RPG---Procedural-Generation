@@ -8,13 +8,13 @@ class Update{
             if scene.ui.open.containsPoint(scene.touch.locationInNode(scene)) || scene.player.inventory.close.containsPoint(scene.touch.locationInNode(scene.player.inventory.inventory)){
                 let toggle = SKAction.runBlock(){
                     scene.player.inventory.toggleInventory(scene, touch: scene.touch, player: scene.player)
-                    SKAction.waitForDuration(5)
+//                    SKAction.waitForDuration(5)
                 }
                 let wait = SKAction.runBlock(){
                     scene.removeActionForKey("toggle")
                 }
                 if scene.actionForKey("toggle") == nil{
-                    scene.runAction(SKAction.sequence([toggle,SKAction.rotateByAngle(0, duration: 0.3),wait]), withKey: "toggle")
+                    scene.runAction(SKAction.sequence([toggle,SKAction.waitForDuration(0.3),wait]), withKey: "toggle")
                 }
             }
             scene.player.inventory.checkEquip(scene.touch, player: scene.player)
@@ -22,7 +22,7 @@ class Update{
         
         scene.enumerateChildNodesWithName("enemy"){ node, _ in
             let enemy = node as! Enemy
-            enemy.moveToAttack(scene.player)
+            enemy.moveToAttack(scene)
         }
         
         scene.enumerateChildNodesWithName("item"){ node, _ in
@@ -30,6 +30,25 @@ class Update{
             if CGRectIntersectsRect(node.frame, scene.player.frame) && CGRectIntersectsRect(node.frame, scene.frame) {
                 node.removeFromParent()
                 scene.player.pickUp(item)
+            }
+        }
+        
+        scene.enumerateChildNodesWithName("projectile"){ node, _ in
+            let projectile = node as! Enemy
+            if CGRectIntersectsRect(projectile.frame, scene.player.frame) {
+                projectile.removeFromParent()
+                scene.player.health -= projectile.attack
+            }
+            else if !CGRectIntersectsRect(projectile.frame, scene.frame){
+                projectile.removeFromParent()
+            }
+            else{
+                if projectile.actionForKey("move") == nil{
+                    let moveWait = SKAction.runBlock(){
+                        projectile.removeActionForKey("move")
+                    }
+                    projectile.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.1), moveWait]), withKey: "move")
+                }
             }
         }
     }

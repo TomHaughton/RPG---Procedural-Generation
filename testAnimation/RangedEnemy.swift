@@ -2,6 +2,7 @@ import Foundation
 import SpriteKit
 
 class RangedEnemy:Enemy{
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
@@ -10,27 +11,18 @@ class RangedEnemy:Enemy{
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func moveToAttack(player: Player){
+    override func moveToAttack(scene: GameScene){
         if actionForKey("attack") == nil{
             let attackWait = SKAction.runBlock(){
                 self.removeActionForKey("attack")
             }
             
-            if position.x == player.position.x || position.y == player.position.y{
+            if position.x == scene.player.position.x || position.y == scene.player.position.y{
                 runAction(SKAction.sequence([SKAction.rotateByAngle(1, duration: attackSpeed),attackWait]), withKey: "attack")
             }
             else{
                 removeActionForKey("attack")
             }
-//            else if CGRectContainsPoint(CGRectOffset(player.frame, -100, 0), position){
-//                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
-//            }
-//            else if CGRectContainsPoint(CGRectOffset(player.frame, 0, 100), position){
-//                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
-//            }
-//            else if CGRectContainsPoint(CGRectOffset(player.frame, 0, -100), position){
-//                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]))
-//            }
         }
         
         if actionForKey("move") == nil{
@@ -38,25 +30,25 @@ class RangedEnemy:Enemy{
                 self.removeActionForKey("move")
             }
         
-            if !(position.x == player.position.x || position.y == player.position.y){
-                switch(shortestToPlayer(player.position)){
+            if !(position.x == scene.player.position.x || position.y == scene.player.position.y){
+                switch(shortestToPlayer(scene.player.position, scene: scene)){
                 case "-x":
-                    if !CGRectContainsPoint(player.frame, CGPointMake(position.x - 100, position.y)){
+                    if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x - 100, position.y)){
                         self.runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.2), SKAction.waitForDuration(0.15), moveWait]), withKey: "move")
                     }
                     break
                 case "x":
-                    if !CGRectContainsPoint(player.frame, CGPointMake(position.x + 100, position.y)){
+                    if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x + 100, position.y)){
                         self.runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.2), SKAction.waitForDuration(0.15), moveWait]), withKey: "move")
                     }
                     break
                 case "-y":
-                    if !CGRectContainsPoint(player.frame, CGPointMake(position.x, position.y - 100)){
+                    if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y - 100)){
                         self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.2), SKAction.waitForDuration(0.15), moveWait]), withKey: "move")
                     }
                     break
                 case "y":
-                    if !CGRectContainsPoint(player.frame, CGPointMake(position.x, position.y + 100)){
+                    if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y + 100)){
                         self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.2), SKAction.waitForDuration(0.15), moveWait]), withKey: "move")
                     }
                     break
@@ -67,20 +59,20 @@ class RangedEnemy:Enemy{
         }
     }
     
-    func shortestToPlayer(playerPos: CGPoint) -> String{
+    func shortestToPlayer(playerPos: CGPoint, scene:GameScene) -> String{
         
         if playerPos.x < position.x{
             if playerPos.y < position.y{
                 if (position.x - playerPos.x) < (position.y - playerPos.y){
                     if (position.x - playerPos.x < 2){
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "-x"
                 }
                 else {
                     if (position.y - playerPos.y < 2){
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "-y"
@@ -89,14 +81,14 @@ class RangedEnemy:Enemy{
             else{
                 if (position.x - playerPos.x) < (playerPos.y - position.y){
                     if (position.x - playerPos.x < 2){
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "-x"
                 }
                 else {
                     if (playerPos.y - position.y < 2){
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "y"
@@ -108,14 +100,14 @@ class RangedEnemy:Enemy{
             if playerPos.y < position.y{
                 if (playerPos.x - position.x) < (position.y - playerPos.y){
                     if playerPos.x - position.x < 2{
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if position.y - playerPos.y < 2{
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "-y"
@@ -124,14 +116,14 @@ class RangedEnemy:Enemy{
             else{
                 if (playerPos.x - position.x) < (playerPos.y - position.y){
                     if playerPos.x - position.x < 2{
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if playerPos.y - position.y < 2{
-                        attack()
+                        attack(scene)
                         return ""
                     }
                     return "y"
@@ -141,12 +133,22 @@ class RangedEnemy:Enemy{
         }
     }
     
-    func attack(){
+    func attack(scene: GameScene){
         if actionForKey("attack") == nil{
             let attackWait = SKAction.runBlock(){
                 self.removeActionForKey("attack")
             }
-            runAction(SKAction.sequence([SKAction.rotateByAngle(1, duration: attackSpeed),attackWait]))
+            
+            let shoot = SKAction.runBlock(){
+                var projectile = Enemy()
+                projectile.attack = self.attack
+                projectile.size = CGSizeMake(20, 70)
+                projectile.color = UIColor.whiteColor()
+                projectile.position = self.position
+                projectile.name = "projectile"
+                scene.addChild(projectile)
+            }
+            runAction(SKAction.sequence([shoot,SKAction.waitForDuration(attackSpeed),attackWait]))
         }
     }
 }

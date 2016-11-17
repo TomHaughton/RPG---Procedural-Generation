@@ -17,6 +17,6 @@ class Enemy: Npc{
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func moveToAttack(player: Player){
+    func moveToAttack(scene: GameScene){
     }
 }

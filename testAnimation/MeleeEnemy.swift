@@ -11,22 +11,22 @@ class MeleeEnemy:Enemy{
     }
     
     //Building melee combat
-    override func moveToAttack(player: Player){
+    override func moveToAttack(scene: GameScene){
         if actionForKey("attack") == nil{
             let attackWait = SKAction.runBlock(){
                 self.removeActionForKey("attack")
             }
             
-            if CGRectContainsPoint(CGRectOffset(player.frame, 100, 0), position){
+            if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), position){
                 runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
             }
-            else if CGRectContainsPoint(CGRectOffset(player.frame, -100, 0), position){
+            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), position){
                 runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
             }
-            else if CGRectContainsPoint(CGRectOffset(player.frame, 0, 100), position){
+            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), position){
                 runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
             }
-            else if CGRectContainsPoint(CGRectOffset(player.frame, 0, -100), position){
+            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), position){
                 runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
             }
             else {
@@ -39,24 +39,24 @@ class MeleeEnemy:Enemy{
                 self.removeActionForKey("move")
             }
             
-            switch(shortestToPlayer(player.position)){
+            switch(shortestToPlayer(scene.player.position)){
             case "-x":
-                if !CGRectContainsPoint(player.frame, CGPointMake(position.x - 100, position.y)){
+                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x - 100, position.y)){
                     self.runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                 }
                 break
             case "x":
-                if !CGRectContainsPoint(player.frame, CGPointMake(position.x + 100, position.y)){
+                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x + 100, position.y)){
                     self.runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                 }
                 break
             case "-y":
-                if !CGRectContainsPoint(player.frame, CGPointMake(position.x, position.y - 100)){
+                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y - 100)){
                     self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                 }
                 break
             case "y":
-                if !CGRectContainsPoint(player.frame, CGPointMake(position.x, position.y + 100)){
+                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y + 100)){
                     self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                 }
                 break
