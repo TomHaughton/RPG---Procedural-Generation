@@ -34,7 +34,7 @@ class Update{
         }
         
         scene.enumerateChildNodesWithName("projectile"){ node, _ in
-            let projectile = node as! Enemy
+            let projectile = node as! Projectile
             if CGRectIntersectsRect(projectile.frame, scene.player.frame) {
                 projectile.removeFromParent()
                 scene.player.health -= projectile.attack
@@ -47,7 +47,21 @@ class Update{
                     let moveWait = SKAction.runBlock(){
                         projectile.removeActionForKey("move")
                     }
-                    projectile.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.1), moveWait]), withKey: "move")
+                    switch(projectile.direction){
+                    case "up":
+                        projectile.runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.1), moveWait]), withKey: "move")
+                        break
+                    case "down":
+                        projectile.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.1), moveWait]), withKey: "move")
+                        break
+                    case "left":
+                        projectile.runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.1), moveWait]), withKey: "move")
+                        break
+                    case "right":
+                        projectile.runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.1), moveWait]), withKey: "move")
+                        break
+                    default: break
+                    }
                 }
             }
         }

@@ -65,14 +65,14 @@ class RangedEnemy:Enemy{
             if playerPos.y < position.y{
                 if (position.x - playerPos.x) < (position.y - playerPos.y){
                     if (position.x - playerPos.x < 2){
-                        attack(scene)
+                        attack(scene, direction:"down")
                         return ""
                     }
                     return "-x"
                 }
                 else {
                     if (position.y - playerPos.y < 2){
-                        attack(scene)
+                        attack(scene, direction:"left")
                         return ""
                     }
                     return "-y"
@@ -81,14 +81,14 @@ class RangedEnemy:Enemy{
             else{
                 if (position.x - playerPos.x) < (playerPos.y - position.y){
                     if (position.x - playerPos.x < 2){
-                        attack(scene)
+                        attack(scene, direction:"up")
                         return ""
                     }
                     return "-x"
                 }
                 else {
                     if (playerPos.y - position.y < 2){
-                        attack(scene)
+                        attack(scene, direction:"left")
                         return ""
                     }
                     return "y"
@@ -100,14 +100,14 @@ class RangedEnemy:Enemy{
             if playerPos.y < position.y{
                 if (playerPos.x - position.x) < (position.y - playerPos.y){
                     if playerPos.x - position.x < 2{
-                        attack(scene)
+                        attack(scene, direction:"down")
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if position.y - playerPos.y < 2{
-                        attack(scene)
+                        attack(scene, direction:"right")
                         return ""
                     }
                     return "-y"
@@ -116,14 +116,14 @@ class RangedEnemy:Enemy{
             else{
                 if (playerPos.x - position.x) < (playerPos.y - position.y){
                     if playerPos.x - position.x < 2{
-                        attack(scene)
+                        attack(scene, direction:"up")
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if playerPos.y - position.y < 2{
-                        attack(scene)
+                        attack(scene, direction:"left")
                         return ""
                     }
                     return "y"
@@ -133,22 +133,32 @@ class RangedEnemy:Enemy{
         }
     }
     
-    func attack(scene: GameScene){
+    func attack(scene: GameScene, direction: String){
         if actionForKey("attack") == nil{
             let attackWait = SKAction.runBlock(){
                 self.removeActionForKey("attack")
             }
             
             let shoot = SKAction.runBlock(){
-                var projectile = Enemy()
+                let projectile = Projectile()
+                projectile.direction = direction
                 projectile.attack = self.attack
-                projectile.size = CGSizeMake(20, 70)
+                switch(projectile.direction){
+                    case "up", "down":
+                        projectile.size = CGSizeMake(20, 70)
+                    break
+                case "left", "right":
+                    projectile.size = CGSizeMake(70, 20)
+                    break
+                default: break
+                }
+                
                 projectile.color = UIColor.whiteColor()
                 projectile.position = self.position
                 projectile.name = "projectile"
                 scene.addChild(projectile)
             }
-            runAction(SKAction.sequence([shoot,SKAction.waitForDuration(attackSpeed),attackWait]))
+            runAction(SKAction.sequence([shoot,SKAction.waitForDuration(attackSpeed),attackWait]),withKey: "attack")
         }
     }
 }

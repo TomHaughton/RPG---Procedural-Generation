@@ -56,7 +56,7 @@ class GameScene: SKScene {
         self.addChild(trees[0])
         self.addChild(trees[1])
         self.addChild(box)
-        self.addChild(enemy)
+//        self.addChild(enemy)
         self.addChild(enemyM)
     }
     

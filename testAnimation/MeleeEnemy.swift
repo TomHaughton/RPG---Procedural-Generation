@@ -2,6 +2,7 @@ import Foundation
 import SpriteKit
 
 class MeleeEnemy:Enemy{
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
@@ -10,7 +11,6 @@ class MeleeEnemy:Enemy{
         fatalError("init(coder:) has not been implemented")
     }
     
-    //Building melee combat
     override func moveToAttack(scene: GameScene){
         if actionForKey("attack") == nil{
             let attackWait = SKAction.runBlock(){
@@ -18,16 +18,16 @@ class MeleeEnemy:Enemy{
             }
             
             if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
+                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(100, y: 0, scene: scene)},attackWait]), withKey: "attack")
             }
             else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
+                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(-100, y: 0, scene: scene)},attackWait]), withKey: "attack")
             }
             else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
+                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(0, y: 100, scene: scene)},attackWait]), withKey: "attack")
             }
             else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), position){
-                runAction(SKAction.sequence([SKAction.rotateByAngle(2, duration: attackSpeed),attackWait]), withKey: "attack")
+                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(0, y: -100, scene: scene)},attackWait]), withKey: "attack")
             }
             else {
                 removeActionForKey("attack")
@@ -103,6 +103,12 @@ class MeleeEnemy:Enemy{
                 }
                 
             }
+        }
+    }
+    
+    func slash(x: CGFloat, y: CGFloat, scene: GameScene){
+        if CGRectContainsPoint(CGRectOffset(scene.player.frame, x, y), position){
+            scene.player.health -= self.attack
         }
     }
 }

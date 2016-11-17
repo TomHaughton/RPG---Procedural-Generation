@@ -1,6 +1,6 @@
 import Foundation
 import SpriteKit
 
-class Projectile:RangedEnemy{
-    
+class Projectile:Enemy{
+    var direction = ""
 }

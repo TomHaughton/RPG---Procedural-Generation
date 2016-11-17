@@ -4,7 +4,8 @@ import SpriteKit
 class TestMelee: MeleeEnemy{
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
-        attackSpeed = 10.0
+        attackSpeed = 2.0
+        attack = 20
     }
     
     required init?(coder aDecoder: NSCoder) {
