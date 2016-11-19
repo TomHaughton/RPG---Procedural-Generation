@@ -9,7 +9,6 @@ class UI{
     let healthBar = SKSpriteNode()
     let a = SKSpriteNode()
     
-    
     init(){
     }
     
@@ -18,25 +17,13 @@ class UI{
     }
     
     func setupUI(scene: GameScene){
-        //FROM 2d tvios
-        var cameraRect : CGRect {
-            return CGRect(
-                x: scene.getCameraPosition().x - scene.size.width/2
-                    + (scene.size.width - scene.frame.width)/2,
-                y: scene.getCameraPosition().y - scene.size.height/2
-                    + (scene.size.height - scene.frame.height)/2,
-                width: scene.frame.width,
-                height: scene.frame.height)
-        }
-        //
-        
         a.name = "a";
         a.size = CGSizeMake(200, 200)
-        a.position = CGPointMake(cameraRect.width - 150, 650)
+        a.position = CGPointMake(scene.frame.width - 150, 650)
         a.color = UIColor.yellowColor()
         a.texture = SKTexture(imageNamed: "A")
         a.zPosition = 99
-        scene.camera!.addChild(a)
+        scene.addChild(a)
         
         let up = SKSpriteNode()
         up.name = "up";
@@ -83,7 +70,7 @@ class UI{
         healthBkg.position = CGPointMake(scene.frame.width/2, 1300)
         healthBkg.texture = SKTexture(imageNamed: "healthBar")
         healthBkg.zPosition = 99
-        scene.camera!.addChild(healthBkg)
+        scene.addChild(healthBkg)
         
         healthBar.name = "healthBar"
         healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
@@ -96,11 +83,11 @@ class UI{
         open.color = UIColor.redColor()
         open.texture = SKTexture(imageNamed: "inventoryButton")
         open.zPosition = 120
-        scene.camera!.addChild(open)
+        scene.addChild(open)
         
         for button in dpad{
             button.zPosition = 99
-            scene.camera!.addChild(button)
+            scene.addChild(button)
         }
     }
 

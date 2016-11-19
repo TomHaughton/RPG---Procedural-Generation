@@ -11,10 +11,6 @@ class Level1: GameScene {
     override func didMoveToView(view: SKView) {
         let door = Door(texture: SKTexture.init(imageNamed: ""), color: UIColor.brownColor(), size: CGSizeMake(100, 100), level: Level2(size: size, player: player))
         player = Player(imageNamed: "PlayerSprite")
-        if #available(iOS 9.0, *) {
-            camera = cameraNode
-        } else {}
-        setCameraPosition(player.position)
         ui = UI(scene: self)
         background.position = CGPoint(x: size.width/2, y: size.height/2)
         
@@ -61,6 +57,5 @@ class Level1: GameScene {
         self.addChild(box)
         self.addChild(enemy)
         self.addChild(enemyM)
-        addChild(cameraNode)
     } 
 }
