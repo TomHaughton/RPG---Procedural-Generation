@@ -116,10 +116,9 @@
 		E2730E051DD4AAA6001C9B65 /* testAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				E27DF4161DE09FD500CBFBAA /* Levels */,
 				E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */,
 				E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */,
-				E2972BD01DDFECEE00C03306 /* Level1.swift */,
-				E27DF3F21DE0918500CBFBAA /* Level2.swift */,
 				E2730E0C1DD4AAA6001C9B65 /* GameViewController.swift */,
 				E2730E0E1DD4AAA6001C9B65 /* Main.storyboard */,
 				E2730E111DD4AAA6001C9B65 /* Assets.xcassets */,
@@ -193,6 +192,15 @@
 				E273CA231DDC7BF000768D41 /* TestMelee.swift */,
 			);
 			name = Enemies;
+			sourceTree = "<group>";
+		};
+		E27DF4161DE09FD500CBFBAA /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				E2972BD01DDFECEE00C03306 /* Level1.swift */,
+				E27DF3F21DE0918500CBFBAA /* Level2.swift */,
+			);
+			name = Levels;
 			sourceTree = "<group>";
 		};
 		E2CA17171DD4AB0C00B4F9A5 /* Sprites */ = {

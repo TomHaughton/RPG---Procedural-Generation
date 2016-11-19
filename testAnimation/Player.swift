@@ -229,13 +229,29 @@ class Player: SKSpriteNode {
     }
     
     func doAttack(scene:GameScene){
-        scene.enumerateChildNodesWithName("enemy") { node, _ in
-            let enemy = node as! Enemy
-            
-            if self.actionForKey("attack") == nil {
-                let attackWait = SKAction.runBlock(){
-                    self.removeActionForKey("attack")
+        if self.actionForKey("attack") == nil {
+            var enemies: [Enemy] = []
+            scene.enumerateChildNodesWithName("enemy") { node, _ in
+                let enemy = node as! Enemy
+                
+                if self.actionForKey("attack") == nil {
+                    if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), enemy.position){
+                        enemies.append(enemy)
+                    }
+                    else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), enemy.position){
+                        enemies.append(enemy)
+                    }
+                    else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), enemy.position){
+                        enemies.append(enemy)
+                    }
+                    else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), enemy.position){
+                        enemies.append(enemy)
+                    }
                 }
+            }
+            
+            var run: [SKAction] = []
+            for enemy in enemies{
                 let attackAction = SKAction.runBlock(){
                     if enemy.defense == 0{
                         enemy.health = enemy.health - self.attack
@@ -243,32 +259,45 @@ class Player: SKSpriteNode {
                     else {
                         enemy.health = enemy.health - self.attack/enemy.defense
                     }
-                
+                    
                     if enemy.health <= 0 {
                         enemy.removeFromParent()
                     }
                 }
-                
-                if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), enemy.position){
-                    self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
-                    enemy.runAction(SKAction.moveByX(100, y: 0, duration: 0.05))
+                let runAttack = SKAction.runBlock(){
+                    if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), enemy.position){
+                        self.runAction(attackAction)
+                        enemy.runAction(SKAction.moveByX(100, y: 0, duration: 0.05))
+                    }
+                    else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), enemy.position){
+                        self.runAction(attackAction)
+                        enemy.runAction(SKAction.moveByX(-100, y: 0, duration: 0.05))
+                    }
+                    else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), enemy.position){
+                        self.runAction(attackAction)
+                        enemy.runAction(SKAction.moveByX(0, y: 100, duration: 0.05))
+                    }
+                    else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), enemy.position){
+                        self.runAction(attackAction)
+                        enemy.runAction(SKAction.moveByX(0, y: -100, duration: 0.05))
+                    }
+                    else {
+                        self.removeActionForKey("attack")
+                    }
                 }
-                else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), enemy.position){
-                    self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
-                    enemy.runAction(SKAction.moveByX(-100, y: 0, duration: 0.05))
-                }
-                else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), enemy.position){
-                    self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
-                    enemy.runAction(SKAction.moveByX(0, y: 100, duration: 0.05))
-                }
-                else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), enemy.position){
-                    self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
-                    enemy.runAction(SKAction.moveByX(0, y: -100, duration: 0.05))
-                }
-                else {
-                    self.removeActionForKey("attack")
+                run.append(runAttack)
+            }
+            
+            let attackWait = SKAction.runBlock(){
+                self.removeActionForKey("attack")
+            }
+            
+            let attackWithCoolDown = SKAction.runBlock(){
+                for action in run{
+                    self.runAction(action)
                 }
             }
+            runAction(SKAction.sequence([attackWithCoolDown, SKAction.waitForDuration(self.attackSpeed), attackWait]), withKey: "attack")
         }
     }
     
