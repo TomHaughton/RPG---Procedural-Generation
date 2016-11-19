@@ -57,18 +57,5 @@ class Level1: GameScene {
         self.addChild(box)
         self.addChild(enemy)
         self.addChild(enemyM)
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        touch = touches.first!
-    }
-    
-    override func update(currentTime: CFTimeInterval) {
-        update.update(self)
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        touch = nil
-        player.removeActionForKey("animation")
-    }    
+    } 
 }
