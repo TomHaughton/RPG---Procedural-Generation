@@ -84,5 +84,6 @@ class Update{
                 }
             }
         }
+        scene.camera!.position = scene.player.position
     }
 }

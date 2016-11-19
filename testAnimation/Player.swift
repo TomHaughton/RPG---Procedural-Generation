@@ -185,6 +185,19 @@ class Player: SKSpriteNode {
     }
 
     func move(touch: CGPoint, dpad: [SKSpriteNode], scene: GameScene){
+        
+        //FROM 2d tvios
+        var cameraRect : CGRect {
+            return CGRect(
+                x: scene.getCameraPosition().x - scene.size.width/2
+                    + (scene.size.width - scene.frame.width)/2,
+                y: scene.getCameraPosition().y - scene.size.height/2
+                    + (scene.size.height - scene.frame.height)/2,
+                width: scene.frame.width,
+                height: scene.frame.height)
+        }
+        //
+        
         if actionForKey("move") == nil{
             if CGRectContainsPoint(dpad[0].frame, touch) && (position.y + 325 < scene.frame.height)  {
                 texture = SKTexture(imageNamed: "PlayerSpriteBack")

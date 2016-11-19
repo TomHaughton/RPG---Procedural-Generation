@@ -59,5 +59,12 @@ class Level2: GameScene {
         self.addChild(trees[0])
         self.addChild(enemy)
         self.addChild(enemyM)
+        addChild(cameraNode)
+        if #available(iOS 9.0, *) {
+            camera = cameraNode
+        } else {
+            // Fallback on earlier versions
+        }
+        camera!.position = player.position
     }
 }
