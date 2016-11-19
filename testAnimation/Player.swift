@@ -186,74 +186,19 @@ class Player: SKSpriteNode {
 
     func move(touch: CGPoint, dpad: [SKSpriteNode], scene: GameScene){
         if actionForKey("move") == nil{
-            let moveWait = SKAction.runBlock(){
-                self.removeActionForKey("move")
-            }
             if CGRectContainsPoint(dpad[0].frame, touch) && (position.y + 325 < scene.frame.height)  {
                 texture = SKTexture(imageNamed: "PlayerSpriteBack")
-                scene.enumerateChildNodesWithName("door") { node, _ in
-                    let door = node as! Door
-                    if door.containsPoint(CGPointMake(self.position.x, self.position.y + 100)){
-                        door.loadLevel(scene)
-                    }
-                }
-                
-                scene.enumerateChildNodesWithName("scenery") { node, _ in
-                    let scenery = node as! Scenery
-                    if !scenery.containsPoint(CGPointMake(self.position.x, self.position.y + 100)){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.25), moveWait]), withKey: "move")
-                        self.startAnimation("up")
-                    }
-                }
+                checkSurroundings(scene, x: 0, y: 100)
             }
             if CGRectContainsPoint(dpad[1].frame, touch) && (position.y - 50 > 100) {
                 texture = SKTexture(imageNamed: "PlayerSprite")
-                scene.enumerateChildNodesWithName("door") { node, _ in
-                    let door = node as! Door
-                    if door.containsPoint(CGPointMake(self.position.x, self.position.y - 100)){
-                        door.loadLevel(scene)
-                    }
-                }
-                
-                scene.enumerateChildNodesWithName("scenery") { node, _ in
-                    let scenery = node as! Scenery
-                    if !scenery.containsPoint(CGPointMake(self.position.x, self.position.y - 100)){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.25), moveWait]), withKey: "move")
-                        self.startAnimation("down")
-                    }
-                }
+                checkSurroundings(scene, x: 0, y: -100)
             }
             if CGRectContainsPoint(dpad[2].frame, touch) && (position.x - 50 > 50) {
-                scene.enumerateChildNodesWithName("door") { node, _ in
-                    let door = node as! Door
-                    if door.containsPoint(CGPointMake(self.position.x - 100, self.position.y)){
-                        door.loadLevel(scene)
-                    }
-                }
-                
-                scene.enumerateChildNodesWithName("scenery") { node, _ in
-                    let scenery = node as! Scenery
-                    if !scenery.containsPoint(CGPointMake(self.position.x - 100, self.position.y)){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.25), moveWait]), withKey: "move")
-                        self.startAnimation("left")
-                    }
-                }
+                checkSurroundings(scene, x: -100, y: 0)
             }
             if CGRectContainsPoint(dpad[3].frame, touch) && (position.x + 100 < scene.frame.width) {
-                scene.enumerateChildNodesWithName("door") { node, _ in
-                    let door = node as! Door
-                    if door.containsPoint(CGPointMake(self.position.x + 100, self.position.y)){
-                        door.loadLevel(scene)
-                    }
-                }
-                
-                scene.enumerateChildNodesWithName("scenery") { node, _ in
-                    let scenery = node as! Scenery
-                    if !scenery.containsPoint(CGPointMake(self.position.x + 100, self.position.y)){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.25), moveWait]), withKey: "move")
-                        self.startAnimation("right")
-                    }
-                }
+                checkSurroundings(scene, x: 100, y: 0)
             }
         }
     }
@@ -323,6 +268,27 @@ class Player: SKSpriteNode {
                 else {
                     self.removeActionForKey("attack")
                 }
+            }
+        }
+    }
+    
+    func checkSurroundings(scene: GameScene, x: CGFloat, y:CGFloat){
+        let moveWait = SKAction.runBlock(){
+            self.removeActionForKey("move")
+        }
+        
+        scene.enumerateChildNodesWithName("door") { node, _ in
+            let door = node as! Door
+            if door.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
+                door.loadLevel(scene)
+            }
+        }
+        
+        scene.enumerateChildNodesWithName("scenery") { node, _ in
+            let scenery = node as! Scenery
+            if !scenery.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
+                self.runAction(SKAction.sequence([SKAction.moveByX(x, y: y, duration: 0.25), moveWait]), withKey: "move")
+                self.startAnimation("right")
             }
         }
     }

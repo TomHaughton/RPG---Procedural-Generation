@@ -39,6 +39,14 @@ class Update{
         //ABSTRACT THIS INTO RANGED ENEMY CLASS
         scene.enumerateChildNodesWithName("projectile"){ node, _ in
             let projectile = node as! Projectile
+            scene.enumerateChildNodesWithName("scenery"){ node, _ in
+                let scenery = node as! Scenery
+                if CGRectIntersectsRect(scenery.frame,projectile.frame){
+                    projectile.removeFromParent()
+                    return
+                }
+            }
+            
             if CGRectIntersectsRect(projectile.frame, scene.player.frame) {
                 projectile.removeFromParent()
                 scene.player.damage(projectile.attack)
