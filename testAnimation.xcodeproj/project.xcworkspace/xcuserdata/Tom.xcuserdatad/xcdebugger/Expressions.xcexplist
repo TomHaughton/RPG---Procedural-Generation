@@ -85,6 +85,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Update.update(GameScene) -&gt; ():Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "touch">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RangedEnemy.shortestToPlayer(CGPoint) -&gt; String:RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString

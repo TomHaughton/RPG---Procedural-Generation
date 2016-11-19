@@ -8,7 +8,7 @@ class Update{
                 scene.player.doAttack(scene)
             }
             
-            scene.player.move(scene.touch!.locationInNode(scene), dpad: scene.ui.dpad, scene: scene.frame)
+            scene.player.move(scene.touch!.locationInNode(scene), dpad: scene.ui.dpad, scene: scene)
             if scene.ui.open.containsPoint(scene.touch.locationInNode(scene)) || scene.player.inventory.close.containsPoint(scene.touch.locationInNode(scene.player.inventory.inventory)){
                 let toggle = SKAction.runBlock(){
                     scene.player.inventory.toggleInventory(scene, touch: scene.touch, player: scene.player)

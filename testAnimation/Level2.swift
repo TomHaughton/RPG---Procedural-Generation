@@ -1,18 +1,25 @@
 import SpriteKit
 
-class Level1: GameScene {
+class Level2: GameScene {
     
-    let background = SKSpriteNode(imageNamed: "Background")
+    let background = SKSpriteNode()
     var trees: [Scenery] = []
     var box: Item!
     var enemy = RangedEnemy()
     var enemyM = MeleeEnemy()
     
+    init(size: CGSize, player: Player) {
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func didMoveToView(view: SKView) {
-        let door = Door(texture: SKTexture.init(imageNamed: ""), color: UIColor.brownColor(), size: CGSizeMake(100, 100), level: Level2(size: size, player: player))
-        player = Player(imageNamed: "PlayerSprite")
         ui = UI(scene: self)
         background.position = CGPoint(x: size.width/2, y: size.height/2)
+        background.color = UIColor.blueColor()
         
         enemy = TestEnemy()
         enemy.size = CGSizeMake(100, 100)
@@ -43,18 +50,13 @@ class Level1: GameScene {
         box.position = CGPointMake(CGRectGetMidX(frame) + 300, CGRectGetMidY(frame) - 300)
         box.zPosition = 1
         
-        door.position = CGPointMake(400, 400)
-        door.zPosition = 40
-        addChild(door)
-        
         player.pickUp(TestSword())
         player.pickUp(TestHelmet())
         
         self.addChild(player)
         self.addChild(background)
-        self.addChild(trees[0])
-        self.addChild(trees[1])
         self.addChild(box)
+        self.addChild(trees[0])
         self.addChild(enemy)
         self.addChild(enemyM)
     }
@@ -70,5 +72,5 @@ class Level1: GameScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         touch = nil
         player.removeActionForKey("animation")
-    }    
+    }
 }
