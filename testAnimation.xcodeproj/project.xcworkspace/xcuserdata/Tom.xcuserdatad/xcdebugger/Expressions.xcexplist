@@ -55,13 +55,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
+         contextName = "Update.update(GameScene) -&gt; ():Update.swift">
          <PersistentStrings>
             <PersistentString
-               value = "position.y">
-            </PersistentString>
-            <PersistentString
-               value = "player.position.y">
+               value = "touch">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -77,18 +74,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RangedEnemy.shortestToPlayer(CGPoint, scene : GameScene) -&gt; String:RangedEnemy.swift">
+         contextName = "RangedEnemy.moveToAttack(Player) -&gt; ():RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString
-               value = "position">
+               value = "position.y">
+            </PersistentString>
+            <PersistentString
+               value = "player.position.y">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Update.update(GameScene) -&gt; ():Update.swift">
+         contextName = "RangedEnemy.shortestToPlayer(CGPoint, scene : GameScene) -&gt; String:RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString
-               value = "touch">
+               value = "position">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -129,6 +129,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RangedEnemy.moveToAttack(GameScene) -&gt; ():RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "position.y">
+            </PersistentString>
+            <PersistentString
+               value = "scene.player.position.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Inventory.(checkEquip(UITouch, player : Player) -&gt; ()).(closure #1):Inventory.swift">
          <PersistentStrings>
             <PersistentString
@@ -145,24 +156,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Player.damage(Int) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "enemyAttack/defense">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "Player.move(CGPoint, dpad : [SKSpriteNode], scene : GameScene) -&gt; ():Player.swift">
          <PersistentStrings>
-            <PersistentString
-               value = "dpad[0].frame">
-            </PersistentString>
             <PersistentString
                value = "touch">
             </PersistentString>
             <PersistentString
                value = "CGRectContainsPoint(dpad[0].frame, touch) &amp;&amp; (position.y + 325 &lt; scene.frame.height)">
+            </PersistentString>
+            <PersistentString
+               value = "dpad[0].frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.damage(Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "enemyAttack/defense">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

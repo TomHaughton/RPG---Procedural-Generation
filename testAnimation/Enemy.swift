@@ -8,6 +8,7 @@ class Enemy: Npc{
     var attackSpeed:Double! = 2
     var movementSpeed: Double! = 0.2
     var item: Item?
+    var xp: Int = 10
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)

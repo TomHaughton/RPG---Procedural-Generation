@@ -7,6 +7,8 @@ class TestEnemy: RangedEnemy{
         attackSpeed = 2.0
         attack = 20
         tex = "arrow"
+        projWidth = 20
+        projHeight = 70
     }
     
     required init?(coder aDecoder: NSCoder) {

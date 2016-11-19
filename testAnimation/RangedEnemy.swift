@@ -4,6 +4,8 @@ import SpriteKit
 class RangedEnemy:Enemy{
     
     var tex:String? = ""
+    var projWidth:CGFloat = 100
+    var projHeight:CGFloat = 100
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -15,12 +17,8 @@ class RangedEnemy:Enemy{
     
     override func moveToAttack(scene: GameScene){
         if actionForKey("attack") == nil{
-            let attackWait = SKAction.runBlock(){
-                self.removeActionForKey("attack")
-            }
-            
             if position.x == scene.player.position.x || position.y == scene.player.position.y{
-                runAction(SKAction.sequence([SKAction.rotateByAngle(1, duration: attackSpeed),attackWait]), withKey: "attack")
+                shortestToPlayer(scene.player.position, scene: scene)
             }
             else{
                 removeActionForKey("attack")
@@ -145,20 +143,15 @@ class RangedEnemy:Enemy{
                 projectile.texture = SKTexture.init(imageNamed: self.tex!)
                 projectile.direction = direction
                 projectile.attack = self.attack
+                projectile.size = CGSizeMake(self.projWidth, self.projHeight)
                 switch(projectile.direction){
-                    case "up":
-                        projectile.size = CGSizeMake(20, 70)
-                    break
                 case "down":
-                        projectile.size = CGSizeMake(20, 70)
                         projectile.zRotation = -CGFloat(M_PI)
                     break
                 case "left":
-                    projectile.size = CGSizeMake(20, 70)
                     projectile.zRotation = CGFloat(M_PI)/2
                     break
                 case "right":
-                    projectile.size = CGSizeMake(20, 70)
                     projectile.zRotation = CGFloat(M_PI) * 1.5
                     break
                 default: break

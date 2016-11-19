@@ -7,6 +7,9 @@ class Player: SKSpriteNode {
     var attack: Double = 0
     var attackSpeed: Double = 1
     var inventory = Inventory(capacity: 100, amountFilled:0)
+    var level: Int = 1
+    var xp: Int = 0
+    var xpBoundary:Int!
     
     //Armour/Weapon slots
     var head: Armour?
@@ -23,6 +26,7 @@ class Player: SKSpriteNode {
         super.init(texture: texture, color: color, size: size)
         buildAnimations()
         zPosition = 2
+        xpBoundary = level * 100 * 2
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -127,7 +131,7 @@ class Player: SKSpriteNode {
             attack = toEquip.attack
             moveFromInvToPlayer(item, index: index)
             toEquip.size = CGSizeMake(70,70)
-            toEquip.position = CGPointMake(60,0)
+            toEquip.position = CGPointMake(55,10)
             toEquip.zPosition = 90
             toEquip.name = "weapon"
             addChild(toEquip.copy() as! Item)
@@ -206,18 +210,18 @@ class Player: SKSpriteNode {
         
         
         if actionForKey("move") == nil{
-            if CGRectContainsPoint(dpad[0].frame, touch) && (position.y + 325 < scene.frame.height)  {
+            if CGRectContainsPoint(dpad[0].frame, touch) {
                 texture = SKTexture(imageNamed: "PlayerSpriteBack")
                 checkSurroundings(scene, x: 0, y: 100)
             }
-            if CGRectContainsPoint(dpad[1].frame, touch) && (position.y - 50 > 100) {
+            if CGRectContainsPoint(dpad[1].frame, touch) {
                 texture = SKTexture(imageNamed: "PlayerSprite")
                 checkSurroundings(scene, x: 0, y: -100)
             }
-            if CGRectContainsPoint(dpad[2].frame, touch) && (position.x - 50 > 50) {
+            if CGRectContainsPoint(dpad[2].frame, touch) {
                 checkSurroundings(scene, x: -100, y: 0)
             }
-            if CGRectContainsPoint(dpad[3].frame, touch) && (position.x + 100 < scene.frame.width) {
+            if CGRectContainsPoint(dpad[3].frame, touch) {
                 checkSurroundings(scene, x: 100, y: 0)
             }
         }
@@ -282,6 +286,12 @@ class Player: SKSpriteNode {
                     
                     if enemy.health <= 0 {
                         enemy.removeFromParent()
+                        self.xp += enemy.xp
+                        if self.xp >= self.xpBoundary{
+                            self.level += 1
+                            self.xpBoundary = self.level + 200
+                            self.xp = 0
+                        }
                     }
                 }
                 let runAttack = SKAction.runBlock(){
