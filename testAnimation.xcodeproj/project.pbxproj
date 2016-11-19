@@ -37,7 +37,6 @@
 		E273CA281DDCF9AD00768D41 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA271DDCF9AD00768D41 /* UI.swift */; };
 		E273CA2A1DDCFBB600768D41 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = E273CA291DDCFBB600768D41 /* Update.swift */; };
 		E2972BD11DDFECEE00C03306 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2972BD01DDFECEE00C03306 /* Level1.swift */; };
-		E2972BD31DDFEDAF00C03306 /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2972BD21DDFEDAF00C03306 /* Level2.swift */; };
 		E2CA171B1DD4AB0D00B4F9A5 /* PlayerSprite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */; };
 		E2CA171C1DD4AB0D00B4F9A5 /* PlayerSprite1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */; };
 		E2CA171D1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */; };
@@ -76,7 +75,6 @@
 		E273CA271DDCF9AD00768D41 /* UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		E273CA291DDCFBB600768D41 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		E2972BD01DDFECEE00C03306 /* Level1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
-		E2972BD21DDFEDAF00C03306 /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
 		E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite.jpg; sourceTree = "<group>"; };
 		E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite1.jpg; sourceTree = "<group>"; };
 		E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite2.jpg; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */,
 				E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */,
 				E2972BD01DDFECEE00C03306 /* Level1.swift */,
-				E2972BD21DDFEDAF00C03306 /* Level2.swift */,
 				E2730E0C1DD4AAA6001C9B65 /* GameViewController.swift */,
 				E2730E0E1DD4AAA6001C9B65 /* Main.storyboard */,
 				E2730E111DD4AAA6001C9B65 /* Assets.xcassets */,
@@ -279,7 +276,6 @@
 				E2210E401DDA53A00059D561 /* Item.swift in Sources */,
 				E2210E561DDA544A0059D561 /* WeaponType.swift in Sources */,
 				E273CA121DDB1A7F00768D41 /* Inventory.swift in Sources */,
-				E2972BD31DDFEDAF00C03306 /* Level2.swift in Sources */,
 				E273CA241DDC7BF000768D41 /* TestMelee.swift in Sources */,
 				E273CA101DDB1A3400768D41 /* Player.swift in Sources */,
 				E2210E551DDA544A0059D561 /* Weapon.swift in Sources */,
