@@ -2,11 +2,11 @@ import Foundation
 import SpriteKit
 
 class Enemy: Npc{
-    var health: Int!
-    var attack: Int!
-    var defense: Int!
-    var attackSpeed:Double!
-    var movementSpeed: Int!
+    var health: Double! = 100
+    var attack: Double! = 10
+    var defense: Double! = 10
+    var attackSpeed:Double! = 2
+    var movementSpeed: Double! = 0.2
     var item: Item?
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {

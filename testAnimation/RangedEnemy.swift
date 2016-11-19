@@ -123,12 +123,11 @@ class RangedEnemy:Enemy{
                 }
                 else {
                     if playerPos.y - position.y < 2{
-                        attack(scene, direction:"left")
+                        attack(scene, direction:"right")
                         return ""
                     }
                     return "y"
                 }
-                
             }
         }
     }

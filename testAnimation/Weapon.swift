@@ -1,7 +1,7 @@
 import SpriteKit
 import Foundation
 class Weapon: Item {
-    var attack: Int!
+    var attack: Double!
     var weaponType: WeaponType!
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {

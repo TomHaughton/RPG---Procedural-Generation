@@ -2,9 +2,10 @@ import SpriteKit
 import Foundation
 class Player: SKSpriteNode {
     
-    var health: Int = 100
-    var defense: Int = 0
-    var attack: Int = 0
+    var health: Double = 100
+    var defense: Double = 0
+    var attack: Double = 0
+    var attackSpeed: Double = 1
     var inventory = Inventory(capacity: 100, amountFilled:0)
     
     //Armour/Weapon slots
@@ -205,6 +206,61 @@ class Player: SKSpriteNode {
             if CGRectContainsPoint(dpad[3].frame, touch) && (position.x + 100 < scene.width) {
                 runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.25), moveWait]), withKey: "move")
                 startAnimation("right")
+            }
+        }
+    }
+    
+    func damage(enemyAttack: Double){
+        if defense == 0{
+            health -= enemyAttack
+        }
+        else {
+            health -= enemyAttack/defense
+        }
+    }
+    
+    func bleed(scene: GameScene){
+        for _ in 0...arc4random_uniform(8){
+            let blood = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(15, 15))
+            blood.position = position
+            blood.name = "blood"
+            let x = CGFloat(arc4random_uniform(UInt32(200))) - 100
+            let y = CGFloat(arc4random_uniform(UInt32(200))) - 100
+            scene.addChild(blood)
+            let remove = SKAction.runBlock(){
+                blood.removeFromParent()
+            }
+            blood.runAction(SKAction.sequence([SKAction.moveByX(x, y: y, duration: 0.05), SKAction.waitForDuration(3),remove]))
+        }
+    }
+    
+    func doAttack(scene:GameScene){
+        scene.enumerateChildNodesWithName("enemy") { node, _ in
+            let enemy = node as! Enemy
+            let attackWait = SKAction.runBlock(){
+                self.removeActionForKey("attack")
+            }
+            let attackAction = SKAction.runBlock(){
+                enemy.health = enemy.health - self.attack
+                if enemy.health <= 0 {
+                    enemy.removeFromParent()
+                }
+            }
+            
+            if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), enemy.position){
+                self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
+            }
+            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), enemy.position){
+                self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
+            }
+            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), enemy.position){
+                self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
+            }
+            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), enemy.position){
+                self.runAction(SKAction.sequence([attackAction, SKAction.waitForDuration(self.attackSpeed), attackWait]),withKey: "attack")
+            }
+            else {
+                self.removeActionForKey("attack")
             }
         }
     }

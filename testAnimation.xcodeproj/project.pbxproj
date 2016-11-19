@@ -174,11 +174,11 @@
 			isa = PBXGroup;
 			children = (
 				E273CA1B1DDBD69B00768D41 /* Enemy.swift */,
-				E273CA1D1DDBD74800768D41 /* RangedEnemy.swift */,
-				E273CA1F1DDC702F00768D41 /* TestEnemy.swift */,
 				E273CA211DDC715D00768D41 /* MeleeEnemy.swift */,
-				E273CA231DDC7BF000768D41 /* TestMelee.swift */,
+				E273CA1D1DDBD74800768D41 /* RangedEnemy.swift */,
 				E25727B51DDDCF0C00C1369C /* Projectile.swift */,
+				E273CA1F1DDC702F00768D41 /* TestEnemy.swift */,
+				E273CA231DDC7BF000768D41 /* TestMelee.swift */,
 			);
 			name = Enemies;
 			sourceTree = "<group>";

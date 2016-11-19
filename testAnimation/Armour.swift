@@ -1,7 +1,7 @@
 import Foundation
 import SpriteKit
 class Armour: Item {
-    var defense: Int!
+    var defense: Double!
     var armourType: ArmourType!
     var armourSlot: ArmourSlot!
     

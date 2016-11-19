@@ -7,6 +7,7 @@ class UI{
     let open = SKSpriteNode()
     let healthBkg = SKSpriteNode()
     let healthBar = SKSpriteNode()
+    let a = SKSpriteNode()
     
     init(){
     }
@@ -16,6 +17,14 @@ class UI{
     }
     
     func setupUI(scene: GameScene){
+        a.name = "a";
+        a.size = CGSizeMake(200, 200)
+        a.position = CGPointMake(scene.frame.width - 150, 650)
+        a.color = UIColor.yellowColor()
+        a.texture = SKTexture(imageNamed: "A")
+        a.zPosition = 99
+        scene.addChild(a)
+        
         let up = SKSpriteNode()
         up.name = "up";
         up.size = CGSizeMake(200, 200)

@@ -4,6 +4,10 @@ import SpriteKit
 class Update{
     func update(scene: GameScene){
         if let _ = scene.touch{
+            if scene.ui.a.containsPoint(scene.touch.locationInNode(scene)){
+                scene.player.doAttack(scene)
+            }
+            
             scene.player.move(scene.touch!.locationInNode(scene), dpad: scene.ui.dpad, scene: scene.frame)
             if scene.ui.open.containsPoint(scene.touch.locationInNode(scene)) || scene.player.inventory.close.containsPoint(scene.touch.locationInNode(scene.player.inventory.inventory)){
                 let toggle = SKAction.runBlock(){
@@ -32,15 +36,18 @@ class Update{
             }
         }
         
-        
         //ABSTRACT THIS INTO RANGED ENEMY CLASS
         scene.enumerateChildNodesWithName("projectile"){ node, _ in
             let projectile = node as! Projectile
             if CGRectIntersectsRect(projectile.frame, scene.player.frame) {
                 projectile.removeFromParent()
-                scene.player.health -= projectile.attack
+                scene.player.damage(projectile.attack)
+                scene.player.bleed(scene)
                 if scene.player.health >= 0{
                     scene.ui.healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
+                }
+                else {
+                    scene.ui.healthBar.size = CGSizeMake(0, 100)
                 }
             }
             else if !CGRectIntersectsRect(projectile.frame, scene.frame){

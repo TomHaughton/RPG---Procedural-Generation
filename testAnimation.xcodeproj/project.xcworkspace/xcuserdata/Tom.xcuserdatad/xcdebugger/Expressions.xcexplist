@@ -74,6 +74,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Player.bleed(GameScene) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
       </ContextState>
       <ContextState
@@ -87,6 +95,14 @@
             </PersistentString>
             <PersistentString
                value = "position">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.damage(Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "enemyAttack/defense">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
