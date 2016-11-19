@@ -104,6 +104,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Inventory.toggleInventory(GameScene, touch : CGPoint, player : Player) -&gt; ():Inventory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.childNodeWithName(&quot;inventory&quot;) != nil &amp;&amp; CGRectContainsPoint(close.frame, touch)">
+            </PersistentString>
+            <PersistentString
+               value = "CGRectContainsPoint(close.frame, touch)">
+            </PersistentString>
+            <PersistentString
+               value = "close.frame">
+            </PersistentString>
+            <PersistentString
+               value = "scene.childNodeWithName(&quot;inventory&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MeleeEnemy.slash(CGFloat, y : CGFloat, scene : GameScene) -&gt; ():MeleeEnemy.swift">
          <PersistentStrings>
             <PersistentString

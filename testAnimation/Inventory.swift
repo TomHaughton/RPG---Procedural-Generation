@@ -133,16 +133,15 @@ class Inventory {
         inventory.addChild(health)
         inventory.addChild(attack)
         inventory.addChild(defense)
-        scene.ui.open.removeFromParent()
-        scene.addChild(inventory)
+        close.zPosition = 100
+        scene.ui.ui.addChild(inventory)
     }
     
-    func toggleInventory(scene: GameScene, touch: UITouch, player: Player){
-        if scene.childNodeWithName("inventory") != nil && CGRectContainsPoint(close.frame, touch.locationInNode(inventory)){
+    func toggleInventory(scene: GameScene, touch: CGPoint, player: Player){
+        if scene.ui.ui.childNodeWithName("inventory") != nil && CGRectContainsPoint(close.frame, touch){
             inventory.removeAllChildren()
             inventory.removeFromParent()
-            scene.addChild(scene.ui.open)
-        } else if CGRectContainsPoint(scene.ui.open.frame, touch.locationInNode(scene)){
+        } else if CGRectContainsPoint(scene.ui.open.frame, touch){
             if scene.childNodeWithName("inventory") == nil{
                 setupInventoryUI(scene, player: player)
             }

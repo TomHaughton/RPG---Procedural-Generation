@@ -59,5 +59,8 @@ class Level2: GameScene {
         self.addChild(trees[0])
         self.addChild(enemy)
         self.addChild(enemyM)
+        camera = cameraNode
+        self.addChild(cameraNode)
+        cameraNode.addChild(ui.ui)
     }
 }

@@ -36,6 +36,10 @@ class Player: SKSpriteNode {
                 if moveFromPlayerToInv(item){
                     self.head = nil
                     defense -= toUnequip.defense
+                    enumerateChildNodesWithName("head"){ node, _ in
+                        let item = node
+                        item.removeFromParent()
+                    }
                 }
                 break
             case ArmourSlot.Chest:
@@ -61,6 +65,10 @@ class Player: SKSpriteNode {
             if moveFromPlayerToInv(item){
                 self.weapon = nil
                 attack -= toUnequip.attack
+                enumerateChildNodesWithName("weapon"){ node, _ in
+                    let item = node
+                    item.removeFromParent()
+                }
             }
         }
         inventory.updateInventory(self)
@@ -77,6 +85,11 @@ class Player: SKSpriteNode {
                 self.head = toEquip
                 defense += toEquip.defense
                 moveFromInvToPlayer(item, index: index)
+                toEquip.size = CGSizeMake(65,50)
+                toEquip.position = CGPointMake(0,40)
+                toEquip.zPosition = 90
+                toEquip.name = "helmet"
+                addChild(toEquip.copy() as! Item)
                 break
             case ArmourSlot.Chest:
                 if self.chest != nil {
@@ -113,6 +126,11 @@ class Player: SKSpriteNode {
             self.weapon = toEquip
             attack = toEquip.attack
             moveFromInvToPlayer(item, index: index)
+            toEquip.size = CGSizeMake(70,70)
+            toEquip.position = CGPointMake(60,0)
+            toEquip.zPosition = 90
+            toEquip.name = "weapon"
+            addChild(toEquip.copy() as! Item)
         }
         inventory.updateInventory(self)
     }
@@ -185,6 +203,7 @@ class Player: SKSpriteNode {
     }
 
     func move(touch: CGPoint, dpad: [SKSpriteNode], scene: GameScene){
+        
         
         if actionForKey("move") == nil{
             if CGRectContainsPoint(dpad[0].frame, touch) && (position.y + 325 < scene.frame.height)  {
