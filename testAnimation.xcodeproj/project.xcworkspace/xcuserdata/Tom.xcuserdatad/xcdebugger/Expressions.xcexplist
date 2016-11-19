@@ -3,29 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RangedEnemy.shortestToPlayer(CGPoint) -&gt; String:RangedEnemy.swift">
+         contextName = "Inventory.setupInventoryUI(GameScene, player : Player) -&gt; ():Inventory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "position.x - playerPos.x == 0">
-            </PersistentString>
-            <PersistentString
-               value = "position">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "scene.childNodeWithName(&quot;inventory&quot;)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "inventory.hidden">
+               value = "player.inventory.items.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -38,10 +19,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Player.equip(Item) -&gt; ():Player.swift">
+         contextName = "Player.pickUp(Item) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.inventory">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Update.(update(GameScene) -&gt; ()).(closure #5):Update.swift">
@@ -58,51 +41,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Inventory.(checkEquip(UITouch, player : Player) -&gt; ()).(closure #1):Inventory.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.items.indexOf(item)!">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
       </ContextState>
       <ContextState
          contextName = "Player.moveFromInvToPlayer(Item, index : Int) -&gt; ():Player.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.items.indexOf(item)!">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.bleed(GameScene) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
-      </ContextState>
-      <ContextState
-         contextName = "GameScene.player.getter:GameScene.swift">
-      </ContextState>
-      <ContextState
-         contextName = "RangedEnemy.attackDirection(Player) -&gt; String:RangedEnemy.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "player.position">
-            </PersistentString>
-            <PersistentString
-               value = "position">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.damage(Int) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "enemyAttack/defense">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -118,6 +66,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Player.(doAttack(GameScene) -&gt; ()).(closure #1).(closure #2):Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.attack">
+            </PersistentString>
+            <PersistentString
+               value = "enemy.health">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RangedEnemy.shortestToPlayer(CGPoint, scene : GameScene) -&gt; String:RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString
@@ -126,10 +85,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Player.pickUp(Item) -&gt; ():Player.swift">
+         contextName = "RangedEnemy.shortestToPlayer(CGPoint) -&gt; String:RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.inventory">
+               value = "position.x - playerPos.x == 0">
+            </PersistentString>
+            <PersistentString
+               value = "position">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -142,12 +104,61 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Inventory.setupInventoryUI(GameScene, player : Player) -&gt; ():Inventory.swift">
+         contextName = "Inventory.(checkEquip(UITouch, player : Player) -&gt; ()).(closure #1):Inventory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "player.inventory.items.count">
+               value = "self.items.indexOf(item)!">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "inventory.hidden">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.damage(Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "enemyAttack/defense">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.bleed(GameScene) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.equip(Item) -&gt; ():Player.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.attackDirection(Player) -&gt; String:RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "player.position">
+            </PersistentString>
+            <PersistentString
+               value = "position">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.childNodeWithName(&quot;inventory&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.player.getter:GameScene.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

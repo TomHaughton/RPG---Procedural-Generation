@@ -6,6 +6,7 @@ class TestEnemy: RangedEnemy{
         super.init(texture: texture, color: color, size: size)
         attackSpeed = 2.0
         attack = 20
+        tex = "arrow"
     }
     
     required init?(coder aDecoder: NSCoder) {

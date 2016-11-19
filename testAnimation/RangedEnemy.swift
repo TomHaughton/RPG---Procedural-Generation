@@ -3,6 +3,8 @@ import SpriteKit
 
 class RangedEnemy:Enemy{
     
+    var tex:String? = ""
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
@@ -140,14 +142,24 @@ class RangedEnemy:Enemy{
             
             let shoot = SKAction.runBlock(){
                 let projectile = Projectile()
+                projectile.texture = SKTexture.init(imageNamed: self.tex!)
                 projectile.direction = direction
                 projectile.attack = self.attack
                 switch(projectile.direction){
-                    case "up", "down":
+                    case "up":
                         projectile.size = CGSizeMake(20, 70)
                     break
-                case "left", "right":
-                    projectile.size = CGSizeMake(70, 20)
+                case "down":
+                        projectile.size = CGSizeMake(20, 70)
+                        projectile.zRotation = -CGFloat(M_PI)
+                    break
+                case "left":
+                    projectile.size = CGSizeMake(20, 70)
+                    projectile.zRotation = CGFloat(M_PI)/2
+                    break
+                case "right":
+                    projectile.size = CGSizeMake(20, 70)
+                    projectile.zRotation = CGFloat(M_PI) * 1.5
                     break
                 default: break
                 }
