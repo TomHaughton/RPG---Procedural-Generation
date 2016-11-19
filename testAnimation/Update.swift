@@ -3,13 +3,18 @@ import SpriteKit
 
 class Update{
     func update(scene: GameScene){
+        
         if let _ = scene.touch{
-            if scene.ui.a.containsPoint(scene.touch.locationInNode(scene)){
+            var touch = scene.touch.locationInNode(scene)
+            touch.x += scene.frame.width/2 - scene.cameraNode.position.x
+            touch.y += scene.frame.height/2 - scene.cameraNode.position.y - scene.overlapAmount()/2
+            
+            if scene.ui.a.containsPoint(touch){
                 scene.player.doAttack(scene)
             }
             
-            scene.player.move(scene.touch!.locationInNode(scene), dpad: scene.ui.dpad, scene: scene)
-            if scene.ui.open.containsPoint(scene.touch.locationInNode(scene)) || scene.player.inventory.close.containsPoint(scene.touch.locationInNode(scene.player.inventory.inventory)){
+            scene.player.move(touch, dpad: scene.ui.dpad, scene: scene)
+            if scene.ui.open.containsPoint(touch) || scene.player.inventory.close.containsPoint(scene.touch.locationInNode(scene.player.inventory.inventory)){
                 let toggle = SKAction.runBlock(){
                     scene.player.inventory.toggleInventory(scene, touch: scene.touch, player: scene.player)
                 }
@@ -84,5 +89,6 @@ class Update{
                 }
             }
         }
+        scene.setCameraPosition(scene.player.position)
     }
 }

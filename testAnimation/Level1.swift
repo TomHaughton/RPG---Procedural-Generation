@@ -50,6 +50,7 @@ class Level1: GameScene {
         player.pickUp(TestSword())
         player.pickUp(TestHelmet())
         
+        camera = cameraNode
         self.addChild(player)
         self.addChild(background)
         self.addChild(trees[0])
@@ -57,5 +58,7 @@ class Level1: GameScene {
         self.addChild(box)
         self.addChild(enemy)
         self.addChild(enemyM)
+        self.addChild(cameraNode)
+        cameraNode.addChild(ui.ui)
     } 
 }

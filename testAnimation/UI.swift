@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 class UI{
-    
+    var ui = SKSpriteNode()
     var dpad: [SKSpriteNode] = []
     let open = SKSpriteNode()
     let healthBkg = SKSpriteNode()
@@ -17,13 +17,16 @@ class UI{
     }
     
     func setupUI(scene: GameScene){
-        a.name = "a";
+        ui.anchorPoint = CGPoint.zero
+        ui.position = CGPoint(x: 0 - scene.frame.width/2, y: 0 - scene.frame.height/2 + scene.overlapAmount()/2)
+        
+        a.name = "a"
         a.size = CGSizeMake(200, 200)
         a.position = CGPointMake(scene.frame.width - 150, 650)
         a.color = UIColor.yellowColor()
         a.texture = SKTexture(imageNamed: "A")
         a.zPosition = 99
-        scene.addChild(a)
+        ui.addChild(a)
         
         let up = SKSpriteNode()
         up.name = "up";
@@ -70,12 +73,12 @@ class UI{
         healthBkg.position = CGPointMake(scene.frame.width/2, 1300)
         healthBkg.texture = SKTexture(imageNamed: "healthBar")
         healthBkg.zPosition = 99
-        scene.addChild(healthBkg)
+        ui.addChild(healthBkg)
         
         healthBar.name = "healthBar"
         healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
         healthBar.color = UIColor.redColor()
-        healthBkg.addChild(healthBar)
+        ui.addChild(healthBar)
         
         open.position = CGPointMake(0, 1150)
         open.anchorPoint = CGPointMake(0, 0)
@@ -83,11 +86,11 @@ class UI{
         open.color = UIColor.redColor()
         open.texture = SKTexture(imageNamed: "inventoryButton")
         open.zPosition = 120
-        scene.addChild(open)
+        ui.addChild(open)
         
         for button in dpad{
             button.zPosition = 99
-            scene.addChild(button)
+            ui.addChild(button)
         }
     }
 
