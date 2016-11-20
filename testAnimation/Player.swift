@@ -2,6 +2,7 @@ import SpriteKit
 import Foundation
 class Player: SKSpriteNode {
     
+    var maxHealth: Double = 100
     var health: Double = 100
     var defense: Double = 0
     var attack: Double = 0
@@ -207,22 +208,36 @@ class Player: SKSpriteNode {
     }
 
     func move(touch: CGPoint, dpad: [SKSpriteNode], scene: GameScene){
-        
+        let moveWait = SKAction.runBlock(){
+            self.removeActionForKey("move")
+        }
         
         if actionForKey("move") == nil{
             if CGRectContainsPoint(dpad[0].frame, touch) {
                 texture = SKTexture(imageNamed: "PlayerSpriteBack")
-                checkSurroundings(scene, x: 0, y: 100)
+                if checkSurroundings(scene, x: 0, y: 100){
+                    self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.25), moveWait]), withKey: "move")
+                    self.startAnimation("up")
+                }
             }
             if CGRectContainsPoint(dpad[1].frame, touch) {
                 texture = SKTexture(imageNamed: "PlayerSprite")
-                checkSurroundings(scene, x: 0, y: -100)
+                if checkSurroundings(scene, x: 0, y: -100) {
+                    self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.25), moveWait]), withKey: "move")
+                    self.startAnimation("down")
+                }
             }
             if CGRectContainsPoint(dpad[2].frame, touch) {
-                checkSurroundings(scene, x: -100, y: 0)
+                if checkSurroundings(scene, x: -100, y: 0){
+                    self.runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.25), moveWait]), withKey: "move")
+                    self.startAnimation("left")
+                }
             }
             if CGRectContainsPoint(dpad[3].frame, touch) {
-                checkSurroundings(scene, x: 100, y: 0)
+                if checkSurroundings(scene, x: 100, y: 0){
+                    self.runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.25), moveWait]), withKey: "move")
+                    self.startAnimation("up")
+                }
             }
         }
     }
@@ -241,7 +256,7 @@ class Player: SKSpriteNode {
             let blood = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(15, 15))
             blood.position = position
             blood.name = "blood"
-            blood.zPosition = 1
+            blood.zPosition = 0
             let x = CGFloat(arc4random_uniform(UInt32(200))) - 100
             let y = CGFloat(arc4random_uniform(UInt32(200))) - 100
             scene.addChild(blood)
@@ -288,28 +303,45 @@ class Player: SKSpriteNode {
                         enemy.removeFromParent()
                         self.xp += enemy.xp
                         if self.xp >= self.xpBoundary{
+                            self.maxHealth = self.maxHealth + Double(self.level * 10)
                             self.level += 1
-                            self.xpBoundary = self.level + 200
+                            self.xpBoundary = self.level * 200
                             self.xp = 0
                         }
+                        scene.ui.xpBar.size = CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)
+                        scene.ui.healthBar.size = CGSizeMake(CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.health), 100)
                     }
                 }
                 let runAttack = SKAction.runBlock(){
                     if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), enemy.position){
                         self.runAction(attackAction)
-                        enemy.runAction(SKAction.moveByX(100, y: 0, duration: 0.05))
+                        if enemy.checkSurroundings(scene, x: 100, y: 0){
+                            enemy.runAction(SKAction.moveByX(100, y: 0, duration: 0.05))
+                        }
                     }
                     else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), enemy.position){
                         self.runAction(attackAction)
-                        enemy.runAction(SKAction.moveByX(-100, y: 0, duration: 0.05))
+                        if enemy.checkSurroundings(scene, x: -100, y: 0){
+                            enemy.runAction(SKAction.moveByX(-100, y: 0, duration: 0.05))
+                        }
                     }
                     else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), enemy.position){
                         self.runAction(attackAction)
-                        enemy.runAction(SKAction.moveByX(0, y: 100, duration: 0.05))
+                        if enemy.checkSurroundings(scene, x: 0, y: 100){
+                            enemy.runAction(SKAction.moveByX(0, y: 100, duration: 0.05))
+                        }
                     }
                     else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), enemy.position){
                         self.runAction(attackAction)
-                        enemy.runAction(SKAction.moveByX(0, y: -100, duration: 0.05))
+                        if enemy.checkSurroundings(scene, x: 0, y: -100){
+                            enemy.runAction(SKAction.moveByX(0, y: -100, duration: 0.05))
+                        }
+                    }
+                    else if CGRectContainsPoint(scene.player.frame, enemy.position){
+                        self.runAction(attackAction)
+                        if enemy.checkSurroundings(scene, x: 0, y: -100){
+                            enemy.runAction(SKAction.moveByX(0, y: -100, duration: 0.05))
+                        }
                     }
                     else {
                         self.removeActionForKey("attack")
@@ -331,24 +363,25 @@ class Player: SKSpriteNode {
         }
     }
     
-    func checkSurroundings(scene: GameScene, x: CGFloat, y:CGFloat){
-        let moveWait = SKAction.runBlock(){
-            self.removeActionForKey("move")
-        }
+    func checkSurroundings(scene: GameScene, x: CGFloat, y:CGFloat) -> Bool{
+        var canMove = false
         
         scene.enumerateChildNodesWithName("door") { node, _ in
             let door = node as! Door
             if door.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
                 door.loadLevel(scene)
+                canMove = true
             }
         }
         
         scene.enumerateChildNodesWithName("scenery") { node, _ in
             let scenery = node as! Scenery
             if !scenery.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
-                self.runAction(SKAction.sequence([SKAction.moveByX(x, y: y, duration: 0.25), moveWait]), withKey: "move")
-                self.startAnimation("right")
+                canMove = true            }
+            else {
+                canMove = false
             }
         }
+        return canMove
     }
 }

@@ -7,6 +7,8 @@ class UI{
     let open = SKSpriteNode()
     let healthBkg = SKSpriteNode()
     let healthBar = SKSpriteNode()
+    let xpBkg = SKSpriteNode()
+    let xpBar = SKSpriteNode()
     let a = SKSpriteNode()
     
     init(){
@@ -18,7 +20,7 @@ class UI{
     
     func setupUI(scene: GameScene){
         ui.anchorPoint = CGPoint.zero
-        ui.position = CGPoint(x: 0 - scene.frame.width/2, y: 0 - scene.frame.height/2 + scene.overlapAmount()/2)
+        ui.position = CGPoint(x: 0 - scene.frame.width/2, y: 0 - scene.frame.height/2)
         
         a.name = "a"
         a.size = CGSizeMake(200, 200)
@@ -76,9 +78,24 @@ class UI{
         ui.addChild(healthBkg)
         
         healthBar.name = "healthBar"
-        healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
+        healthBar.size = CGSizeMake(0, 100)
+        if !(scene.player.health <= 0){
+            healthBar.size = CGSizeMake(CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.health), 100)
+        }
         healthBar.color = UIColor.redColor()
-        ui.addChild(healthBar)
+        healthBkg.addChild(healthBar)
+        
+        xpBkg.name = "healthBkg"
+        xpBkg.size = CGSizeMake(1600, 50)
+        xpBkg.position = CGPointMake(scene.frame.width/2, 1200)
+        xpBkg.color = UIColor.brownColor()
+        xpBkg.zPosition = 99
+        ui.addChild(xpBkg)
+        
+        xpBar.name = "healthBar"
+        xpBar.size = CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)
+        xpBar.color = UIColor.greenColor()
+        xpBkg.addChild(xpBar)
         
         open.position = CGPointMake(0, 1150)
         open.anchorPoint = CGPointMake(0, 0)

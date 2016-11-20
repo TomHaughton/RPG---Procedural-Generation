@@ -3,11 +3,15 @@ import SpriteKit
 
 class Update{
     func update(scene: GameScene){
-        
+        scene.enumerateChildNodesWithName("bum"){ node, _ in
+            let bum = node as! SKSpriteNode
+            bum.runAction(SKAction.moveByX(10, y: 0, duration: 0.05))
+        }
+        scene.camera?.position = scene.player.position
         if let _ = scene.touch{
             var touch = scene.touch.locationInNode(scene)
             touch.x += scene.frame.width/2 - scene.cameraNode.position.x
-            touch.y += scene.frame.height/2 - scene.cameraNode.position.y - scene.overlapAmount()/2
+            touch.y += scene.frame.height/2 - scene.cameraNode.position.y
             
             if scene.ui.a.containsPoint(touch){
                 scene.player.doAttack(scene)
@@ -57,13 +61,13 @@ class Update{
                 scene.player.damage(projectile.attack)
                 scene.player.bleed(scene)
                 if scene.player.health >= 0{
-                    scene.ui.healthBar.size = CGSizeMake((15 * CGFloat(scene.player.health)), 100)
+                    scene.ui.healthBar.size = CGSizeMake(CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.health), 100)
                 }
                 else {
                     scene.ui.healthBar.size = CGSizeMake(0, 100)
                 }
             }
-            else if !CGRectIntersectsRect(projectile.frame, scene.frame){
+            else if !CGRectIntersectsRect(projectile.frame, scene.background.frame){
                 projectile.removeFromParent()
             }
             else{
@@ -89,6 +93,5 @@ class Update{
                 }
             }
         }
-        scene.setCameraPosition(scene.player.position)
     }
 }

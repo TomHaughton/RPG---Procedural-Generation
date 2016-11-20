@@ -43,6 +43,7 @@
 		E2CA171B1DD4AB0D00B4F9A5 /* PlayerSprite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */; };
 		E2CA171C1DD4AB0D00B4F9A5 /* PlayerSprite1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */; };
 		E2CA171D1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */; };
+		E2D4EF071DE1E48100E66F59 /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4EF061DE1E48100E66F59 /* Level3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		E2CA17181DD4AB0D00B4F9A5 /* PlayerSprite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite.jpg; sourceTree = "<group>"; };
 		E2CA17191DD4AB0D00B4F9A5 /* PlayerSprite1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite1.jpg; sourceTree = "<group>"; };
 		E2CA171A1DD4AB0D00B4F9A5 /* PlayerSprite2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PlayerSprite2.jpg; sourceTree = "<group>"; };
+		E2D4EF061DE1E48100E66F59 /* Level3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 			children = (
 				E2972BD01DDFECEE00C03306 /* Level1.swift */,
 				E27DF3F21DE0918500CBFBAA /* Level2.swift */,
+				E2D4EF061DE1E48100E66F59 /* Level3.swift */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				E273CA241DDC7BF000768D41 /* TestMelee.swift in Sources */,
 				E273CA101DDB1A3400768D41 /* Player.swift in Sources */,
 				E2210E551DDA544A0059D561 /* Weapon.swift in Sources */,
+				E2D4EF071DE1E48100E66F59 /* Level3.swift in Sources */,
 				E273CA1E1DDBD74800768D41 /* RangedEnemy.swift in Sources */,
 				E2972BD11DDFECEE00C03306 /* Level1.swift in Sources */,
 				E273CA191DDBD64300768D41 /* Npc.swift in Sources */,
@@ -438,6 +442,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Tom.testAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -453,6 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Tom.testAnimation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

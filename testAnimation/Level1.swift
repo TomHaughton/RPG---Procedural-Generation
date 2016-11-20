@@ -2,14 +2,25 @@ import SpriteKit
 
 class Level1: GameScene {
     
-    let background = SKSpriteNode(imageNamed: "Background")
     var trees: [Scenery] = []
     var box: Item!
     var enemy = RangedEnemy()
     var enemyM = MeleeEnemy()
     
+    override init(size: CGSize) {
+        super.init(size: size)
+    }
+    
+    init(size: CGSize, player: Player) {
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func didMoveToView(view: SKView) {
-        let door = Door(texture: SKTexture.init(imageNamed: ""), color: UIColor.brownColor(), size: CGSizeMake(100, 100), level: Level2(size: size, player: player))
+        background = SKSpriteNode(imageNamed: "Background")
         player = Player(imageNamed: "PlayerSprite")
         ui = UI(scene: self)
         background.position = CGPoint(x: size.width/2, y: size.height/2)
@@ -43,6 +54,7 @@ class Level1: GameScene {
         box.position = CGPointMake(CGRectGetMidX(frame) + 300, CGRectGetMidY(frame) - 300)
         box.zPosition = 1
         
+        let door = Door(texture: SKTexture.init(imageNamed: ""), color: UIColor.brownColor(), size: CGSizeMake(100, 100), level: Level2(size: size, player: player))
         door.position = CGPointMake(400, 400)
         door.zPosition = 40
         addChild(door)

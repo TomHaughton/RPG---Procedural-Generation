@@ -1,11 +1,13 @@
 import SpriteKit
 
-class Level2: GameScene {
+class Level3: GameScene {
     
     var trees: [Scenery] = []
     var box: Item!
     var enemy = RangedEnemy()
     var enemyM = MeleeEnemy()
+    var enemyM2 = MeleeEnemy()
+    var enemyM3 = MeleeEnemy()
     
     init(size: CGSize, player: Player) {
         super.init(size: size)
@@ -18,7 +20,7 @@ class Level2: GameScene {
     override func didMoveToView(view: SKView) {
         ui = UI(scene: self)
         background.position = CGPoint(x: size.width/2, y: size.height/2)
-        background.color = UIColor.blueColor()
+        background.color = UIColor.greenColor()
         background.size = CGSizeMake(4000, 2000)
         
         enemy = TestEnemy()
@@ -30,8 +32,20 @@ class Level2: GameScene {
         enemyM = TestMelee()
         enemyM.size = CGSizeMake(100, 100)
         enemyM.color = UIColor.whiteColor()
-        enemyM.position = CGPoint(x: (size.width/2) - 300, y: (size.height/2) - 300)
+        enemyM.position = CGPoint(x: (size.width/2) + 600, y: (size.height/2) + 600)
         enemyM.name = "enemy"
+        
+        enemyM2 = TestMelee()
+        enemyM2.size = CGSizeMake(100, 100)
+        enemyM2.color = UIColor.whiteColor()
+        enemyM2.position = CGPoint(x: (size.width/2) - 300, y: (size.height/2) + 300)
+        enemyM2.name = "enemy"
+        
+        enemyM2 = TestMelee()
+        enemyM2.size = CGSizeMake(100, 100)
+        enemyM2.color = UIColor.whiteColor()
+        enemyM2.position = CGPoint(x: (size.width/2) - 500, y: (size.height/2) - 300)
+        enemyM2.name = "enemy"
         
         trees.append(Scenery(imageNamed: "Tree1"))
         trees.append(Scenery(imageNamed: "Tree2"))
@@ -39,8 +53,8 @@ class Level2: GameScene {
         player.position = CGPoint(x: size.width/2, y: size.height/2)
         player.setScale(1.0)
         
-        trees[0].position = CGPoint(x: 1500, y: 500)
-        trees[1].position = CGPoint(x: 1650, y: 300)
+        trees[0].position = CGPoint(x: 3000, y: 500)
+        trees[1].position = CGPoint(x: 3000, y: 300)
         trees[0].zPosition = 2
         trees[1].zPosition = 2
         
@@ -58,9 +72,11 @@ class Level2: GameScene {
         self.addChild(player)
         self.addChild(background)
         self.addChild(box)
-        self.addChild(trees[0])
         self.addChild(enemy)
         self.addChild(enemyM)
+        self.addChild(enemyM2)
+        self.addChild(enemyM3)
+        self.addChild(trees[0])
         camera = cameraNode
         self.addChild(cameraNode)
         cameraNode.addChild(ui.ui)

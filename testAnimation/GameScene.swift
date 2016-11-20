@@ -3,6 +3,7 @@ import SpriteKit
 @available(iOS 9.0, *)
 class GameScene: SKScene {
     
+    var background = SKSpriteNode()
     var ui = UI()
     var update = Update()
     var player = Player()
@@ -39,23 +40,4 @@ class GameScene: SKScene {
         touch = nil
         player.removeActionForKey("animation")
     }
-    
-    //Taken from 2D iOS and tvOS Games by tutorials v1.3
-    func overlapAmount() -> CGFloat {
-        guard let view = self.view else {
-            return 0 }
-        let scale = view.bounds.size.width / self.size.width
-        let scaledHeight = self.size.height * scale
-        let scaledOverlap = scaledHeight - view.bounds.size.height
-        return scaledOverlap / scale
-    }
-    func getCameraPosition() -> CGPoint {
-        return CGPoint(x: cameraNode.position.x, y: cameraNode.position.y +
-            overlapAmount()/2)
-    }
-    func setCameraPosition(position: CGPoint) {
-        cameraNode.position = CGPoint(x: position.x, y: position.y -
-            overlapAmount()/2)
-    }
-    //End of referenced code
 }
