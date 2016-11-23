@@ -24,4 +24,12 @@ class Enemy: Npc{
     func checkSurroundings(scene: GameScene, x: CGFloat, y:CGFloat) -> Bool{
         return true
     }
+    
+    func drop(scene:GameScene){
+        if let _ = item{
+            item?.position = position
+            item?.size = CGSizeMake(100, 100)
+            scene.addChild(item!)
+        }
+    }
 }

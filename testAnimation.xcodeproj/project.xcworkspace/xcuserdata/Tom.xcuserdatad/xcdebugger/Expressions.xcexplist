@@ -63,6 +63,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Update.(update(GameScene) -&gt; ()).(closure #6):Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.camera!.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Player.(doAttack(GameScene) -&gt; ()).(closure #1).(closure #2):Player.swift">
          <PersistentStrings>
             <PersistentString
@@ -93,18 +101,19 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Update.(update(GameScene) -&gt; ()).(closure #6):Update.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "scene.camera!.frame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "Player.(doAttack(GameScene) -&gt; ()).(closure #2):Player.swift">
          <PersistentStrings>
             <PersistentString
+               value = "CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)">
+            </PersistentString>
+            <PersistentString
+               value = "scene.ui.xpBar.size">
+            </PersistentString>
+            <PersistentString
                value = "xpBoundary">
+            </PersistentString>
+            <PersistentString
+               value = "1500 / scene.player.xpBoundary">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -209,10 +218,10 @@
                value = "touch">
             </PersistentString>
             <PersistentString
-               value = "dpad[0].frame">
+               value = "CGRectContainsPoint(dpad[0].frame, touch) &amp;&amp; (position.y + 325 &lt; scene.frame.height)">
             </PersistentString>
             <PersistentString
-               value = "CGRectContainsPoint(dpad[0].frame, touch) &amp;&amp; (position.y + 325 &lt; scene.frame.height)">
+               value = "dpad[0].frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

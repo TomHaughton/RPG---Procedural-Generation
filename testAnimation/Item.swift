@@ -3,7 +3,7 @@ import SpriteKit
 
 class Item: SKSpriteNode {
     var itemName:String!
-    var weight:Int!
+    var weight:Int! = 1
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)

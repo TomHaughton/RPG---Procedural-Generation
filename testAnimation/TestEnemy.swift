@@ -9,6 +9,7 @@ class TestEnemy: RangedEnemy{
         tex = "arrow"
         projWidth = 20
         projHeight = 70
+        item = TestAxe()
     }
     
     required init?(coder aDecoder: NSCoder) {

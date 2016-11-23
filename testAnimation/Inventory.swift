@@ -13,6 +13,8 @@ class Inventory {
     var slots:[SKSpriteNode] = []
     var invBack = SKSpriteNode()
     var bkg: [SKSpriteNode] = []
+    
+    var level = SKLabelNode()
     var health = SKLabelNode()
     var attack = SKLabelNode()
     var defense = SKLabelNode()
@@ -72,6 +74,12 @@ class Inventory {
         weapon.position = CGPointMake(650,scene.frame.height - 600)
         weapon.color = UIColor.brownColor()
         
+        level.fontSize = 80
+        level.fontName = "Arial"
+        level.fontColor = UIColor.blueColor()
+        level.text = "Lvl: \(player.level)"
+        level.position = CGPointMake(700, scene.frame.height - 350)
+        
         health.fontSize = 80
         health.fontName = "Arial"
         health.fontColor = UIColor.blueColor()
@@ -130,6 +138,7 @@ class Inventory {
         inventory.addChild(arms)
         inventory.addChild(legs)
         inventory.addChild(weapon)
+        inventory.addChild(level)
         inventory.addChild(health)
         inventory.addChild(attack)
         inventory.addChild(defense)

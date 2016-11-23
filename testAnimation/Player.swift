@@ -7,7 +7,7 @@ class Player: SKSpriteNode {
     var defense: Double = 0
     var attack: Double = 0
     var attackSpeed: Double = 1
-    var inventory = Inventory(capacity: 100, amountFilled:0)
+    var inventory = Inventory(capacity: 16, amountFilled:0)
     var level: Int = 1
     var xp: Int = 0
     var xpBoundary:Int!
@@ -137,6 +137,9 @@ class Player: SKSpriteNode {
             toEquip.name = "weapon"
             addChild(toEquip.copy() as! Item)
         }
+        else if let toUse = item as? HealthPotion{
+            toUse.use(self, index: index)
+        }
         inventory.updateInventory(self)
     }
     
@@ -244,10 +247,10 @@ class Player: SKSpriteNode {
     
     func damage(enemyAttack: Double){
         if defense == 0{
-            health -= enemyAttack
+            health -= round(enemyAttack)
         }
         else {
-            health -= enemyAttack/defense
+            health -= round(enemyAttack/defense)
         }
     }
     
@@ -301,6 +304,7 @@ class Player: SKSpriteNode {
                     
                     if enemy.health <= 0 {
                         enemy.removeFromParent()
+                        enemy.drop(scene)
                         self.xp += enemy.xp
                         if self.xp >= self.xpBoundary{
                             self.maxHealth = self.maxHealth + Double(self.level * 10)
@@ -309,7 +313,9 @@ class Player: SKSpriteNode {
                             self.xp = 0
                         }
                         scene.ui.xpBar.size = CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)
-                        scene.ui.healthBar.size = CGSizeMake(CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.health), 100)
+                        if !(self.health <= 0){
+                            scene.ui.healthBar.size = CGSizeMake(CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.health), 100)
+                        }
                     }
                 }
                 let runAttack = SKAction.runBlock(){

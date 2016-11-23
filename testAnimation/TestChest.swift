@@ -5,7 +5,6 @@ class TestChest: Armour {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         itemName = "Chest"
-        weight = 30
         defense = 70
         armourType = ArmourType.Heavy
         armourSlot = ArmourSlot.Chest

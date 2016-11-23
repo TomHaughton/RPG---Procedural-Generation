@@ -4,6 +4,7 @@ class Level1: GameScene {
     
     var trees: [Scenery] = []
     var box: Item!
+    var potion = HealthPotion(texture: nil, color: UIColor.redColor(), size: CGSizeMake(100, 100), health: 50)
     var enemy = RangedEnemy()
     var enemyM = MeleeEnemy()
     
@@ -54,6 +55,10 @@ class Level1: GameScene {
         box.position = CGPointMake(CGRectGetMidX(frame) + 300, CGRectGetMidY(frame) - 300)
         box.zPosition = 1
         
+        potion.size = CGSizeMake(100, 100)
+        potion.position = CGPointMake(CGRectGetMidX(frame) + 200, CGRectGetMidY(frame) - 300)
+        potion.zPosition = 1
+        
         let door = Door(texture: SKTexture.init(imageNamed: ""), color: UIColor.brownColor(), size: CGSizeMake(100, 100), level: Level2(size: size, player: player))
         door.position = CGPointMake(400, 400)
         door.zPosition = 40
@@ -63,14 +68,15 @@ class Level1: GameScene {
         player.pickUp(TestHelmet())
         
         camera = cameraNode
-        self.addChild(player)
-        self.addChild(background)
-        self.addChild(trees[0])
-        self.addChild(trees[1])
-        self.addChild(box)
-        self.addChild(enemy)
-        self.addChild(enemyM)
-        self.addChild(cameraNode)
+        addChild(player)
+        addChild(background)
+        addChild(trees[0])
+        addChild(trees[1])
+        addChild(box)
+        addChild(enemy)
+        addChild(enemyM)
+        addChild(cameraNode)
+        addChild(potion)
         cameraNode.addChild(ui.ui)
     } 
 }

@@ -6,7 +6,6 @@ class TestSword:Weapon {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: tex, color: color, size: size)
         itemName = "Sword"
-        weight = 15
         attack = 60
         weaponType = WeaponType.Sword
     }

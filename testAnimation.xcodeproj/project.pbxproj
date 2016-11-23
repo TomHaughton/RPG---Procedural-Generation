@@ -19,6 +19,7 @@
 		E2210E541DDA544A0059D561 /* ArmourOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E501DDA544A0059D561 /* ArmourOptions.swift */; };
 		E2210E551DDA544A0059D561 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E511DDA544A0059D561 /* Weapon.swift */; };
 		E2210E561DDA544A0059D561 /* WeaponType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2210E521DDA544A0059D561 /* WeaponType.swift */; };
+		E23AEEE01DE231DA00D03657 /* HealthPotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23AEEDF1DE231DA00D03657 /* HealthPotion.swift */; };
 		E25727B61DDDCF0C00C1369C /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25727B51DDDCF0C00C1369C /* Projectile.swift */; };
 		E2730E071DD4AAA6001C9B65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */; };
 		E2730E0B1DD4AAA6001C9B65 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2730E0A1DD4AAA6001C9B65 /* GameScene.swift */; };
@@ -59,6 +60,7 @@
 		E2210E501DDA544A0059D561 /* ArmourOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArmourOptions.swift; sourceTree = "<group>"; };
 		E2210E511DDA544A0059D561 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		E2210E521DDA544A0059D561 /* WeaponType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponType.swift; sourceTree = "<group>"; };
+		E23AEEDF1DE231DA00D03657 /* HealthPotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthPotion.swift; sourceTree = "<group>"; };
 		E25727B51DDDCF0C00C1369C /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		E2730E031DD4AAA6001C9B65 /* testAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2730E061DD4AAA6001C9B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				E2210E3F1DDA53A00059D561 /* Item.swift */,
+				E23AEEDF1DE231DA00D03657 /* HealthPotion.swift */,
 				E273CA151DDB9BBB00768D41 /* Weapons */,
 				E273CA161DDB9BC400768D41 /* Armour */,
 				E2210E4F1DDA544A0059D561 /* Armour.swift */,
@@ -319,6 +322,7 @@
 				E2210E481DDA54250059D561 /* TestChest.swift in Sources */,
 				E2210E541DDA544A0059D561 /* ArmourOptions.swift in Sources */,
 				E2730E0D1DD4AAA6001C9B65 /* GameViewController.swift in Sources */,
+				E23AEEE01DE231DA00D03657 /* HealthPotion.swift in Sources */,
 				E2210E4C1DDA54250059D561 /* TestBow.swift in Sources */,
 				E27DF3F11DE0902500CBFBAA /* Door.swift in Sources */,
 				E2730E071DD4AAA6001C9B65 /* AppDelegate.swift in Sources */,

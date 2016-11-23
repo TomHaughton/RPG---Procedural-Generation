@@ -3,11 +3,15 @@ import SpriteKit
 
 class Update{
     func update(scene: GameScene){
-        scene.enumerateChildNodesWithName("bum"){ node, _ in
-            let bum = node as! SKSpriteNode
-            bum.runAction(SKAction.moveByX(10, y: 0, duration: 0.05))
+        if !(scene.player.health <= 0){
+            scene.ui.healthBar.size = CGSizeMake(CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.health), 100)
         }
+        else{
+            //DO SOMETHING WITH GAME OVER
+        }
+        
         scene.camera?.position = scene.player.position
+        
         if let _ = scene.touch{
             var touch = scene.touch.locationInNode(scene)
             touch.x += scene.frame.width/2 - scene.cameraNode.position.x
