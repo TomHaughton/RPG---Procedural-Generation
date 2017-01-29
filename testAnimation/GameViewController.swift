@@ -14,11 +14,12 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let scene = Level1(size:CGSize(width: 2048, height: 1536))
+        let scene = MainMenu(size:CGSize(width: 2048, height: 1536))
         let skView = self.view as! SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = false
+        skView.multipleTouchEnabled = true
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
     }

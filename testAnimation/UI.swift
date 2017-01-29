@@ -4,6 +4,10 @@ import SpriteKit
 class UI{
     var ui = SKSpriteNode()
     var dpad: [SKSpriteNode] = []
+    var moveStick: SKShapeNode!
+    var innerMoveStick: SKShapeNode!
+    var attackStick: SKShapeNode!
+    var innerAttackStick: SKShapeNode!
     let open = SKSpriteNode()
     let healthBkg = SKSpriteNode()
     let healthBar = SKSpriteNode()
@@ -22,57 +26,39 @@ class UI{
         ui.anchorPoint = CGPoint.zero
         ui.position = CGPoint(x: 0 - scene.frame.width/2, y: 0 - scene.frame.height/2)
         
-        a.name = "a"
-        a.size = CGSizeMake(200, 200)
-        a.position = CGPointMake(scene.frame.width - 150, 650)
-        a.color = UIColor.yellowColor()
-        a.texture = SKTexture(imageNamed: "A")
-        a.zPosition = 99
-        ui.addChild(a)
+        moveStick = SKShapeNode(circleOfRadius: 250)
+        moveStick.name = "moveStick"
+        moveStick.position = CGPointMake(300, (scene.overlapAmount() / 2) + 300)
+        moveStick.fillColor = UIColor.grayColor()
+        moveStick.strokeColor = UIColor.darkGrayColor()
+        moveStick.zPosition = 99
+        moveStick.alpha = 0.5
+        ui.addChild(moveStick)
         
-        let up = SKSpriteNode()
-        up.name = "up";
-        up.size = CGSizeMake(200, 200)
-        up.position = CGPointMake(300, 700)
-        up.color = UIColor.yellowColor()
-        up.texture = SKTexture(imageNamed: "dpadUp")
-        dpad.append(up)
+        innerMoveStick = SKShapeNode(circleOfRadius: 100)
+        innerMoveStick.name = "moveStick"
+        innerMoveStick.fillColor = UIColor.darkGrayColor()
+        innerMoveStick.alpha = 1.0
+        moveStick.addChild(innerMoveStick)
         
-        let down = SKSpriteNode()
-        down.name = "down";
-        down.size = CGSizeMake(200, 200)
-        down.position = CGPointMake(300, 300)
-        down.color = UIColor.yellowColor()
-        down.texture = SKTexture(imageNamed: "dpadDown")
-        dpad.append(down)
+        attackStick = SKShapeNode(circleOfRadius: 250)
+        attackStick.name = "attackStick"
+        attackStick.position = CGPointMake(scene.size.width - 300, (scene.overlapAmount() / 2) + 300)
+        attackStick.fillColor = UIColor.grayColor()
+        attackStick.strokeColor = UIColor.darkGrayColor()
+        attackStick.zPosition = 99
+        attackStick.alpha = 0.7
+        ui.addChild(attackStick)
         
-        let left = SKSpriteNode()
-        left.name = "left";
-        left.size = CGSizeMake(200, 200)
-        left.position = CGPointMake(100, 500)
-        left.color = UIColor.yellowColor()
-        left.texture = SKTexture(imageNamed: "dpadLeft")
-        dpad.append(left)
-        
-        let right = SKSpriteNode()
-        right.name = "right";
-        right.size = CGSizeMake(200, 200)
-        right.position = CGPointMake(500, 500)
-        right.color = UIColor.yellowColor()
-        right.texture = SKTexture(imageNamed: "dpadRight")
-        dpad.append(right)
-        
-        let centre = SKSpriteNode()
-        centre.name = "centre";
-        centre.size = CGSizeMake(200, 200)
-        centre.position = CGPointMake(300, 500)
-        centre.color = UIColor.yellowColor()
-        centre.texture = SKTexture(imageNamed: "dpadCentre")
-        dpad.append(centre)
+        innerAttackStick = SKShapeNode(circleOfRadius: 100)
+        innerAttackStick.name = "moveStick"
+        innerAttackStick.fillColor = UIColor.darkGrayColor()
+        innerAttackStick.alpha = 1.0
+        attackStick.addChild(innerAttackStick)
         
         healthBkg.name = "healthBkg"
         healthBkg.size = CGSizeMake(1600, 150)
-        healthBkg.position = CGPointMake(scene.frame.width/2, 1300)
+        healthBkg.position = CGPointMake(scene.frame.width/2, scene.size.height - (scene.overlapAmount() / 2))
         healthBkg.texture = SKTexture(imageNamed: "healthBar")
         healthBkg.zPosition = 99
         ui.addChild(healthBkg)
@@ -87,7 +73,7 @@ class UI{
         
         xpBkg.name = "healthBkg"
         xpBkg.size = CGSizeMake(1600, 50)
-        xpBkg.position = CGPointMake(scene.frame.width/2, 1200)
+        xpBkg.position = CGPointMake(scene.frame.width/2, scene.size.height - (scene.overlapAmount() / 2) - 100)
         xpBkg.color = UIColor.brownColor()
         xpBkg.zPosition = 99
         ui.addChild(xpBkg)
@@ -97,18 +83,13 @@ class UI{
         xpBar.color = UIColor.greenColor()
         xpBkg.addChild(xpBar)
         
-        open.position = CGPointMake(0, 1150)
+        open.position = CGPointMake(0, scene.size.height - (scene.overlapAmount() / 2) - 200)
         open.anchorPoint = CGPointMake(0, 0)
         open.size = CGSizeMake(200, 200)
         open.color = UIColor.redColor()
         open.texture = SKTexture(imageNamed: "inventoryButton")
         open.zPosition = 120
         ui.addChild(open)
-        
-        for button in dpad{
-            button.zPosition = 99
-            ui.addChild(button)
-        }
     }
 
 }

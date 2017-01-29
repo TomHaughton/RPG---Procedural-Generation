@@ -43,28 +43,28 @@ class MeleeEnemy:Enemy{
             case "-x":
                 if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x - 100, position.y)){
                     if checkSurroundings(scene, x: -100, y: 0){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
+                        self.runAction(SKAction.sequence([SKAction.moveByX(-50, y: 0, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                     }
                 }
                 break
             case "x":
                 if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x + 100, position.y)){
                     if checkSurroundings(scene, x: 100, y: 0){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
+                        self.runAction(SKAction.sequence([SKAction.moveByX(50, y: 0, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                     }
                 }
                 break
             case "-y":
                 if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y - 100)){
                     if checkSurroundings(scene, x: 0, y: -100){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
+                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -50, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                     }
                 }
                 break
             case "y":
                 if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y + 100)){
                     if checkSurroundings(scene, x: 0, y: 100){
-                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.2), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
+                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 50, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
                     }
                 }
                 break
@@ -127,24 +127,24 @@ class MeleeEnemy:Enemy{
     override func checkSurroundings(scene: GameScene, x: CGFloat, y:CGFloat) -> Bool{
         var canMove = false
         
-        scene.enumerateChildNodesWithName("door") { node, _ in
-            let door = node as! Door
-            if door.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
-                door.loadLevel(scene)
-                canMove = true
-            }
-        }
+//        scene.enumerateChildNodesWithName("door") { node, _ in
+//            let door = node as! Door
+//            if door.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
+//                door.loadLevel(scene)
+//                canMove = true
+//            }
+//        }
         
-        scene.enumerateChildNodesWithName("scenery") { node, stop in
-            let scenery = node as! Scenery
-            if !scenery.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
-                canMove = true
-            }
-            else {
-                canMove = false
-                stop.memory = true
-            }
-        }
+//        scene.enumerateChildNodesWithName("scenery") { node, stop in
+//            let scenery = node as! Scenery
+//            if !scenery.containsPoint(CGPointMake(self.position.x + x, self.position.y + y)){
+//                canMove = true
+//            }
+//            else {
+//                canMove = false
+//                stop.memory = true
+//            }
+//        }
         
         scene.enumerateChildNodesWithName("enemy") { node, stop in
             let enemy = node as! Enemy

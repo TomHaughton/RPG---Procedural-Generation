@@ -1,6 +1,6 @@
 import Foundation
 import SpriteKit
-class TestSword:Weapon {
+class TestSword:MeleeWeapon {
     
     var tex = SKTexture(imageNamed: "sword")
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -8,6 +8,7 @@ class TestSword:Weapon {
         itemName = "Sword"
         attack = 60
         weaponType = WeaponType.Sword
+        attackSpeed = 1.0
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -3,62 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Inventory.setupInventoryUI(GameScene, player : Player) -&gt; ():Inventory.swift">
+         contextName = "Update.(update(GameScene, currentTime : Double) -&gt; ()).(closure #7):Update.swift">
          <PersistentStrings>
             <PersistentString
-               value = "player.inventory.items.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RangedEnemy.attack(GameScene, direction : String) -&gt; ():RangedEnemy.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "actionForKey(&quot;attack&quot;)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.pickUp(Item) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.inventory">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Update.(update(GameScene) -&gt; ()).(closure #5):Update.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "scene.player.frame">
+               value = "CGRectIntersectsRect(item.frame, scene.player.frame)">
             </PersistentString>
             <PersistentString
-               value = "item.frame">
-            </PersistentString>
-            <PersistentString
-               value = "projectile.actionForKey(&quot;move&quot;)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Player.moveFromInvToPlayer(Item, index : Int) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.items.indexOf(item)!">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Update.update(GameScene) -&gt; ():Update.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "touch">
+               value = "CGRectIntersectsRect(item.frame, scene.frame)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -68,16 +19,69 @@
             <PersistentString
                value = "scene.camera!.frame">
             </PersistentString>
+            <PersistentString
+               value = "projectile.position">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Player.(doAttack(GameScene) -&gt; ()).(closure #1).(closure #2):Player.swift">
+         contextName = "Inventory.(checkEquip(UITouch, player : Player) -&gt; ()).(closure #1):Inventory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.attack">
+               value = "self.items.indexOf(item)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MeleeEnemy.slash(CGFloat, y : CGFloat, scene : GameScene) -&gt; ():MeleeEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGRectContainsPoint(CGRectOffset(scene.player.frame, x, y), position)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.(checkSurroundings(GameScene, x : CGFloat, y : CGFloat) -&gt; Bool).(closure #1):Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.position + self.velocity">
             </PersistentString>
             <PersistentString
-               value = "enemy.health">
+               value = "self.frame.offsetBy(dx: self.velocity.x, dy: self.velocity.y)">
+            </PersistentString>
+            <PersistentString
+               value = "door.frame">
+            </PersistentString>
+            <PersistentString
+               value = "self.velocity">
+            </PersistentString>
+            <PersistentString
+               value = "CGRectContainsPoint(door.frame, self.position + self.velocity)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MeleeEnemy.(checkSurroundings(GameScene, x : CGFloat, y : CGFloat) -&gt; Bool).(closure #3):MeleeEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.position.x + x">
+            </PersistentString>
+            <PersistentString
+               value = "scenery.frame">
+            </PersistentString>
+            <PersistentString
+               value = "self.position.y + y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.moveToAttack(GameScene) -&gt; ():RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "position.y">
+            </PersistentString>
+            <PersistentString
+               value = "scene.player.position.y">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -93,12 +97,252 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Quest.giveReward(Player) -&gt; ():Quest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "reward">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static * infix(CGPoint, CGFloat) -&gt; CGPoint:Utils.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "left.y * right">
+            </PersistentString>
+            <PersistentString
+               value = "left.x * right">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.moveFromInvToPlayer(Item, index : Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.items.indexOf(item)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.shortestToPlayer(CGPoint) -&gt; String:RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "position.x - playerPos.x == 0">
+            </PersistentString>
+            <PersistentString
+               value = "position">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cave.generateRoom([Int]) -&gt; ():Cave.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "rooms.contains(room)">
+            </PersistentString>
+            <PersistentString
+               value = "clearCount">
+            </PersistentString>
+            <PersistentString
+               value = "rooms">
+            </PersistentString>
+            <PersistentString
+               value = "Int(abs(location.x - location.y)) / self.seed[3]">
+            </PersistentString>
+            <PersistentString
+               value = "!rooms.contains(room)">
+            </PersistentString>
+            <PersistentString
+               value = "location">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UI.setupUI(GameScene) -&gt; ():UI.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.xp)">
+            </PersistentString>
+            <PersistentString
+               value = "CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)">
+            </PersistentString>
+            <PersistentString
+               value = "scene.player">
+            </PersistentString>
+            <PersistentString
+               value = "ui">
+            </PersistentString>
+            <PersistentString
+               value = "scene.player.xp">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Inventory.setupInventoryUI(GameScene, player : Player) -&gt; ():Inventory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "player.inventory.items.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RangedEnemy.shortestToPlayer(CGPoint, scene : GameScene) -&gt; String:RangedEnemy.swift">
          <PersistentStrings>
             <PersistentString
                value = "position">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cave.generateRoom([Int32]) -&gt; ():Cave.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "bkgImg">
+            </PersistentString>
+            <PersistentString
+               value = "location">
+            </PersistentString>
+            <PersistentString
+               value = "self.seed">
+            </PersistentString>
+            <PersistentString
+               value = "door2!.position">
+            </PersistentString>
+            <PersistentString
+               value = "column1.position">
+            </PersistentString>
+            <PersistentString
+               value = "(location.x + location.y) / 2">
+            </PersistentString>
+            <PersistentString
+               value = "direction">
+            </PersistentString>
+            <PersistentString
+               value = "door!.position">
+            </PersistentString>
+            <PersistentString
+               value = "door">
+            </PersistentString>
+            <PersistentString
+               value = "CGPointMake(door!.position.x, door!.position.y + 100)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Quest.checkProgress(Enemy) -&gt; ():Quest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "objectives[currentObjective()]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.(update(GameScene, currentTime : Double) -&gt; ()).(closure #6):Update.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Player.move(CGPoint, dpad : [SKSpriteNode], scene : GameScene) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGRectContainsPoint(dpad[0].frame, touch) &amp;&amp; (position.y + 325 &lt; scene.frame.height)">
+            </PersistentString>
+            <PersistentString
+               value = "actionForKey(&quot;move&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "dpad[0].frame">
+            </PersistentString>
+            <PersistentString
+               value = "touch">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cave.generateWithLocation(Int) -&gt; [String]:Cave.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "locCalc + self.seed[3] % 10 == 0">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.childNodeWithName(&quot;inventory&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.(update(GameScene, currentTime : Double) -&gt; ()).(closure #8):Update.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static == infix([Objective], [Objective]) -&gt; Bool:Utils.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Player.damage(Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "enemyAttack/defense">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.update(GameScene) -&gt; ():Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "touch">
+            </PersistentString>
+            <PersistentString
+               value = "scene.touches.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.attackDirection(Player) -&gt; String:RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "player.position">
+            </PersistentString>
+            <PersistentString
+               value = "position">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.move(UITouch, scene : GameScene) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.ui.moveStick.position">
+            </PersistentString>
+            <PersistentString
+               value = "touch.locationInNode(scene.ui.moveStick)">
+            </PersistentString>
+            <PersistentString
+               value = "touch.locationInNode(scene)">
+            </PersistentString>
+            <PersistentString
+               value = "scene.ui.moveStick.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.bleed(GameScene) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.(attack(GameScene) -&gt; ()).(closure #2):RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "projectile.zRotation">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.move(UITouch?, dpad : [SKSpriteNode], scene : SKScene) -&gt; ():Player.swift">
       </ContextState>
       <ContextState
          contextName = "Player.(doAttack(GameScene) -&gt; ()).(closure #2):Player.swift">
@@ -118,27 +362,79 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MeleeEnemy.(checkSurroundings(GameScene, x : CGFloat, y : CGFloat) -&gt; Bool).(closure #3):MeleeEnemy.swift">
+         contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.position.x + x">
+               value = "slots[0]">
             </PersistentString>
             <PersistentString
-               value = "scenery.frame">
-            </PersistentString>
-            <PersistentString
-               value = "self.position.y + y">
+               value = "player.inventory.items.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RangedEnemy.shortestToPlayer(CGPoint) -&gt; String:RangedEnemy.swift">
+         contextName = "Player.(doAttack(GameScene) -&gt; ()).(closure #1).(closure #2):Player.swift">
          <PersistentStrings>
             <PersistentString
-               value = "position.x - playerPos.x == 0">
+               value = "self.attack">
             </PersistentString>
             <PersistentString
-               value = "position">
+               value = "enemy.health">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cave.checkSurroundingRooms() -&gt; ():Cave.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "generateWithLocation(location)">
+            </PersistentString>
+            <PersistentString
+               value = "location">
+            </PersistentString>
+            <PersistentString
+               value = "!generateWithLocation(location).contains(&quot;l&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player.equip(Item) -&gt; ():Player.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Player.pickUp(Item) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.inventory">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainMenu.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():MainMenu.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cave.generateSeed() -&gt; ():Cave.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "seed">
+            </PersistentString>
+            <PersistentString
+               value = "location">
+            </PersistentString>
+            <PersistentString
+               value = "self.seed[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "inventory.hidden">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -160,111 +456,86 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MeleeEnemy.slash(CGFloat, y : CGFloat, scene : GameScene) -&gt; ():MeleeEnemy.swift">
+         contextName = "Projectile.move(GameScene) -&gt; ():Projectile.swift">
          <PersistentStrings>
             <PersistentString
-               value = "CGRectContainsPoint(CGRectOffset(scene.player.frame, x, y), position)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RangedEnemy.moveToAttack(GameScene) -&gt; ():RangedEnemy.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "position.y">
-            </PersistentString>
-            <PersistentString
-               value = "scene.player.position.y">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Inventory.(checkEquip(UITouch, player : Player) -&gt; ()).(closure #1):Inventory.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.items.indexOf(item)!">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "UI.setupUI(GameScene) -&gt; ():UI.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.xp)">
-            </PersistentString>
-            <PersistentString
-               value = "CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)">
-            </PersistentString>
-            <PersistentString
-               value = "xpBar.size">
-            </PersistentString>
-            <PersistentString
-               value = "scene.player.xp">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "inventory.hidden">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.move(CGPoint, dpad : [SKSpriteNode], scene : GameScene) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "touch">
-            </PersistentString>
-            <PersistentString
-               value = "CGRectContainsPoint(dpad[0].frame, touch) &amp;&amp; (position.y + 325 &lt; scene.frame.height)">
-            </PersistentString>
-            <PersistentString
-               value = "dpad[0].frame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.damage(Int) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "enemyAttack/defense">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.bleed(GameScene) -&gt; ():Player.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;CGFloat(arc4random_uniform(UInt32(400)) - 200)&#10;">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Player.equip(Item) -&gt; ():Player.swift">
-      </ContextState>
-      <ContextState
-         contextName = "RangedEnemy.attackDirection(Player) -&gt; String:RangedEnemy.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "player.position">
+               value = "scene.dt">
             </PersistentString>
             <PersistentString
                value = "position">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "scene.childNodeWithName(&quot;inventory&quot;)">
+               value = "velocity">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "GameScene.player.getter:GameScene.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RangedEnemy.attack(GameScene, direction : String) -&gt; ():RangedEnemy.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "actionForKey(&quot;attack&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.(update(GameScene) -&gt; ()).(closure #5):Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scene.player.frame">
+            </PersistentString>
+            <PersistentString
+               value = "item.frame">
+            </PersistentString>
+            <PersistentString
+               value = "projectile.actionForKey(&quot;move&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cave.generateInterior(Int) -&gt; ():Cave.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "location">
+            </PersistentString>
+            <PersistentString
+               value = "locCalc + self.seed[1] % 2 == 0">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Boss.(simpleAttack(GameScene) -&gt; ()).(closure #2):Boss.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.position - scene.player.position">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Boss.chooseAttack(GameScene) -&gt; ():Boss.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "health">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.touchesMoved(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "touches.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DialogueBox.(nextDialogue(GameScene) -&gt; ()).(closure #2):DialogueBox.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "talking">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

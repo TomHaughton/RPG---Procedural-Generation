@@ -1,7 +1,7 @@
 import SpriteKit
 class Inventory {
     var capacity: Int
-    var amountFilled: Int
+    var amountFilled: Int = 0
     var items = Array<Item>()
     var inventory = SKSpriteNode()
     let close = SKSpriteNode()
@@ -19,9 +19,8 @@ class Inventory {
     var attack = SKLabelNode()
     var defense = SKLabelNode()
     
-    init(capacity:Int, amountFilled: Int){
+    init(capacity:Int){
         self.capacity = capacity
-        self.amountFilled = amountFilled
     }
     
     func addItem(item: Item) -> Bool{
@@ -37,6 +36,14 @@ class Inventory {
         return items[index]
     }
     
+    func remove(item:Item){
+        for index in 0...items.count{
+            if item == items[index]{
+                items.removeAtIndex(index)
+            }
+        }
+    }
+    
     func setupInventoryUI(scene: GameScene, player: Player){
         inventory.removeAllChildren()
         inventory.size = CGSizeMake(scene.frame.width, scene.frame.height)
@@ -48,55 +55,57 @@ class Inventory {
         invBack.position = CGPointMake(0,0)
         invBack.anchorPoint = CGPointMake(0, 0)
         
-        close.position = CGPointMake(0, 1150)
+        let topMargin = scene.overlapAmount() < 100 ? 400 : scene.overlapAmount()
+        
+        close.position = CGPointMake(0, scene.size.height - (scene.overlapAmount() / 2) - 200)
         close.anchorPoint = CGPointMake(0, 0)
         close.size = CGSizeMake(200, 200)
         close.color = UIColor.redColor()
         close.texture = SKTexture(imageNamed: "closeButton")
         
         head.size = CGSizeMake(200, 200)
-        head.position = CGPointMake(400, scene.frame.height - 350)
+        head.position = CGPointMake(400, scene.frame.height - topMargin)
         head.color = UIColor.brownColor()
         
         chest.size = CGSizeMake(200, 200)
-        chest.position = CGPointMake(400 ,scene.frame.height - 600)
+        chest.position = CGPointMake(400 ,scene.frame.height - topMargin - 250)
         chest.color = UIColor.brownColor()
         
         arms.size = CGSizeMake(200, 200)
-        arms.position = CGPointMake(150, scene.frame.height - 600)
+        arms.position = CGPointMake(150, scene.frame.height - topMargin - 250)
         arms.color = UIColor.brownColor()
         
         legs.size = CGSizeMake(200, 200)
-        legs.position = CGPointMake(400, scene.frame.height - 850)
+        legs.position = CGPointMake(400, scene.frame.height - topMargin - 500)
         legs.color = UIColor.brownColor()
         
         weapon.size = CGSizeMake(200, 200)
-        weapon.position = CGPointMake(650,scene.frame.height - 600)
+        weapon.position = CGPointMake(650,scene.frame.height - topMargin - 250)
         weapon.color = UIColor.brownColor()
         
         level.fontSize = 80
-        level.fontName = "Arial"
+        level.fontName = "Cochin"
         level.fontColor = UIColor.blueColor()
         level.text = "Lvl: \(player.level)"
-        level.position = CGPointMake(700, scene.frame.height - 350)
+        level.position = CGPointMake(700, scene.frame.height - topMargin)
         
         health.fontSize = 80
-        health.fontName = "Arial"
+        health.fontName = "Cochin"
         health.fontColor = UIColor.blueColor()
         health.text = "Health: \(player.health)"
-        health.position = CGPointMake(250, scene.frame.height - 1050)
+        health.position = CGPointMake(250, scene.frame.height - topMargin - 700)
         
         attack.fontSize = 80
-        attack.fontName = "Arial"
+        attack.fontName = "Cochin"
         attack.fontColor = UIColor.blueColor()
         attack.text = "Attack: \(player.attack)"
-        attack.position = CGPointMake(250, scene.frame.height - 1150)
+        attack.position = CGPointMake(250, scene.frame.height - topMargin - 800)
         
         defense.fontSize = 80
-        defense.fontName = "Arial"
+        defense.fontName = "Cochin"
         defense.fontColor = UIColor.blueColor()
         defense.text = "Defense: \(player.defense)"
-        defense.position = CGPointMake(250, scene.frame.height - 1250)
+        defense.position = CGPointMake(250, scene.frame.height - topMargin - 900)
         
         var x = CGFloat(scene.frame.width - 1000)
         var y = CGFloat(scene.frame.height - 400)
@@ -147,6 +156,12 @@ class Inventory {
     }
     
     func toggleInventory(scene: GameScene, touch: CGPoint, player: Player){
+        if scene.pause {
+            scene.pause = false
+        }
+        else {
+            scene.pause = true
+        }
         if scene.ui.ui.childNodeWithName("inventory") != nil && CGRectContainsPoint(close.frame, touch){
             inventory.removeAllChildren()
             inventory.removeFromParent()
@@ -158,7 +173,6 @@ class Inventory {
     }
 
     func updateInventory(player: Player){
-        
         if let _ = player.head{
             player.head?.removeFromParent()
             head = player.head!
@@ -186,7 +200,7 @@ class Inventory {
         }
         
         for index in 0...15{
-            if index < player.inventory.items.count{
+            if index < player.inventory.items.count {
                 slots[index] = player.inventory.items[index]
             }
         }
@@ -200,15 +214,15 @@ class Inventory {
             
         }
         if nodes.count != 0 {
-        for i in 0...nodes.count - 1{
-            if nodes[i].frame.contains(touch.locationInNode(self.inventory)){
-                for j in items{
-                    if j === nodes[i]{
-                        player.equip(nodes[i], index: i)
+            for i in 0...nodes.count - 1{
+                if nodes[i].frame.contains(touch.locationInNode(self.inventory)){
+                    for j in items{
+                        if j === nodes[i]{
+                            player.equip(nodes[i], index: i)
+                        }
                     }
                 }
             }
-        }
         }
     }
 }

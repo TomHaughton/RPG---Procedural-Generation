@@ -68,19 +68,19 @@ class RangedEnemy:Enemy{
     }
     
     func shortestToPlayer(playerPos: CGPoint, scene:GameScene) -> String{
-        
+        attack(scene)
         if playerPos.x < position.x{
             if playerPos.y < position.y{
                 if (position.x - playerPos.x) < (position.y - playerPos.y){
-                    if (position.x - playerPos.x < 2){
-                        attack(scene, direction:"down")
+                    if (position.x - playerPos.x < 50){
+//                        attack(scene, direction:"down")
                         return ""
                     }
                     return "-x"
                 }
                 else {
-                    if (position.y - playerPos.y < 2){
-                        attack(scene, direction:"left")
+                    if (position.y - playerPos.y < 50){
+//                        attack(scene, direction:"left")
                         return ""
                     }
                     return "-y"
@@ -88,15 +88,15 @@ class RangedEnemy:Enemy{
             }
             else{
                 if (position.x - playerPos.x) < (playerPos.y - position.y){
-                    if (position.x - playerPos.x < 2){
-                        attack(scene, direction:"up")
+                    if (position.x - playerPos.x < 50){
+//                        attack(scene, direction:"up")
                         return ""
                     }
                     return "-x"
                 }
                 else {
-                    if (playerPos.y - position.y < 2){
-                        attack(scene, direction:"left")
+                    if (playerPos.y - position.y < 50){
+//                        attack(scene, direction:"left")
                         return ""
                     }
                     return "y"
@@ -108,14 +108,14 @@ class RangedEnemy:Enemy{
             if playerPos.y < position.y{
                 if (playerPos.x - position.x) < (position.y - playerPos.y){
                     if playerPos.x - position.x < 2{
-                        attack(scene, direction:"down")
+//                        attack(scene, direction:"down")
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if position.y - playerPos.y < 2{
-                        attack(scene, direction:"right")
+//                        attack(scene, direction:"right")
                         return ""
                     }
                     return "-y"
@@ -124,14 +124,14 @@ class RangedEnemy:Enemy{
             else{
                 if (playerPos.x - position.x) < (playerPos.y - position.y){
                     if playerPos.x - position.x < 2{
-                        attack(scene, direction:"up")
+//                        attack(scene, direction:"up")
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if playerPos.y - position.y < 2{
-                        attack(scene, direction:"right")
+//                        attack(scene, direction:"right")
                         return ""
                     }
                     return "y"
@@ -140,7 +140,7 @@ class RangedEnemy:Enemy{
         }
     }
     
-    func attack(scene: GameScene, direction: String){
+    func attack(scene: GameScene){
         if actionForKey("attack") == nil{
             let attackWait = SKAction.runBlock(){
                 self.removeActionForKey("attack")
@@ -149,25 +149,22 @@ class RangedEnemy:Enemy{
             let shoot = SKAction.runBlock(){
                 let projectile = Projectile()
                 projectile.texture = SKTexture.init(imageNamed: self.tex!)
-                projectile.direction = direction
                 projectile.attack = self.attack
                 projectile.size = CGSizeMake(self.projWidth, self.projHeight)
-                switch(projectile.direction){
-                case "down":
-                        projectile.zRotation = -CGFloat(M_PI)
-                    break
-                case "left":
-                    projectile.zRotation = CGFloat(M_PI)/2
-                    break
-                case "right":
-                    projectile.zRotation = CGFloat(M_PI) * 1.5
-                    break
-                default: break
-                }
                 
-                projectile.color = UIColor.whiteColor()
-                projectile.position = self.position
                 projectile.name = "projectile"
+                projectile.position = self.position
+                projectile.physicsBody = nil
+                projectile.zPosition = 40
+                projectile.speed = 500
+                
+                var direction = self.position - scene.player.position
+                direction = direction / velocityMag(direction) * projectile.speed
+                //Adapted from 2d tvios
+                projectile.zRotation = CGFloat(atan2(Double(direction.y), Double(direction.x))) + CGFloat(M_PI / 2)
+                //
+                
+                projectile.velocity = direction
                 scene.addChild(projectile)
             }
             runAction(SKAction.sequence([shoot,SKAction.waitForDuration(attackSpeed),attackWait]),withKey: "attack")

@@ -7,7 +7,7 @@ class TestHelmet: Armour {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: tex, color: color, size: size)
         itemName = "Helmet"
-        defense = 30
+        defense = 3
         armourType = ArmourType.Heavy
         armourSlot = ArmourSlot.Head
     }

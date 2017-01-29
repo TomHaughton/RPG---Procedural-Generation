@@ -3,6 +3,7 @@ import Foundation
 class Weapon: Item {
     var attack: Double!
     var weaponType: WeaponType!
+    var attackSpeed: NSTimeInterval!
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)

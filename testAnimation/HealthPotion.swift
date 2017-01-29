@@ -7,6 +7,7 @@ class HealthPotion:Item{
     init(texture: SKTexture?, color: UIColor, size: CGSize, health: Double) {
         super.init(texture: texture, color: color, size: size)
         name = "item"
+        itemName = "Health Potion"
         self.health = health
     }
     
