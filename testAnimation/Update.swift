@@ -87,6 +87,7 @@ class Update{
                     label.fontSize = 200
                     label.fontName = "Cochin"
                     label.position = CGPointMake(0, 100)
+                    label.zPosition = 150
                     let showItem = SKAction.runBlock(){
                         scene.player.addChild(label)
                     }

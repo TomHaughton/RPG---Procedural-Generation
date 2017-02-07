@@ -10,7 +10,7 @@ class WolfQuest:Quest{
     
     override init() {
         super.init()
-        reward = TestHelmet()
+        reward = PlateHelmet()
         objectives.append(Objective(description: "Kill 3 wolves", toKill: Wolf(), numToKill: 3))
     }
 }

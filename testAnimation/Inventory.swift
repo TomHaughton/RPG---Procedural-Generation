@@ -51,7 +51,8 @@ class Inventory {
         inventory.name = "inventory"
         
         invBack.size = CGSizeMake(scene.frame.width, scene.frame.height)
-        invBack.color = UIColor.init(colorLiteralRed: 9, green: 150, blue: 152, alpha: 1)
+//        invBack.color = UIColor.init(colorLiteralRed: 9, green: 150, blue: 152, alpha: 1)
+        invBack.texture = SKTexture(imageNamed: "invBkg")
         invBack.position = CGPointMake(0,0)
         invBack.anchorPoint = CGPointMake(0, 0)
         
@@ -85,25 +86,25 @@ class Inventory {
         
         level.fontSize = 80
         level.fontName = "Cochin"
-        level.fontColor = UIColor.blueColor()
+        level.fontColor = UIColor.whiteColor()
         level.text = "Lvl: \(player.level)"
         level.position = CGPointMake(700, scene.frame.height - topMargin)
         
         health.fontSize = 80
         health.fontName = "Cochin"
-        health.fontColor = UIColor.blueColor()
+        health.fontColor = UIColor.whiteColor()
         health.text = "Health: \(player.health)"
         health.position = CGPointMake(250, scene.frame.height - topMargin - 700)
         
         attack.fontSize = 80
         attack.fontName = "Cochin"
-        attack.fontColor = UIColor.blueColor()
+        attack.fontColor = UIColor.whiteColor()
         attack.text = "Attack: \(player.attack)"
         attack.position = CGPointMake(250, scene.frame.height - topMargin - 800)
         
         defense.fontSize = 80
         defense.fontName = "Cochin"
-        defense.fontColor = UIColor.blueColor()
+        defense.fontColor = UIColor.whiteColor()
         defense.text = "Defense: \(player.defense)"
         defense.position = CGPointMake(250, scene.frame.height - topMargin - 900)
         
@@ -117,6 +118,7 @@ class Inventory {
             itemBkg.position = CGPointMake(x, y)
             itemBkg.size = CGSizeMake(200, 200)
             itemBkg.zPosition = 101
+            itemBkg.alpha = 0.5
             
             var slot = Item()
             
@@ -173,35 +175,20 @@ class Inventory {
     }
 
     func updateInventory(player: Player){
-        if let _ = player.head{
-            player.head?.removeFromParent()
-            head = player.head!
-            head.name = "worn"
-        }
-        if let _ = player.chest{
-            player.chest?.removeFromParent()
-            chest = player.chest!
-            chest.name = "worn"
-        }
-        if let _ = player.legs{
-            player.legs?.removeFromParent()
-            legs = player.legs!
-            legs.name = "worn"
-        }
-        if let _ = player.arms{
-            player.arms?.removeFromParent()
-            arms = player.arms!
-            arms.name = "worn"
-        }
-        if let _ = player.weapon{
-            player.weapon?.removeFromParent()
-            weapon = player.weapon!
-            weapon.name = "worn"
-        }
+        head.texture = player.head?.texture
+        arms.texture = player.arms?.texture
+        legs.texture = player.legs?.texture
+        weapon.texture = player.weapon?.texture
+        chest.texture = player.chest?.texture
         
         for index in 0...15{
             if index < player.inventory.items.count {
                 slots[index] = player.inventory.items[index]
+                slots[index].texture = player.inventory.items[index].texture
+            }
+            else{
+                slots[index].texture = nil
+                slots[index] = SKSpriteNode()
             }
         }
     }
@@ -211,7 +198,6 @@ class Inventory {
         inventory.enumerateChildNodesWithName("slot"){ node, _ in
             let item = node as! Item
             nodes.append(item)
-            
         }
         if nodes.count != 0 {
             for i in 0...nodes.count - 1{

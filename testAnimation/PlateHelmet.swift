@@ -1,12 +1,15 @@
 import Foundation
 import SpriteKit
-class TestArms: Armour {
+class PlateHelmet: Armour {
+    
+    var tex = SKTexture(imageNamed: "plateHelmet")
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-        itemName = "Arms"
-        defense = 20
+        super.init(texture: tex, color: color, size: size)
+        itemName = "Helmet"
+        defense = 3
         armourType = ArmourType.Heavy
-        armourSlot = ArmourSlot.Arms
+        armourSlot = ArmourSlot.Head
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
             endingLineNumber = "164"
-            landmarkName = "attack(_:)"
+            landmarkName = "attack(scene:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "11"
             endingLineNumber = "11"
-            landmarkName = "move(_:)"
+            landmarkName = "move(scene:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

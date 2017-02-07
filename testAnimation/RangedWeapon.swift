@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SpriteKit
 
 class RangedWeapon: Weapon{
+    var projTex: SKTexture!
 }

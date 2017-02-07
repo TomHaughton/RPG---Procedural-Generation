@@ -1,10 +1,11 @@
 import Foundation
 import SpriteKit
-class TestBow:RangedWeapon {
+class Pistol:RangedWeapon {
     
     var tex = SKTexture(imageNamed: "pistol")
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: tex, color: color, size: size)
+        projTex = SKTexture(imageNamed: "bullet")
         itemName = "Pistol"
         attack = 43
         weaponType = WeaponType.Bow

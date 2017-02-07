@@ -1,9 +1,11 @@
 import Foundation
 import SpriteKit
-class TestChest: Armour {
+class PlateChest: Armour {
+    
+    var tex = SKTexture(imageNamed: "plateChest")
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+        super.init(texture: tex, color: color, size: size)
         itemName = "Chest"
         defense = 70
         armourType = ArmourType.Heavy

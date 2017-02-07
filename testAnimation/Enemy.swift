@@ -56,6 +56,10 @@ class Enemy: Npc{
             health = health - attack/defense
         }
         
+        let dist = position - scene.player.position
+        let knock = dist / velocityMag(dist) * 50
+        position += knock
+        
         if health <= 0 {
             removeFromParent()
             if let room = scene as? Cave{

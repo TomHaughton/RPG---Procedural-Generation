@@ -138,7 +138,7 @@
          contextName = "Cave.generateRoom([Int]) -&gt; ():Cave.swift">
          <PersistentStrings>
             <PersistentString
-               value = "rooms.contains(room)">
+               value = "location">
             </PersistentString>
             <PersistentString
                value = "clearCount">
@@ -153,7 +153,7 @@
                value = "!rooms.contains(room)">
             </PersistentString>
             <PersistentString
-               value = "location">
+               value = "rooms.contains(room)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -167,13 +167,13 @@
                value = "CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)">
             </PersistentString>
             <PersistentString
-               value = "scene.player">
+               value = "scene.player.xp">
             </PersistentString>
             <PersistentString
                value = "ui">
             </PersistentString>
             <PersistentString
-               value = "scene.player.xp">
+               value = "scene.player">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -265,6 +265,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "static == infix([Objective], [Objective]) -&gt; Bool:Utils.swift">
+      </ContextState>
+      <ContextState
          contextName = "Inventory.toggleInventory(GameScene, touch : UITouch, player : Player) -&gt; ():Inventory.swift">
          <PersistentStrings>
             <PersistentString
@@ -274,9 +277,6 @@
       </ContextState>
       <ContextState
          contextName = "Update.(update(GameScene, currentTime : Double) -&gt; ()).(closure #8):Update.swift">
-      </ContextState>
-      <ContextState
-         contextName = "static == infix([Objective], [Objective]) -&gt; Bool:Utils.swift">
       </ContextState>
       <ContextState
          contextName = "Player.damage(Int) -&gt; ():Player.swift">
@@ -365,10 +365,10 @@
          contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "slots[0]">
+               value = "player.inventory.items[index]">
             </PersistentString>
             <PersistentString
-               value = "player.inventory.items.count">
+               value = "slots[index]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -459,13 +459,13 @@
          contextName = "Projectile.move(GameScene) -&gt; ():Projectile.swift">
          <PersistentStrings>
             <PersistentString
+               value = "velocity">
+            </PersistentString>
+            <PersistentString
                value = "scene.dt">
             </PersistentString>
             <PersistentString
                value = "position">
-            </PersistentString>
-            <PersistentString
-               value = "velocity">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

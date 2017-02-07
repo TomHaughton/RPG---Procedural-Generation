@@ -8,7 +8,7 @@ class BanditLeader: MeleeEnemy{
         attackSpeed = 1.5
         attack = 20
         defense = 3
-        item = TestBow()
+        item = Pistol()
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -44,7 +44,7 @@ class Player: SKSpriteNode {
         physicsBody?.collisionBitMask = PhysicsCategory.character
         physicsBody?.categoryBitMask = PhysicsCategory.None
         buildAnimations()
-        zPosition = 2
+        zPosition = 100
         xpBoundary = level * 100 * 2
     }
     
@@ -108,9 +108,8 @@ class Player: SKSpriteNode {
                 self.head = toEquip
                 defense += toEquip.defense
                 moveFromInvToPlayer(item, index: index)
-                toEquip.size = CGSizeMake(65,50)
-                toEquip.position = CGPointMake(0,40)
-                toEquip.zPosition = 90
+                toEquip.size = CGSizeMake(100,100)
+                toEquip.position = CGPointMake(0,0)
                 toEquip.name = "helmet"
                 addChild(toEquip.copy() as! Item)
                 break
@@ -122,6 +121,10 @@ class Player: SKSpriteNode {
                 self.chest = toEquip
                 defense += toEquip.defense
                 moveFromInvToPlayer(item, index: index)
+                toEquip.size = CGSizeMake(100,100)
+                toEquip.position = CGPointMake(0,0)
+                toEquip.name = "chest"
+                addChild(toEquip.copy() as! Item)
                 break
             case ArmourSlot.Arms:
                 if self.arms != nil {
@@ -131,6 +134,10 @@ class Player: SKSpriteNode {
                 self.arms = toEquip
                 defense += toEquip.defense
                 moveFromInvToPlayer(item, index: index)
+                toEquip.size = CGSizeMake(100,100)
+                toEquip.position = CGPointMake(0,0)
+                toEquip.name = "arms"
+                addChild(toEquip.copy() as! Item)
                 break
             case ArmourSlot.Legs:
                 if self.legs != nil {
@@ -140,6 +147,10 @@ class Player: SKSpriteNode {
                 self.legs = toEquip
                 defense += toEquip.defense
                 moveFromInvToPlayer(item, index: index)
+                toEquip.size = CGSizeMake(100,100)
+                toEquip.position = CGPointMake(0,0)
+                toEquip.name = "legs"
+                addChild(toEquip.copy() as! Item)
                 break
             }
         } else if let toEquip = item as? Weapon{
@@ -149,9 +160,8 @@ class Player: SKSpriteNode {
             self.weapon = toEquip
             attack = toEquip.attack
             moveFromInvToPlayer(item, index: index)
-            toEquip.size = CGSizeMake(70,70)
-            toEquip.position = CGPointMake(55,10)
-            toEquip.zPosition = 90
+            toEquip.size = CGSizeMake(60,60)
+            toEquip.position = CGPointMake(48,10)
             toEquip.name = "weapon"
             addChild(toEquip.copy() as! Item)
         }
@@ -234,42 +244,6 @@ class Player: SKSpriteNode {
         playerAnimationLeft = SKAction.animateWithTextures(texturesLeft, timePerFrame: 0.2)
         playerAnimationRight = SKAction.animateWithTextures(texturesRight, timePerFrame: 0.2)
     }
-
-//    func move(touch: CGPoint, dpad: [SKSpriteNode], scene: GameScene){
-//        let moveWait = SKAction.runBlock(){
-//            self.removeActionForKey("move")
-//        }
-//        
-//        if actionForKey("move") == nil{
-//            if CGRectContainsPoint(dpad[0].frame, touch) {
-//                texture = SKTexture(imageNamed: "PlayerSpriteBack")
-//                if checkSurroundings(scene, x: 0, y: 100){
-//                    self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 100, duration: 0.25), moveWait]), withKey: "move")
-//                    self.startAnimation("up")
-//                }
-//            }
-//            if CGRectContainsPoint(dpad[1].frame, touch) {
-//                texture = SKTexture(imageNamed: "PlayerSprite")
-//                if checkSurroundings(scene, x: 0, y: -100) {
-//                    self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -100, duration: 0.25), moveWait]), withKey: "move")
-//                    self.startAnimation("down")
-//                }
-//            }
-//            if CGRectContainsPoint(dpad[2].frame, touch) {
-//                if checkSurroundings(scene, x: -100, y: 0){
-//                    self.runAction(SKAction.sequence([SKAction.moveByX(-100, y: 0, duration: 0.25), moveWait]), withKey: "move")
-//                    self.startAnimation("left")
-//                }
-//            }
-//            if CGRectContainsPoint(dpad[3].frame, touch) {
-//                if checkSurroundings(scene, x: 100, y: 0){
-//                    self.runAction(SKAction.sequence([SKAction.moveByX(100, y: 0, duration: 0.25), moveWait]), withKey: "move")
-//                    self.startAnimation("up")
-//                }
-//            }
-//        }
-//        
-//    }
     
     func move(touch: UITouch, scene: GameScene){
         //Keep analogue dead zone????????
@@ -320,7 +294,6 @@ class Player: SKSpriteNode {
             blood.strokeColor = .clearColor()
             blood.position = position
             blood.name = "blood"
-//            blood.zPosition = 0
             let x = CGFloat(arc4random_uniform(UInt32(150))) - 75
             let y = CGFloat(arc4random_uniform(UInt32(150))) - 75
             scene.addChild(blood)
@@ -343,8 +316,8 @@ class Player: SKSpriteNode {
                 if CGRectContainsPoint(scene.ui.attackStick.frame, touch.locationInNode(scene.ui.ui)) {
                     if weapon.isKindOfClass(RangedWeapon){
                         let shoot = SKAction.runBlock(){
-                            
-                            let projectile = Projectile(texture: nil, color: .redColor(), size: CGSizeMake(50, 50))
+                            let weap = self.weapon as! RangedWeapon
+                            let projectile = Projectile(texture: weap.projTex, color: .redColor(), size: weap.projTex.size())
                             projectile.name = "projectile"
                             projectile.position = self.position
                             projectile.physicsBody = nil
@@ -356,6 +329,9 @@ class Player: SKSpriteNode {
                             var vel = CGPointMake(0, 0) - touch.locationInNode(scene.ui.attackStick)
                             vel = vel / velocityMag(vel) * 500
                             projectile.velocity = vel
+                            //Adapted from 2d tvios
+                            projectile.zRotation = CGFloat(atan2(Double(vel.y), Double(vel.x))) + CGFloat(M_PI / 2)
+                            //
                             scene.addChild(projectile)
                         }
                         runAction(SKAction.sequence([shoot,SKAction.waitForDuration(weapon.attackSpeed),attackWait]),withKey: "attack")
@@ -535,8 +511,11 @@ class Player: SKSpriteNode {
                         }
                     }
                 }
+                else{
+                    questGiver.showDialogue(scene)
+                }
             }
         }
-        return canMove //canMove
+        return canMove
     }
 }

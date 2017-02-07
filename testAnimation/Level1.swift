@@ -63,15 +63,15 @@ class Level1: GameScene {
         potion.zPosition = 1
         
         //Village
-        let leadHouse = Scenery(texture: nil, color: .grayColor(), size: CGSizeMake(500, 400))
+        let leadHouse = Scenery(texture: SKTexture(imageNamed: "mayorHouse"), color: .grayColor(), size: CGSizeMake(500, 400))
         leadHouse.position = CGPointMake(-176, -200)
         let leadDoor = Door(texture: SKTexture(imageNamed: "VillageDoor"), color: .redColor(), size: CGSizeMake(100, 100), level: VillagerHouse(size: size, player: player))
         leadDoor.position = CGPointMake(-176, -350)
-        let house1 = Scenery(texture: nil, color: .grayColor(), size: CGSizeMake(300, 200))
+        let house1 = Scenery(texture: SKTexture(imageNamed:"villageHouse"), color: .grayColor(), size: CGSizeMake(300, 200))
         house1.position = CGPointMake(825, -600)
-        let house2 = Scenery(texture: nil, color: .grayColor(), size: CGSizeMake(300, 200))
+        let house2 = Scenery(texture: SKTexture(imageNamed:"villageHouse"), color: .grayColor(), size: CGSizeMake(300, 200))
         house2.position = CGPointMake(500, -100)
-        let house3 = Scenery(texture: nil, color: .grayColor(), size: CGSizeMake(300, 200))
+        let house3 = Scenery(texture: SKTexture(imageNamed:"villageHouse"), color: .grayColor(), size: CGSizeMake(300, 200))
         house3.position = CGPointMake(1150, -100)
         
         let villager = Villager(texture: nil, color: .blueColor(), size: CGSizeMake(100, 100))
