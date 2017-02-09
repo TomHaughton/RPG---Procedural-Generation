@@ -2,9 +2,8 @@ import Foundation
 import SpriteKit
 class Longbow:RangedWeapon {
     
-    var tex = SKTexture(imageNamed: "bow")
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: tex, color: color, size: size)
+    init(){
+        super.init(texture: SKTexture(imageNamed: "bow"), color: .clearColor(), size: CGSizeMake(100, 100))
         projTex = SKTexture(imageNamed: "arrow")
         itemName = "Longbow"
         attack = 40

@@ -2,7 +2,6 @@ import Foundation
 import SpriteKit
 
 class Projectile:Enemy{
-    var direction = ""
     var velocity: CGPoint = CGPoint.zero
     var friendly = false
     

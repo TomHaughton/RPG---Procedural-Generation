@@ -13,7 +13,7 @@ class Enemy: Npc{
     var attack: Double! = 10
     var defense: Double! = 3
     var attackSpeed:Double! = 2
-    var movementSpeed: Double! = 0.2
+    var movementSpeed: CGFloat = 250.0
     var item: Item?
     var xp: Int = 100
     

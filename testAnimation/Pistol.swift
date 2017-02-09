@@ -2,9 +2,8 @@ import Foundation
 import SpriteKit
 class Pistol:RangedWeapon {
     
-    var tex = SKTexture(imageNamed: "pistol")
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: tex, color: color, size: size)
+    init(){
+        super.init(texture: SKTexture(imageNamed: "pistol"), color: .clearColor(), size: CGSizeMake(100, 100))
         projTex = SKTexture(imageNamed: "bullet")
         itemName = "Pistol"
         attack = 43

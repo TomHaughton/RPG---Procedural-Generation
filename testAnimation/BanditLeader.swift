@@ -3,8 +3,8 @@ import SpriteKit
 
 class BanditLeader: MeleeEnemy{
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+    init(){
+        super.init(texture: nil, color: .clearColor(), size: CGSizeMake(100, 100))
         attackSpeed = 1.5
         attack = 20
         defense = 3

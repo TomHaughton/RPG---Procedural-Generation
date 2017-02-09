@@ -10,8 +10,8 @@ import Foundation
 import SpriteKit
 
 class MainMenu:SKScene{
-    var btnRpg:SKSpriteNode!
-    var btnDungeon:SKSpriteNode!
+    private var btnRpg:SKSpriteNode!
+    private var btnDungeon:SKSpriteNode!
     
     override func didMoveToView(view: SKView) {
         btnRpg = SKSpriteNode(color: .blueColor(), size: CGSizeMake(800, 400))
@@ -40,7 +40,8 @@ class MainMenu:SKScene{
         }
         else if btnDungeon.frame.contains((touches.first?.locationInNode(self))!){
             let scene = Cave(size: CGSize(width: 2048, height: 1536), player: Player(), seed: [], direction: "bottom", location: CGPoint.zero, count: 0)
-            scene.player = Player(imageNamed: "PlayerSprite")
+            scene.player = Player()
+            scene.player.gameMode = "D"
             scene.player.pickUp(PlateHelmet())
             scene.player.pickUp(PlateArms())
             scene.player.pickUp(PlateChest())
@@ -49,7 +50,8 @@ class MainMenu:SKScene{
             scene.player.pickUp(AutoRifle())
             scene.player.pickUp(Longbow())
             scene.player.pickUp(TestAxe())
-            scene.player.pickUp(HealthPotion(texture: SKTexture(imageNamed:"HealthPotion"), color: .clearColor(), size: CGSizeMake(100, 100), health: 50))
+            Chest()
+            scene.player.pickUp(SmallPotion(texture: SKTexture(imageNamed:"HealthPotion"), color: .clearColor(), size: CGSizeMake(100, 100)))
             
             scene.scaleMode = .AspectFill
             view?.presentScene(scene)

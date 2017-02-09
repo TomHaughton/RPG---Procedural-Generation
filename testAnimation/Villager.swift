@@ -11,8 +11,8 @@ import SpriteKit
 
 class Villager:QuestGiver{
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+    init(){
+        super.init(texture: nil, color: .blueColor(), size: CGSizeMake(100, 100))
         dialogue = ["Darn this lake!","I dropped my boot whilst trying to wash it...","It ain't easy to come by leather that good round here."]
         completeDialogue.append("Thank you")
     }

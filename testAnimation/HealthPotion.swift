@@ -4,11 +4,10 @@ import SpriteKit
 class HealthPotion:Item{
     var health: Double!
     
-    init(texture: SKTexture?, color: UIColor, size: CGSize, health: Double) {
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         name = "item"
         itemName = "Health Potion"
-        self.health = health
     }
     
     required init?(coder aDecoder: NSCoder) {

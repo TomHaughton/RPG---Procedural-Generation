@@ -2,9 +2,8 @@ import Foundation
 import SpriteKit
 class TestSword:MeleeWeapon {
     
-    var tex = SKTexture(imageNamed: "sword")
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: tex, color: color, size: size)
+    init(){
+        super.init(texture: SKTexture(imageNamed: "sword"), color: .clearColor(), size: CGSizeMake(100, 100))
         itemName = "Sword"
         attack = 60
         weaponType = WeaponType.Sword

@@ -6,7 +6,7 @@ class GameScene: SKScene {
     
     var background = SKSpriteNode()
     var ui = UI()
-    var update = Update()
+    private var update = Update()
     var player:Player!
     var touches:Set<UITouch>!
     let cameraNode = SKCameraNode()

@@ -21,6 +21,7 @@ class Player: SKSpriteNode {
     var xp: Int = 0
     var xpBoundary:Int!
     var questLog:[Quest] = []
+    var gameMode: Character = "D"
     
     //Armour/Weapon slots
     var head: Armour?
@@ -33,11 +34,10 @@ class Player: SKSpriteNode {
     var playerAnimationLeft:SKAction!
     var playerAnimationRight:SKAction!
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+    init(){
+        super.init(texture: SKTexture(imageNamed:"PlayerSprite"), color: .clearColor(), size: CGSizeMake(100, 100))
         
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, 100))
-        
         physicsBody?.affectedByGravity = false
         physicsBody?.allowsRotation = false
         physicsBody?.dynamic = true
@@ -47,6 +47,21 @@ class Player: SKSpriteNode {
         zPosition = 100
         xpBoundary = level * 100 * 2
     }
+    
+//    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+//        super.init(texture: texture, color: color, size: size)
+//        
+//        physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, 100))
+//        
+//        physicsBody?.affectedByGravity = false
+//        physicsBody?.allowsRotation = false
+//        physicsBody?.dynamic = true
+//        physicsBody?.collisionBitMask = PhysicsCategory.character
+//        physicsBody?.categoryBitMask = PhysicsCategory.None
+//        buildAnimations()
+//        zPosition = 100
+//        xpBoundary = level * 100 * 2
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -106,12 +121,7 @@ class Player: SKSpriteNode {
                     unequip(self.head!)
                 }
                 self.head = toEquip
-                defense += toEquip.defense
-                moveFromInvToPlayer(item, index: index)
-                toEquip.size = CGSizeMake(100,100)
-                toEquip.position = CGPointMake(0,0)
                 toEquip.name = "helmet"
-                addChild(toEquip.copy() as! Item)
                 break
             case ArmourSlot.Chest:
                 if self.chest != nil {
@@ -119,12 +129,7 @@ class Player: SKSpriteNode {
                     unequip(self.chest!)
                 }
                 self.chest = toEquip
-                defense += toEquip.defense
-                moveFromInvToPlayer(item, index: index)
-                toEquip.size = CGSizeMake(100,100)
-                toEquip.position = CGPointMake(0,0)
                 toEquip.name = "chest"
-                addChild(toEquip.copy() as! Item)
                 break
             case ArmourSlot.Arms:
                 if self.arms != nil {
@@ -132,12 +137,7 @@ class Player: SKSpriteNode {
                     unequip(self.arms!)
                 }
                 self.arms = toEquip
-                defense += toEquip.defense
-                moveFromInvToPlayer(item, index: index)
-                toEquip.size = CGSizeMake(100,100)
-                toEquip.position = CGPointMake(0,0)
                 toEquip.name = "arms"
-                addChild(toEquip.copy() as! Item)
                 break
             case ArmourSlot.Legs:
                 if self.legs != nil {
@@ -145,14 +145,14 @@ class Player: SKSpriteNode {
                     unequip(self.legs!)
                 }
                 self.legs = toEquip
-                defense += toEquip.defense
-                moveFromInvToPlayer(item, index: index)
-                toEquip.size = CGSizeMake(100,100)
-                toEquip.position = CGPointMake(0,0)
                 toEquip.name = "legs"
-                addChild(toEquip.copy() as! Item)
                 break
             }
+            toEquip.size = CGSizeMake(100,100)
+            toEquip.position = CGPointMake(0,0)
+            defense += toEquip.defense
+            moveFromInvToPlayer(item, index: index)
+            addChild(toEquip.copy() as! Item)
         } else if let toEquip = item as? Weapon{
             if self.weapon != nil {
                 unequip(self.weapon!)
@@ -160,8 +160,8 @@ class Player: SKSpriteNode {
             self.weapon = toEquip
             attack = toEquip.attack
             moveFromInvToPlayer(item, index: index)
-            toEquip.size = CGSizeMake(60,60)
-            toEquip.position = CGPointMake(48,10)
+            toEquip.size = CGSizeMake(100,100)
+            toEquip.position = CGPointMake(0,0)
             toEquip.name = "weapon"
             addChild(toEquip.copy() as! Item)
         }
@@ -473,11 +473,17 @@ class Player: SKSpriteNode {
     func checkSurroundings(scene: GameScene, x: CGFloat, y:CGFloat) -> Bool{
         var canMove = true
         
+        scene.enumerateChildNodesWithName("chest") { node, _ in
+            let chest = node as! Chest
+            
+            if CGRectIntersectsRect(chest.frame, self.frame.offsetBy(dx: self.velocity.x, dy: self.velocity.y)){
+                chest.openChest()
+                canMove = false
+            }
+        }
+        
         scene.enumerateChildNodesWithName("door") { node, _ in
             let door = node as! Door
-            if CGRectContainsPoint(door.frame, self.position + self.velocity){
-                
-            }
             
             if CGRectIntersectsRect(door.frame, self.frame.offsetBy(dx: self.velocity.x, dy: self.velocity.y)){
                 door.loadLevel(scene)

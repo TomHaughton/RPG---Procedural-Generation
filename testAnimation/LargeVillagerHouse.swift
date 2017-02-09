@@ -9,9 +9,9 @@
 import Foundation
 import SpriteKit
 
-class VillagerHouse:Scenery{
+class LargeVillagerHouse:Scenery{
     init(){
-        super.init(texture: SKTexture(imageNamed:"villageHouse"), color: .clearColor(), size: CGSizeMake(300,200))
+        super.init(texture: SKTexture(imageNamed:"mayorHouse"), color: .clearColor(), size: CGSizeMake(500,400))
     }
     
     required init?(coder aDecoder: NSCoder) {

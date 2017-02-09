@@ -11,8 +11,8 @@ import SpriteKit
 
 class SideVillager:QuestGiver{
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+    init(){
+        super.init(texture: nil, color: .blueColor(), size: CGSizeMake(100, 100))
         dialogue = ["Hey, you look a little bare","Kill 3 wolves in the forest north-east for me","I promise there'll be something in it for you"]
         completeDialogue = ["You have the pelts? Excellent!","Here's something to keep that skull safe"]
         quest = WolfQuest()

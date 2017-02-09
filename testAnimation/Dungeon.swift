@@ -2,27 +2,23 @@ import SpriteKit
 
 class Dungeon: GameScene, Generation {
     
-    struct PhysicsCategory {
-        static let None : UInt32 = 0
-        static let All : UInt32 = UInt32.max
-        static let character : UInt32 = 0b1
-    }
-    
     var enemyCount = 0
     var rooms: [DungeonRoom] = []
-    var enClear:Bool!
-    var itClear:Bool!
-    var room:DungeonRoom!
-    var seed:[Int] = []
+    //Rooms to complete before boss fight
+    var numOfRooms = 1
+    private var enClear:Bool!
+    private var itClear:Bool!
+    private var room:DungeonRoom!
+    private var seed:[Int] = []
     var location:CGPoint!
-    var roomType:Int!
-    var bkgImg:SKSpriteNode!
-    var direction: String!
-    var previous:String!
-    var door:Door?
-    var door2:Door?
-    var door3:Door?
-    var door4:Door?
+    private var roomType:Int!
+    private var bkgImg:SKSpriteNode!
+    private var direction: String!
+    private var previous:String!
+    private var door:Door?
+    private var door2:Door?
+    private var door3:Door?
+    private var door4:Door?
     
     var tallWalls: SKSpriteNode!
     var tallBkg: SKSpriteNode!
@@ -88,16 +84,12 @@ class Dungeon: GameScene, Generation {
     func generateRoomType(){
         let locCalc = Int(location.x + location.y)
         if locCalc % self.seed[0] == 0{
-//            background = SKSpriteNode(imageNamed: "caveSmlBkg")
-//            bkgImg = SKSpriteNode(imageNamed: "caveTallWalls")
             background = tallBkg
             bkgImg = tallWalls
             roomType = 0
             background.size = bkgImg.size
         }
         else{
-//            background = SKSpriteNode(imageNamed: "caveSmlBkg")
-//            bkgImg = SKSpriteNode(imageNamed: "caveSmlWalls")
             background = smallBkg
             bkgImg = smallWalls
             roomType = 1
@@ -170,32 +162,17 @@ class Dungeon: GameScene, Generation {
                 break
             }
             for enemy in enemies{
-                enemy.name = "enemy"
-                enemy.zPosition = 10
-                enemy.physicsBody?.collisionBitMask = PhysicsCategory.character
-                enemy.physicsBody?.categoryBitMask = PhysicsCategory.None
+//                enemy.name = "enemy"
+//                enemy.zPosition = 10
+//                enemy.physicsBody?.collisionBitMask = PhysicsCategory.character
+//                enemy.physicsBody?.categoryBitMask = PhysicsCategory.None
                 self.addChild(enemy)
                 enemyCount += 1
                 enemy.position = CGPointMake(size.width/2, size.height/2)
                 enumerateChildNodesWithName("scenery"){ node, _ in
                     let scenery = node as! Scenery
                     while CGRectIntersectsRect(enemy.frame, scenery.frame){
-                        let move = arc4random_uniform(4)
-                        switch(move){
-                        case 0:
-                            enemy.position.x += 100
-                            break
-                        case 1:
-                            enemy.position.x -= 100
-                            break
-                        case 2:
-                            enemy.position.y += 100
-                            break
-                        case 3:
-                            enemy.position.y -= 100
-                            break
-                        default: break
-                        }
+                        self.positionEnemy(enemy)
                     }
                 }
                 //prevent enemies from spawning inside one another
@@ -203,26 +180,30 @@ class Dungeon: GameScene, Generation {
                     let en = node as! Enemy
                     if enemy != en{
                         while CGRectIntersectsRect(enemy.frame, en.frame){
-                            let move = arc4random_uniform(4)
-                            switch(move){
-                            case 0:
-                                enemy.position.x += 100
-                                break
-                            case 1:
-                                enemy.position.x -= 100
-                                break
-                            case 2:
-                                enemy.position.y += 100
-                                break
-                            case 3:
-                                enemy.position.y -= 100
-                                break
-                            default: break
-                            }
+                            self.positionEnemy(enemy)
                         }
                     }
                 }
             }
+        }
+    }
+    
+    func positionEnemy(enemy:Enemy){
+        let move = arc4random_uniform(4)
+        switch(move){
+        case 0:
+            enemy.position.x += 100
+            break
+        case 1:
+            enemy.position.x -= 100
+            break
+        case 2:
+            enemy.position.y += 100
+            break
+        case 3:
+            enemy.position.y -= 100
+            break
+        default: break
         }
     }
     
@@ -271,6 +252,7 @@ class Dungeon: GameScene, Generation {
             blrt()
             break
         }
+        checkSurroundingRooms()
     }
     
     func initDoors(){
@@ -298,49 +280,120 @@ class Dungeon: GameScene, Generation {
         door4!.runAction(SKAction.rotateByAngle(CGFloat(3 * M_PI/2), duration: 0))
     }
     
+    func initItems(){
+        let chest = Chest()
+        chest.position = CGPointMake(size.width/2, size.height/2)
+        enumerateChildNodesWithName("scenery"){ node, _ in
+            let scenery = node as! Scenery
+            while CGRectIntersectsRect(chest.frame, scenery.frame){
+                let move = arc4random_uniform(4)
+                switch(move){
+                case 0:
+                    chest.position.x += 100
+                    break
+                case 1:
+                    chest.position.x -= 100
+                    break
+                case 2:
+                    chest.position.y += 100
+                    break
+                case 3:
+                    chest.position.y -= 100
+                    break
+                default: break
+                }
+            }
+        }
+        //prevent chest from spawning inside enemies
+        enumerateChildNodesWithName("enemy"){ node, _ in
+            let en = node as! Enemy
+            if chest != en{
+                while CGRectIntersectsRect(chest.frame, en.frame){
+                    let move = arc4random_uniform(4)
+                    switch(move){
+                    case 0:
+                        chest.position.x += 100
+                        break
+                    case 1:
+                        chest.position.x -= 100
+                        break
+                    case 2:
+                        chest.position.y += 100
+                        break
+                    case 3:
+                        chest.position.y -= 100
+                        break
+                    default: break
+                    }
+                }
+            }
+        }
+        chest.zPosition = 50
+        addChild(chest)
+    }
+    
+    func initBoss(){
+        background = SKSpriteNode(imageNamed: "BossBkg")
+        background.size = CGSizeMake(background.size.width, background.size.height - overlapAmount())
+        bkgImg = SKSpriteNode(imageNamed: "BossWalls")
+        bkgImg.size = CGSizeMake(bkgImg.size.width, bkgImg.size.height - overlapAmount())
+        
+        removeAllChildren()
+        enemyCount = 0
+        cameraNode.setScale(1.2)
+        
+        let boss = Boss()
+        self.bossFight = true
+        boss.position = CGPointMake(size.width/2, size.height/2)
+        boss.zPosition = 10
+        boss.name = "enemy"
+//        player.position = CGPointMake(size.width/2, 200)
+        addChild(boss)
+    }
+    
     func generateRoom(seed:[Int]){
         generateSeed()
         if location == CGPoint.zero{
             location = CGPointMake(CGFloat(arc4random_uniform(49) + 1), CGFloat(arc4random_uniform(49) + 1))
-            //            location = CGPointMake(CGFloat(self.seed[3]), CGFloat(self.seed[3]))
         }
         incrememntLocation()
         generateRoomType()
         generateInterior(roomType)
         initDoors()
         initPlayerPosition()
+        initItems()
         
         enClear = enemyCount == 0 ? true : false
         itClear = enemyCount == 0 ? true : false
         room = DungeonRoom(location: location, enemiesClear: enClear, itemsClear: itClear)
-        if clearCount != 0{
-            initEnemies()
-        }
-        else{
-            clearCount += 1
-        }
         addDoors()
+        
+        switch(clearCount){
+        case _ where clearCount >= numOfRooms && !rooms.contains(room):
+            initBoss()
+            break
+        case _ where clearCount > 0:
+            initEnemies()
+            break
+        default:
+            clearCount += 1
+            break
+        }
+//        if clearCount != 0{
+//            initEnemies()
+//        }
+//        else{
+//            clearCount += 1
+//        }
         enableDoors()
         
-        if !rooms.contains(room) && clearCount == 5 {
-            background = SKSpriteNode(imageNamed: "BossBkg")
-            background.size = CGSizeMake(background.size.width, background.size.height - overlapAmount())
-            bkgImg = SKSpriteNode(imageNamed: "BossWalls")
-            bkgImg.size = CGSizeMake(bkgImg.size.width, bkgImg.size.height - overlapAmount())
-            
-            removeAllChildren()
-            enemyCount = 0
-            cameraNode.setScale(1.2)
-            
-            let boss = Boss(texture: nil, color: .whiteColor(), size: CGSizeMake(200, 200))
-            self.bossFight = true
-            boss.position = CGPointMake(size.width/2, size.height/2)
-            boss.zPosition = 10
-            boss.name = "enemy"
-            player.position = CGPointMake(size.width/2, 200)
-            addChild(boss)
-        }
+//        if !rooms.contains(room) && clearCount == 1 {
+//            initBoss()
+//        }
         
+//        if door?.parent == nil && door2?.parent == nil && door3?.parent == nil && door4?.parent == nil {
+//            door?.loadLevel(self)
+//        }
         
         background.position = CGPointMake(size.width/2, size.height/2)
         self.backgroundColor = UIColor.darkGrayColor()
@@ -352,12 +405,12 @@ class Dungeon: GameScene, Generation {
         bkgImg.physicsBody?.dynamic = false
         
         
-        player.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, 100))
-        
-        player.physicsBody?.affectedByGravity = false
-        player.physicsBody?.allowsRotation = false
-        player.physicsBody?.collisionBitMask = PhysicsCategory.character
-        player.physicsBody?.categoryBitMask = PhysicsCategory.None
+//        player.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, 100))
+//        
+//        player.physicsBody?.affectedByGravity = false
+//        player.physicsBody?.allowsRotation = false
+//        player.physicsBody?.collisionBitMask = PhysicsCategory.character
+//        player.physicsBody?.categoryBitMask = PhysicsCategory.None
         
         addChild(background)
         addChild(bkgImg)
@@ -422,12 +475,6 @@ class Dungeon: GameScene, Generation {
     
     func calculateAdjacentDoors(locCalc:Int) -> [String]{
         var doorLayout:Int = 0
-        //        for i in 12.stride(through: 1, by: -1){
-        //            if locCalc * self.seed[3] % i == 0{
-        //                doorLayout = i
-        //                break
-        //            }
-        //        }
         
         doorLayout = Int(abs(location.x - location.y)) / self.seed[3]
         while doorLayout > 12{
@@ -462,6 +509,10 @@ class Dungeon: GameScene, Generation {
         }
     }
     
+    func resetLocCalc(locCalc: Int) -> Int{
+        return Int(location.x + location.y)
+    }
+    
     func checkSurroundingRooms(){
         let x = location.x
         let y = location.y
@@ -481,7 +532,7 @@ class Dungeon: GameScene, Generation {
             location.x += 50
         }
         
-        locCalc = Int(location.x + location.y)
+        locCalc = resetLocCalc(locCalc)
         
         if !calculateAdjacentDoors(locCalc).contains("r"){
             door2?.removeFromParent()
@@ -493,7 +544,7 @@ class Dungeon: GameScene, Generation {
             location.y -= 50
         }
         
-        locCalc = Int(location.x + location.y)
+        locCalc = resetLocCalc(locCalc)
         
         if !calculateAdjacentDoors(locCalc).contains("b"){
             door3?.removeFromParent()
@@ -504,7 +555,7 @@ class Dungeon: GameScene, Generation {
             location.y += 50
         }
         
-        locCalc = Int(location.x + location.y)
+        locCalc = resetLocCalc(locCalc)
         
         if !calculateAdjacentDoors(locCalc).contains("t"){
             door?.removeFromParent()
@@ -521,14 +572,6 @@ class Dungeon: GameScene, Generation {
         addChild(cameraNode)
         cameraNode.addChild(ui.ui)
         cameraNode.position = bkgImg.position
-        view.multipleTouchEnabled = true
-        //        ui.ui.zPosition = 100
-        
-        //        if clearCount != 1{
-        //        }
-        //        else {
-        //            addChild(ui.ui)
-        //        }
     }
     
     func blrt(){
@@ -536,71 +579,59 @@ class Dungeon: GameScene, Generation {
         addChild(door2!)
         addChild(door3!)
         addChild(door4!)
-        checkSurroundingRooms()
     }
     
     func trb(){
         addChild(door!)
         addChild(door3!)
         addChild(door4!)
-        checkSurroundingRooms()
     }
     
     func tlb(){
         addChild(door!)
         addChild(door2!)
         addChild(door3!)
-        checkSurroundingRooms()
     }
     
     func blr(){
         addChild(door!)
         addChild(door2!)
         addChild(door4!)
-        checkSurroundingRooms()
     }
     
     func tlr(){
         addChild(door2!)
         addChild(door3!)
         addChild(door4!)
-        checkSurroundingRooms()
     }
     
     func bl(){
         addChild(door!)
         addChild(door2!)
-        checkSurroundingRooms()
     }
     
     func br(){
         addChild(door!)
         addChild(door4!)
-        checkSurroundingRooms()
     }
     
     func bt(){
         addChild(door!)
         addChild(door3!)
-        checkSurroundingRooms()
     }
     
     func tl(){
         addChild(door2!)
         addChild(door3!)
-        checkSurroundingRooms()
     }
     
     func tr(){
         addChild(door3!)
         addChild(door4!)
-        checkSurroundingRooms()
     }
     
     func rl(){
         addChild(door2!)
         addChild(door4!)
-        checkSurroundingRooms()
-        
     }
 }

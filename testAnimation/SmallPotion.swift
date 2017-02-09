@@ -1,12 +1,14 @@
 import Foundation
 import SpriteKit
-
-class TestMelee: MeleeEnemy{
+class SmallPotion:HealthPotion {
+    
+    var tex = SKTexture(imageNamed: "HealthPotion")
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-        attackSpeed = 2.0
-        attack = 20
+        super.init(texture: tex, color: color, size: size)
+        name = "item"
+        itemName = "Small Potion"
+        self.health = 30
     }
     
     required init?(coder aDecoder: NSCoder) {

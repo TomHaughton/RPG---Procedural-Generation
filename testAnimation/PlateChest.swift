@@ -6,7 +6,7 @@ class PlateChest: Armour {
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: tex, color: color, size: size)
-        itemName = "Chest"
+        itemName = "Plate Chest"
         defense = 70
         armourType = ArmourType.Heavy
         armourSlot = ArmourSlot.Chest

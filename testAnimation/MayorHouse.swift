@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class BanditHouse:GameScene{
+class MayorHouse:GameScene{
     init(size: CGSize, player: Player) {
         super.init(size: size)
     }
@@ -35,15 +35,16 @@ class BanditHouse:GameScene{
         bkgImg.physicsBody?.dynamic = false
         
         //Interior
-        let leader = BanditLeader()
-        let door = Door(texture: nil, color: .redColor(), size: CGSizeMake(100, 100), level: Level1(size: size, player: player))
+        let mayor = VillageMayor()
+        let door = Door(texture: SKTexture(imageNamed: "VillageDoor"), color: .redColor(), size: CGSizeMake(100, 100), level: Level1(size: size, player: player))
+        mayor.position = CGPointMake(bkgImg.position.x, bkgImg.position.y + 200)
+        door.runAction(SKAction.rotateByAngle(CGFloat(M_PI), duration: 0))
         door.position = CGPointMake(bkgImg.position.x, bkgImg.position.y - 300)
-        leader.position = CGPointMake(bkgImg.position.x, bkgImg.position.y + 200)
         
         addChild(background)
         addChild(bkgImg)
         addChild(player)
-        addChild(leader)
+        addChild(mayor)
         addChild(door)
         cameraNode.addChild(ui.ui)
     }

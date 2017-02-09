@@ -13,9 +13,17 @@ class Boss:Enemy{
     var stage = 0
     var timer = Timer(duration: 5)
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+    var attackWait:SKAction!
+    var shoot:SKAction!
+    
+    init() {
+        super.init(texture: SKTexture(imageNamed:"SpiderBoss"), color: .clearColor(), size: CGSizeMake(200, 200))
         defense = 10
+        xp = 300
+        
+        attackWait = SKAction.runBlock(){
+            self.removeActionForKey("attack")
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,54 +55,18 @@ class Boss:Enemy{
     }
     
     func simpleAttack(scene: GameScene){
-        var projectiles: [Projectile] = []
-        
         if actionForKey("attack") == nil{
-            let attackWait = SKAction.runBlock(){
-                self.removeActionForKey("attack")
-            }
-            
-            let shoot = SKAction.runBlock(){
-                let projectile = Projectile(texture: nil, color: .redColor(), size: CGSizeMake(50, 50))
-                projectile.name = "projectile"
-                projectile.position = self.position
-                projectile.physicsBody = nil
-                projectile.zPosition = 40
-                projectile.speed = 800
-                
-                var direction = self.position - scene.player.position
-                direction = direction / velocityMag(direction) * projectile.speed
-                
-                projectile.velocity = direction
-                projectiles.append(projectile)
-                scene.addChild(projectile)
+            shoot = SKAction.runBlock(){
+                self.initProjectile(scene)
             }
             runAction(SKAction.sequence([shoot,SKAction.waitForDuration(0.1),shoot,SKAction.waitForDuration(0.1),shoot,SKAction.waitForDuration(attackSpeed),attackWait]),withKey: "attack")
         }
     }
     
     func medAttack(scene: GameScene){
-        var projectiles: [Projectile] = []
-        
         if actionForKey("attack") == nil{
-            let attackWait = SKAction.runBlock(){
-                self.removeActionForKey("attack")
-            }
-            
-            let shoot = SKAction.runBlock(){
-                let projectile = Projectile(texture: nil, color: .redColor(), size: CGSizeMake(50, 50))
-                projectile.name = "projectile"
-                projectile.position = self.position
-                projectile.physicsBody = nil
-                projectile.zPosition = 40
-                projectile.speed = 800
-                
-                var direction = self.position - scene.player.position
-                direction = direction / velocityMag(direction) * projectile.speed
-                
-                projectile.velocity = direction
-                projectiles.append(projectile)
-                scene.addChild(projectile)
+            shoot = SKAction.runBlock(){
+                self.initProjectile(scene)
             }
             runAction(SKAction.sequence([shoot,SKAction.waitForDuration(0.2),attackWait]),withKey: "attack")
         }
@@ -110,18 +82,7 @@ class Boss:Enemy{
             
             let shoot = SKAction.runBlock(){
                 for _ in 0...2{
-                    let projectile = Projectile(texture: nil, color: .redColor(), size: CGSizeMake(50, 50))
-                    projectile.name = "projectile"
-                    projectile.position = self.position
-                    projectile.physicsBody = nil
-                    projectile.zPosition = 40
-                    projectile.speed = 800
-                    
-                    var direction = self.position - scene.player.position
-                    direction = direction / velocityMag(direction) * projectile.speed
-                    
-                    projectile.velocity = direction
-                    projectiles.append(projectile)
+                    self.initProjectile(scene)
                 }
                 
                 if abs(projectiles[0].velocity.x) < abs(projectiles[0].velocity.y){
@@ -140,5 +101,20 @@ class Boss:Enemy{
             }
             runAction(SKAction.sequence([shoot,SKAction.waitForDuration(0.5),attackWait]),withKey: "attack")
         }
+    }
+    
+    func initProjectile(scene: GameScene){
+        let projectile = Projectile(texture: SKTexture(imageNamed:"web"), color: .clearColor(), size: CGSizeMake(50, 50))
+        projectile.name = "projectile"
+        projectile.position = self.position
+        projectile.physicsBody = nil
+        projectile.zPosition = 40
+        projectile.speed = 800
+        
+        var direction = self.position - scene.player.position
+        direction = direction / velocityMag(direction) * projectile.speed
+        
+        projectile.velocity = direction
+        scene.addChild(projectile)
     }
 }

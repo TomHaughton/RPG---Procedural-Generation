@@ -11,8 +11,8 @@ import SpriteKit
 
 class Wolf: MeleeEnemy{
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
+    init(){
+        super.init(texture: nil, color: .whiteColor(), size: CGSizeMake(100, 100))
         attackSpeed = 0.5
         attack = 6
     }

@@ -7,6 +7,12 @@ class Cave: Dungeon{
         smallWalls = SKSpriteNode(imageNamed: "caveSmlWalls")
         tallBkg = SKSpriteNode(imageNamed: "caveSmlBkg")
         tallWalls = SKSpriteNode(imageNamed: "caveTallWalls")
+        if player.gameMode == "S"{
+            numOfRooms = 0
+        }
+        else{
+            numOfRooms = 1
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
