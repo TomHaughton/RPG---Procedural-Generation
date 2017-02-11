@@ -27,7 +27,6 @@ class Dungeon: GameScene, Generation {
     
     var clearCount = 0
     
-    
     init(size: CGSize, player: Player, seed: [Int], direction: String, location: CGPoint, count: Int) {
         self.location = location
         self.direction = direction
@@ -38,6 +37,61 @@ class Dungeon: GameScene, Generation {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didMoveToView(view: SKView) {
+        ui = UI(scene: self)
+        
+        camera = cameraNode
+        generateRoom(seed)
+        addChild(cameraNode)
+        cameraNode.addChild(ui.ui)
+        cameraNode.position = bkgImg.position
+    }
+    
+    func generateRoom(seed:[Int]){
+        generateSeed()
+        if location == CGPoint.zero{
+            location = CGPointMake(CGFloat(arc4random_uniform(49) + 1), CGFloat(arc4random_uniform(49) + 1))
+        }
+        incrememntLocation()
+        generateRoomType()
+        generateInterior(roomType)
+        initDoors()
+        initPlayerPosition()
+        initItems()
+        
+        enClear = enemyCount == 0 ? true : false
+        itClear = enemyCount == 0 ? true : false
+        room = DungeonRoom(location: location, enemiesClear: enClear, itemsClear: itClear)
+        addDoors()
+        
+        switch(clearCount){
+        case _ where clearCount >= numOfRooms && !rooms.contains(room):
+            initBoss()
+            break
+        case _ where clearCount > 0:
+            initEnemies()
+            break
+        default:
+            clearCount += 1
+            break
+        }
+        enableDoors()
+        
+        background.position = CGPointMake(size.width/2, size.height/2)
+        self.backgroundColor = UIColor.darkGrayColor()
+        
+        bkgImg.position = CGPointMake(size.width/2, size.height/2)
+        bkgImg.physicsBody = SKPhysicsBody(texture: bkgImg.texture!, size: bkgImg.size)
+        bkgImg.physicsBody?.affectedByGravity = false
+        bkgImg.physicsBody?.allowsRotation = false
+        bkgImg.physicsBody?.dynamic = false
+        
+        addChild(background)
+        addChild(bkgImg)
+        addChild(player)
+        
     }
     
     func generateSeed(){
@@ -162,13 +216,10 @@ class Dungeon: GameScene, Generation {
                 break
             }
             for enemy in enemies{
-//                enemy.name = "enemy"
-//                enemy.zPosition = 10
-//                enemy.physicsBody?.collisionBitMask = PhysicsCategory.character
-//                enemy.physicsBody?.categoryBitMask = PhysicsCategory.None
                 self.addChild(enemy)
                 enemyCount += 1
                 enemy.position = CGPointMake(size.width/2, size.height/2)
+                enemy.zPosition = 40
                 enumerateChildNodesWithName("scenery"){ node, _ in
                     let scenery = node as! Scenery
                     while CGRectIntersectsRect(enemy.frame, scenery.frame){
@@ -351,73 +402,6 @@ class Dungeon: GameScene, Generation {
         addChild(boss)
     }
     
-    func generateRoom(seed:[Int]){
-        generateSeed()
-        if location == CGPoint.zero{
-            location = CGPointMake(CGFloat(arc4random_uniform(49) + 1), CGFloat(arc4random_uniform(49) + 1))
-        }
-        incrememntLocation()
-        generateRoomType()
-        generateInterior(roomType)
-        initDoors()
-        initPlayerPosition()
-        initItems()
-        
-        enClear = enemyCount == 0 ? true : false
-        itClear = enemyCount == 0 ? true : false
-        room = DungeonRoom(location: location, enemiesClear: enClear, itemsClear: itClear)
-        addDoors()
-        
-        switch(clearCount){
-        case _ where clearCount >= numOfRooms && !rooms.contains(room):
-            initBoss()
-            break
-        case _ where clearCount > 0:
-            initEnemies()
-            break
-        default:
-            clearCount += 1
-            break
-        }
-//        if clearCount != 0{
-//            initEnemies()
-//        }
-//        else{
-//            clearCount += 1
-//        }
-        enableDoors()
-        
-//        if !rooms.contains(room) && clearCount == 1 {
-//            initBoss()
-//        }
-        
-//        if door?.parent == nil && door2?.parent == nil && door3?.parent == nil && door4?.parent == nil {
-//            door?.loadLevel(self)
-//        }
-        
-        background.position = CGPointMake(size.width/2, size.height/2)
-        self.backgroundColor = UIColor.darkGrayColor()
-        
-        bkgImg.position = CGPointMake(size.width/2, size.height/2)
-        bkgImg.physicsBody = SKPhysicsBody(texture: bkgImg.texture!, size: bkgImg.size)
-        bkgImg.physicsBody?.affectedByGravity = false
-        bkgImg.physicsBody?.allowsRotation = false
-        bkgImg.physicsBody?.dynamic = false
-        
-        
-//        player.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, 100))
-//        
-//        player.physicsBody?.affectedByGravity = false
-//        player.physicsBody?.allowsRotation = false
-//        player.physicsBody?.collisionBitMask = PhysicsCategory.character
-//        player.physicsBody?.categoryBitMask = PhysicsCategory.None
-        
-        addChild(background)
-        addChild(bkgImg)
-        addChild(player)
-        
-    }
-    
     func generateInterior(roomType: Int){
         let locCalc = Int(location.x + location.y)
         var interiorLayout = 0
@@ -562,16 +546,6 @@ class Dungeon: GameScene, Generation {
         }
         
         location.y = y
-    }
-    
-    override func didMoveToView(view: SKView) {
-        ui = UI(scene: self)
-        
-        camera = cameraNode
-        generateRoom(seed)
-        addChild(cameraNode)
-        cameraNode.addChild(ui.ui)
-        cameraNode.position = bkgImg.position
     }
     
     func blrt(){

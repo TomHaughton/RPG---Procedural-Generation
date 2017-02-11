@@ -57,3 +57,4 @@ func == (lhs: [Objective], rhs: [Objective]) -> Bool{
 func == (lhs: Objective, rhs: Objective) -> Bool{
     return lhs.description == rhs.description
 }
+

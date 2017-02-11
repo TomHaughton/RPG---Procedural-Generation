@@ -3,8 +3,6 @@ import SpriteKit
 
 class MeleeEnemy:Enemy{
     
-    
-    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
@@ -23,68 +21,15 @@ class MeleeEnemy:Enemy{
                 self.doAttack(scene)
             }
             
-//            if CGRectContainsPoint(CGRectOffset(scene.player.frame, 100, 0), position){
-//                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(100, y: 0, scene: scene)},attackWait]), withKey: "attack")
-//            }
-//            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, -100, 0), position){
-//                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(-100, y: 0, scene: scene)},attackWait]), withKey: "attack")
-//            }
-//            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, 100), position){
-//                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(0, y: 100, scene: scene)},attackWait]), withKey: "attack")
-//            }
-//            else if CGRectContainsPoint(CGRectOffset(scene.player.frame, 0, -100), position){
-//                runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),SKAction.runBlock(){self.slash(0, y: -100, scene: scene)},attackWait]), withKey: "attack")
-//            }
-//            else {
-//                removeActionForKey("attack")
-//            }
             runAction(SKAction.sequence([SKAction.waitForDuration(attackSpeed),slash,attackWait]), withKey: "attack")
         }
-        
-//        if actionForKey("move") == nil{
-//            let moveWait = SKAction.runBlock(){
-//                self.removeActionForKey("move")
-//            }
-        
-//            switch(shortestToPlayer(scene.player.position)){
-//            case "-x":
-//                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x - 100, position.y)){
-//                    if checkSurroundings(scene, x: -100, y: 0){
-//                        self.runAction(SKAction.sequence([SKAction.moveByX(-50, y: 0, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
-//                    }
-//                }
-//                break
-//            case "x":
-//                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x + 100, position.y)){
-//                    if checkSurroundings(scene, x: 100, y: 0){
-//                        self.runAction(SKAction.sequence([SKAction.moveByX(50, y: 0, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
-//                    }
-//                }
-//                break
-//            case "-y":
-//                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y - 100)){
-//                    if checkSurroundings(scene, x: 0, y: -100){
-//                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: -50, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
-//                    }
-//                }
-//                break
-//            case "y":
-//                if !CGRectContainsPoint(scene.player.frame, CGPointMake(position.x, position.y + 100)){
-//                    if checkSurroundings(scene, x: 0, y: 100){
-//                        self.runAction(SKAction.sequence([SKAction.moveByX(0, y: 50, duration: 0.1), SKAction.waitForDuration(0.1), moveWait]), withKey: "move")
-//                    }
-//                }
-//                break
-//            default: break
-//            }
-        
-            if distance(scene.player.position, right: position) > 100{
-                var velocity = position - scene.player.position
-                velocity = velocity / velocityMag(velocity) * movementSpeed
-                velocity = velocity * CGFloat(scene.dt) * -1
-                position += velocity
-            }
-//        }
+    
+        if distance(scene.player.position, right: position) > 100{
+            var velocity = position - scene.player.position
+            velocity = velocity / velocityMag(velocity) * movementSpeed
+            velocity = velocity * CGFloat(scene.dt) * -1
+            position += velocity
+        }
     }
     
     func shortestToPlayer(playerPos: CGPoint) -> String{

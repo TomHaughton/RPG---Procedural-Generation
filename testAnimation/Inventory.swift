@@ -87,25 +87,25 @@ class Inventory {
         level.fontSize = 80
         level.fontName = "Cochin"
         level.fontColor = UIColor.whiteColor()
-        level.text = "Lvl: \(player.level)"
+        level.text = "Lvl: \(Int(player.level))"
         level.position = CGPointMake(700, scene.frame.height - topMargin)
         
         health.fontSize = 80
         health.fontName = "Cochin"
         health.fontColor = UIColor.whiteColor()
-        health.text = "Health: \(player.health)"
-        health.position = CGPointMake(250, scene.frame.height - topMargin - 700)
+        health.text = "Health: \(Int(player.health))"
+        health.position = CGPointMake(260, scene.frame.height - topMargin - 700)
         
         attack.fontSize = 80
         attack.fontName = "Cochin"
         attack.fontColor = UIColor.whiteColor()
-        attack.text = "Attack: \(player.attack)"
-        attack.position = CGPointMake(250, scene.frame.height - topMargin - 800)
+        attack.text = "Attack: \(Int(player.attack))"
+        attack.position = CGPointMake(230, scene.frame.height - topMargin - 800)
         
         defense.fontSize = 80
         defense.fontName = "Cochin"
         defense.fontColor = UIColor.whiteColor()
-        defense.text = "Defense: \(player.defense)"
+        defense.text = "Defense: \(Int(player.defense))"
         defense.position = CGPointMake(250, scene.frame.height - topMargin - 900)
         
         var x = CGFloat(scene.frame.width - 1000)
@@ -175,22 +175,56 @@ class Inventory {
     }
 
     func updateInventory(player: Player){
-        head.texture = player.head?.texture
-        arms.texture = player.arms?.texture
-        legs.texture = player.legs?.texture
-        weapon.texture = player.weapon?.texture
-        chest.texture = player.chest?.texture
+        toggleInventory(player.scene! as! GameScene, touch: close.position, player: player)
+        toggleInventory(player.scene! as! GameScene, touch: close.position, player: player)
         
-        for index in 0...15{
-            if index < player.inventory.items.count {
-                slots[index] = player.inventory.items[index]
-                slots[index].texture = player.inventory.items[index].texture
-            }
-            else{
-                slots[index].texture = nil
-                slots[index] = SKSpriteNode()
-            }
-        }
+//        head.texture = player.head?.texture
+//        arms.texture = player.arms?.texture
+//        legs.texture = player.legs?.texture
+//        weapon.texture = player.weapon?.texture
+//        chest.texture = player.chest?.texture
+//        
+//        for index in 0...15{
+//            if index < player.inventory.items.count {
+//                slots[index] = player.inventory.items[index]
+//                slots[index].texture = player.inventory.items[index].texture
+//            }
+//            else{
+//                slots[index].texture = nil
+//                slots[index] = SKSpriteNode()
+//            }
+//        }
+//        if let _ = player.head{
+//            player.head!.removeFromParent()
+//            head.texture = player.head!.texture
+////            head.name = "worn"
+//        }
+//        if let _ = player.chest{
+//            player.chest!.removeFromParent()
+//            chest.texture = player.chest!.texture
+////            chest.name = "worn"
+//        }
+//        if let _ = player.legs{
+//            player.legs!.removeFromParent()
+//            legs.texture = player.legs!.texture
+////            legs.name = "worn"
+//        }
+//        if let _ = player.arms{
+//            player.arms!.removeFromParent()
+//            arms.texture = player.arms!.texture
+////            arms.name = "worn"
+//        }
+//        if let _ = player.weapon{
+//            player.weapon!.removeFromParent()
+//            weapon.texture = player.weapon!.texture
+////            weapon.name = "worn"
+//        }
+//
+//        for index in 0...15{
+//            if index < player.inventory.items.count {
+//                slots[index] = player.inventory.items[index]
+//            }
+//        }
     }
     
     func checkEquip(touch: UITouch, player: Player){

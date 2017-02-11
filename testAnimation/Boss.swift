@@ -82,7 +82,7 @@ class Boss:Enemy{
             
             let shoot = SKAction.runBlock(){
                 for _ in 0...2{
-                    self.initProjectile(scene)
+                    projectiles.append(self.initProjectile(scene))
                 }
                 
                 if abs(projectiles[0].velocity.x) < abs(projectiles[0].velocity.y){
@@ -97,13 +97,32 @@ class Boss:Enemy{
                 for i in 0...2{
                     scene.addChild(projectiles[i])
                 }
-                projectiles.removeAll()
             }
             runAction(SKAction.sequence([shoot,SKAction.waitForDuration(0.5),attackWait]),withKey: "attack")
+            projectiles.removeAll()
         }
     }
     
-    func initProjectile(scene: GameScene){
+    override func takeDamage(scene: GameScene, attack: Double){
+        if defense == 0{
+            health = health - attack
+        }
+        else {
+            health = health - attack/defense
+        }
+        
+        if health <= 0 {
+            removeFromParent()
+            if let room = scene as? Cave{
+                room.enemyCount -= 1
+                room.enableDoors()
+            }
+            drop(scene)
+        }
+        blink()
+    }
+    
+    func initProjectile(scene: GameScene) -> Projectile{
         let projectile = Projectile(texture: SKTexture(imageNamed:"web"), color: .clearColor(), size: CGSizeMake(50, 50))
         projectile.name = "projectile"
         projectile.position = self.position
@@ -116,5 +135,6 @@ class Boss:Enemy{
         
         projectile.velocity = direction
         scene.addChild(projectile)
+        return projectile
     }
 }

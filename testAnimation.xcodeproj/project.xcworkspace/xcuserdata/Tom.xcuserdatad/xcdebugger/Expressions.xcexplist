@@ -36,10 +36,13 @@
          contextName = "Inventory.updateInventory(Player) -&gt; ():Inventory.swift">
          <PersistentStrings>
             <PersistentString
-               value = "player.inventory.items[index]">
+               value = "slots[index]">
             </PersistentString>
             <PersistentString
-               value = "slots[index]">
+               value = "player.inventory">
+            </PersistentString>
+            <PersistentString
+               value = "player.inventory.items[index]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -100,7 +103,7 @@
          contextName = "Cave.generateRoom([Int]) -&gt; ():Cave.swift">
          <PersistentStrings>
             <PersistentString
-               value = "!rooms.contains(room)">
+               value = "rooms.contains(room)">
             </PersistentString>
             <PersistentString
                value = "clearCount">
@@ -112,10 +115,10 @@
                value = "Int(abs(location.x - location.y)) / self.seed[3]">
             </PersistentString>
             <PersistentString
-               value = "location">
+               value = "!rooms.contains(room)">
             </PersistentString>
             <PersistentString
-               value = "rooms.contains(room)">
+               value = "location">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -160,7 +163,7 @@
          contextName = "Dungeon.generateRoom([Int]) -&gt; ():Dungeon.swift">
          <PersistentStrings>
             <PersistentString
-               value = "clearCount &gt;= numOfRooms">
+               value = "!rooms.contains(room)">
             </PersistentString>
             <PersistentString
                value = "clearCount">
@@ -169,10 +172,10 @@
                value = "self">
             </PersistentString>
             <PersistentString
-               value = "door">
+               value = "clearCount &gt;= numOfRooms">
             </PersistentString>
             <PersistentString
-               value = "!rooms.contains(room)">
+               value = "door">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -188,13 +191,13 @@
          contextName = "Projectile.move(GameScene) -&gt; ():Projectile.swift">
          <PersistentStrings>
             <PersistentString
-               value = "velocity">
+               value = "scene.dt">
             </PersistentString>
             <PersistentString
                value = "position">
             </PersistentString>
             <PersistentString
-               value = "scene.dt">
+               value = "velocity">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -371,6 +374,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Player.equip(Item, index : Int) -&gt; ():Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "defense">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Boss.chooseAttack(GameScene) -&gt; ():Boss.swift">
          <PersistentStrings>
             <PersistentString
@@ -505,13 +516,13 @@
                value = "CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)">
             </PersistentString>
             <PersistentString
-               value = "scene.player.xp">
+               value = "scene.player">
             </PersistentString>
             <PersistentString
                value = "ui">
             </PersistentString>
             <PersistentString
-               value = "scene.player">
+               value = "scene.player.xp">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

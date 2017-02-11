@@ -13,7 +13,7 @@ class Enemy: Npc{
     var attack: Double! = 10
     var defense: Double! = 3
     var attackSpeed:Double! = 2
-    var movementSpeed: CGFloat = 250.0
+    var movementSpeed: CGFloat = 200.0
     var item: Item?
     var xp: Int = 100
     
@@ -27,6 +27,7 @@ class Enemy: Npc{
         name = "enemy"
         physicsBody?.collisionBitMask = PhysicsCategory.character
         physicsBody?.categoryBitMask = PhysicsCategory.None
+        initItem()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,22 +68,36 @@ class Enemy: Npc{
                 room.enableDoors()
             }
             drop(scene)
-            
-            //GET RID OF THIS, THIS IS FOR THE PLAYER CLASS
-            for quest in scene.player.questLog{
-                quest.checkProgress(self, player: scene.player)
+        }
+        blink()
+    }
+    
+    func blink(){
+        let fade = SKAction.runBlock(){
+            self.alpha = 0.5
+        }
+        let unfade = SKAction.runBlock(){
+            self.alpha = 1
+        }
+        let wait = SKAction.runBlock(){
+            SKAction.waitForDuration(0.1)
+        }
+        runAction(SKAction.sequence([fade,wait,unfade]))
+    }
+    
+    func initItem(){
+        var itemArray: NSArray?
+        if let path = NSBundle.mainBundle().pathForResource("Items", ofType: "plist") {
+            itemArray = NSArray(contentsOfFile: path)
+        }
+        if let arr = itemArray {
+            let itemNum = Int(arc4random_uniform(UInt32(arr.count * 4)))
+            if itemNum > arr.count - 1 {
+                return
             }
-            scene.player.xp += self.xp
-            if scene.player.xp >= scene.player.xpBoundary{
-                scene.player.maxHealth = scene.player.maxHealth + Double(scene.player.level * 10)
-                scene.player.level += 1
-                scene.player.xpBoundary = scene.player.level * 200
-                self.xp = 0
-            }
-            scene.ui.xpBar.size = CGSizeMake(CGFloat(1500 / scene.player.xpBoundary) * CGFloat(scene.player.xp), 40)
-            if !(self.health <= 0){
-                scene.ui.healthBar.size = CGSizeMake(CGFloat(1500 / scene.player.maxHealth) * CGFloat(scene.player.health), 100)
-            }
+            let itemName = "testAnimation." + String(arr[itemNum])
+            let aClass = NSClassFromString(itemName) as! Item.Type
+            item = aClass.init()
         }
     }
 }

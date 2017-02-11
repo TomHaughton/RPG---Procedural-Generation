@@ -5,13 +5,13 @@ class Cave: Dungeon{
         super.init(size: size, player: player, seed: seed, direction: direction, location: location, count: count)
         smallBkg = SKSpriteNode(imageNamed: "caveSmlBkg")
         smallWalls = SKSpriteNode(imageNamed: "caveSmlWalls")
-        tallBkg = SKSpriteNode(imageNamed: "caveSmlBkg")
+        tallBkg = SKSpriteNode(imageNamed: "caveTallBkg")
         tallWalls = SKSpriteNode(imageNamed: "caveTallWalls")
         if player.gameMode == "S"{
-            numOfRooms = 0
+            numOfRooms = 2
         }
         else{
-            numOfRooms = 1
+            numOfRooms = 2
         }
     }
     

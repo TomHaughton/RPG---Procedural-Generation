@@ -15,6 +15,7 @@ class Wolf: MeleeEnemy{
         super.init(texture: nil, color: .whiteColor(), size: CGSizeMake(100, 100))
         attackSpeed = 0.5
         attack = 6
+        movementSpeed = 250
     }
     
     required init?(coder aDecoder: NSCoder) {

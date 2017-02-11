@@ -73,14 +73,12 @@ class RangedEnemy:Enemy{
             if playerPos.y < position.y{
                 if (position.x - playerPos.x) < (position.y - playerPos.y){
                     if (position.x - playerPos.x < 50){
-//                        attack(scene, direction:"down")
                         return ""
                     }
                     return "-x"
                 }
                 else {
                     if (position.y - playerPos.y < 50){
-//                        attack(scene, direction:"left")
                         return ""
                     }
                     return "-y"
@@ -89,14 +87,12 @@ class RangedEnemy:Enemy{
             else{
                 if (position.x - playerPos.x) < (playerPos.y - position.y){
                     if (position.x - playerPos.x < 50){
-//                        attack(scene, direction:"up")
                         return ""
                     }
                     return "-x"
                 }
                 else {
                     if (playerPos.y - position.y < 50){
-//                        attack(scene, direction:"left")
                         return ""
                     }
                     return "y"
@@ -108,14 +104,12 @@ class RangedEnemy:Enemy{
             if playerPos.y < position.y{
                 if (playerPos.x - position.x) < (position.y - playerPos.y){
                     if playerPos.x - position.x < 2{
-//                        attack(scene, direction:"down")
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if position.y - playerPos.y < 2{
-//                        attack(scene, direction:"right")
                         return ""
                     }
                     return "-y"
@@ -124,14 +118,12 @@ class RangedEnemy:Enemy{
             else{
                 if (playerPos.x - position.x) < (playerPos.y - position.y){
                     if playerPos.x - position.x < 2{
-//                        attack(scene, direction:"up")
                         return ""
                     }
                     return "x"
                 }
                 else {
                     if playerPos.y - position.y < 2{
-//                        attack(scene, direction:"right")
                         return ""
                     }
                     return "y"

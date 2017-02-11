@@ -38,6 +38,7 @@ class BanditHouse:GameScene{
         let leader = BanditLeader()
         let door = Door(texture: nil, color: .redColor(), size: CGSizeMake(100, 100), level: Level1(size: size, player: player))
         door.position = CGPointMake(bkgImg.position.x, bkgImg.position.y - 300)
+        door.runAction(SKAction.rotateByAngle(CGFloat(M_PI), duration: 0))
         leader.position = CGPointMake(bkgImg.position.x, bkgImg.position.y + 200)
         
         addChild(background)

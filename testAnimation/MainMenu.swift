@@ -14,20 +14,14 @@ class MainMenu:SKScene{
     private var btnDungeon:SKSpriteNode!
     
     override func didMoveToView(view: SKView) {
-        btnRpg = SKSpriteNode(color: .blueColor(), size: CGSizeMake(800, 400))
-        btnDungeon = SKSpriteNode(color: .blueColor(), size: CGSizeMake(800, 400))
-        btnRpg.position = CGPointMake(size.width / 2, size.height / 2 + 300)
+        let background = SKSpriteNode(imageNamed: "MainMenu")
+        background.position = CGPointMake(size.width / 2, size.height / 2)
+        btnRpg = SKSpriteNode(imageNamed: "StoryBtn")
+        btnDungeon = SKSpriteNode(imageNamed: "DungeonBtn")
+        btnRpg.position = CGPointMake(size.width / 2, size.height / 2 + 150)
         btnDungeon.position = CGPointMake(size.width / 2, size.height / 2 - 300)
-        let lblRpg = SKLabelNode(text: "Story Mode")
-        let lblDungeon = SKLabelNode(text: "Dungeon Mode")
-        lblRpg.fontName = "Cochin"
-        lblDungeon.fontName = "Cochin"
-        lblRpg.fontSize = 100
-        lblDungeon.fontSize = 100
         
-        btnRpg.addChild(lblRpg)
-        btnDungeon.addChild(lblDungeon)
-        
+        addChild(background)
         addChild(btnRpg)
         addChild(btnDungeon)
     }
@@ -50,7 +44,6 @@ class MainMenu:SKScene{
             scene.player.pickUp(AutoRifle())
             scene.player.pickUp(Longbow())
             scene.player.pickUp(TestAxe())
-            Chest()
             scene.player.pickUp(SmallPotion(texture: SKTexture(imageNamed:"HealthPotion"), color: .clearColor(), size: CGSizeMake(100, 100)))
             
             scene.scaleMode = .AspectFill

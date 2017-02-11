@@ -18,6 +18,7 @@ class GameScene: SKScene {
     //Taken from 2d tvios
     var lastUpdateTime: NSTimeInterval = 0
     var dt: NSTimeInterval = 0
+    //
     
     override init(size: CGSize) {
         super.init(size: size)
