@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>LargePotion</string>
+	<string>MediumPotion</string>
+	<string>MediumPotion</string>
+	<string>SmallPotion</string>
+	<string>SmallPotion</string>
+	<string>SmallPotion</string>
+	<string>Longbow</string>
+	<string>TestSword</string>
+	<string>TestAxe</string>
+	<string>PlateLegs</string>
+	<string>PlateChest</string>
+	<string>PlateArms</string>
+	<string>PlateHelmet</string>
+	<string>Pistol</string>
+	<string>Pistol</string>
+	<string>Pistol</string>
+	<string>AutoRifle</string>
+	<string>AutoRifle</string>
+	<string>AutoRifle</string>
+	<string>LeatherHelmet</string>
+	<string>LeatherLegs</string>
+	<string>LeatherChest</string>
+	<string>LeatherArms</string>
+</array>
+</plist>
